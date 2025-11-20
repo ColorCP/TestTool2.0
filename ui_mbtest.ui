@@ -1,0 +1,3890 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MBWindow</class>
+ <widget class="QMainWindow" name="MBWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1031</width>
+    <height>924</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Mother Board Test</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QTabWidget" name="tabWidget">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>1020</width>
+      <height>870</height>
+     </rect>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>1020</width>
+      <height>16777215</height>
+     </size>
+    </property>
+    <property name="currentIndex">
+     <number>0</number>
+    </property>
+    <widget class="QWidget" name="Test_Items">
+     <attribute name="title">
+      <string>測試項目</string>
+     </attribute>
+     <widget class="QGroupBox" name="auto_test_GroupBox">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>281</width>
+        <height>741</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>自動測試項目</string>
+      </property>
+      <layout class="QGridLayout" name="gridLayout">
+       <item row="4" column="0">
+        <widget class="QCheckBox" name="checkBox_RS232">
+         <property name="text">
+          <string>RS232</string>
+         </property>
+        </widget>
+       </item>
+       <item row="16" column="0">
+        <widget class="QCheckBox" name="checkBox_UART">
+         <property name="text">
+          <string>UART</string>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="0">
+        <widget class="QCheckBox" name="checkBox_RS485">
+         <property name="text">
+          <string>RS485</string>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="0">
+        <widget class="QCheckBox" name="checkBox_CANBUS">
+         <property name="text">
+          <string>CAN BUS</string>
+         </property>
+        </widget>
+       </item>
+       <item row="10" column="0">
+        <widget class="QCheckBox" name="checkBox_BKEY">
+         <property name="text">
+          <string>B-Key</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QCheckBox" name="checkBox_NETWORK">
+         <property name="text">
+          <string>NetWork</string>
+         </property>
+        </widget>
+       </item>
+       <item row="15" column="0">
+        <widget class="QCheckBox" name="checkBox_I2C">
+         <property name="text">
+          <string>I2C</string>
+         </property>
+        </widget>
+       </item>
+       <item row="11" column="0">
+        <widget class="QCheckBox" name="checkBox_FAN">
+         <property name="text">
+          <string>FAN</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QCheckBox" name="checkBox_MICROSD">
+         <property name="text">
+          <string>Micro SD Card</string>
+         </property>
+        </widget>
+       </item>
+       <item row="14" column="0">
+        <widget class="QCheckBox" name="checkBox_GPIO">
+         <property name="text">
+          <string>GPIO</string>
+         </property>
+        </widget>
+       </item>
+       <item row="9" column="0">
+        <widget class="QCheckBox" name="checkBox_EKEY">
+         <property name="text">
+          <string>E-Key</string>
+         </property>
+        </widget>
+       </item>
+       <item row="12" column="0">
+        <widget class="QCheckBox" name="checkBox_EEPROM">
+         <property name="text">
+          <string>EEPROM</string>
+         </property>
+        </widget>
+       </item>
+       <item row="8" column="0">
+        <widget class="QCheckBox" name="checkBox_MKEY">
+         <property name="text">
+          <string>M-Key</string>
+         </property>
+        </widget>
+       </item>
+       <item row="13" column="0">
+        <widget class="QCheckBox" name="checkBox_EEPROM_RD">
+         <property name="text">
+          <string>EEPROM (RD Test)</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QCheckBox" name="checkBox_USB3">
+         <property name="text">
+          <string>USB3.0</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QCheckBox" name="checkBox_USB2">
+         <property name="text">
+          <string>USB2.0</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="0">
+        <widget class="QCheckBox" name="checkBox_RS422">
+         <property name="text">
+          <string>RS422</string>
+         </property>
+        </widget>
+       </item>
+       <item row="17" column="0">
+        <widget class="QCheckBox" name="checkBox_SPI">
+         <property name="text">
+          <string>SPI</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QTextEdit" name="Information_textEdit">
+      <property name="geometry">
+       <rect>
+        <x>620</x>
+        <y>150</y>
+        <width>381</width>
+        <height>421</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="Button_iTem_Clean">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>750</y>
+        <width>121</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Clean All iTem</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="Button_Start_Test">
+      <property name="geometry">
+       <rect>
+        <x>360</x>
+        <y>750</y>
+        <width>121</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Start Test</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="Button_iTem_Select">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>750</y>
+        <width>121</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Select All iTem</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="Button_Upload">
+      <property name="geometry">
+       <rect>
+        <x>490</x>
+        <y>750</y>
+        <width>121</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Log Upload</string>
+      </property>
+     </widget>
+     <widget class="QGroupBox" name="pass_fail_count_groupBox">
+      <property name="geometry">
+       <rect>
+        <x>620</x>
+        <y>570</y>
+        <width>381</width>
+        <height>201</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>計數</string>
+      </property>
+      <widget class="QLCDNumber" name="pass_lcdNumber">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>50</y>
+         <width>171</width>
+         <height>71</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLCDNumber" name="fail_lcdNumber">
+       <property name="geometry">
+        <rect>
+         <x>200</x>
+         <y>50</y>
+         <width>171</width>
+         <height>71</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="pass_label">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>30</y>
+         <width>67</width>
+         <height>17</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>PASS Log</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="fail_label">
+       <property name="geometry">
+        <rect>
+         <x>200</x>
+         <y>30</y>
+         <width>67</width>
+         <height>17</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>FAIL Log</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="logo_label">
+       <property name="geometry">
+        <rect>
+         <x>66</x>
+         <y>136</y>
+         <width>251</width>
+         <height>61</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>logo not found</string>
+       </property>
+       <property name="scaledContents">
+        <bool>true</bool>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="Timer_groupBox">
+      <property name="geometry">
+       <rect>
+        <x>620</x>
+        <y>30</y>
+        <width>381</width>
+        <height>91</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>計時器</string>
+      </property>
+      <widget class="QTimeEdit" name="timeEdit_Timer">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>30</y>
+         <width>361</width>
+         <height>51</height>
+        </rect>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QLabel" name="config_read_TextLabel">
+      <property name="geometry">
+       <rect>
+        <x>620</x>
+        <y>10</y>
+        <width>211</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Config Label</string>
+      </property>
+     </widget>
+     <widget class="QGroupBox" name="manual_test_GroupBox">
+      <property name="geometry">
+       <rect>
+        <x>290</x>
+        <y>0</y>
+        <width>321</width>
+        <height>741</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>人工測試項目</string>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_4">
+       <item row="0" column="0">
+        <widget class="QCheckBox" name="checkBox_CPU">
+         <property name="text">
+          <string>CPU NAME</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QCheckBox" name="checkBox_MIC">
+         <property name="text">
+          <string>MIC</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QCheckBox" name="checkBox_MEM">
+         <property name="text">
+          <string>Memory</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QCheckBox" name="checkBox_Line_in">
+         <property name="text">
+          <string>Line IN</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QCheckBox" name="checkBox_PowerConnector">
+         <property name="text">
+          <string>Power Connector</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QCheckBox" name="checkBox_Speaker">
+         <property name="text">
+          <string>Speaker</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QCheckBox" name="checkBox_PowerSWConnector">
+         <property name="text">
+          <string>Power SW Connector</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QCheckBox" name="checkBox_Camera">
+         <property name="text">
+          <string>Camera</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0">
+        <widget class="QCheckBox" name="checkBox_MCUConnector">
+         <property name="text">
+          <string>MCU Connector</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="1">
+        <widget class="QCheckBox" name="checkBox_Caseopen">
+         <property name="text">
+          <string>Case Open</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="0">
+        <widget class="QCheckBox" name="checkBox_DC_OUTPUT">
+         <property name="text">
+          <string>DC Output</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="1">
+        <widget class="QCheckBox" name="checkBox_Power_Button">
+         <property name="text">
+          <string>Power Button</string>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="0">
+        <widget class="QCheckBox" name="checkBox_DC_INPUT">
+         <property name="text">
+          <string>DC Input</string>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="1">
+        <widget class="QCheckBox" name="checkBox_Reset_Button">
+         <property name="text">
+          <string>Reset Button</string>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="0">
+        <widget class="QCheckBox" name="checkBox_PD_POWER_INPUT">
+         <property name="text">
+          <string>PD Power Input</string>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="1">
+        <widget class="QCheckBox" name="checkBox_Recovery_Button">
+         <property name="text">
+          <string>Recovery Button</string>
+         </property>
+        </widget>
+       </item>
+       <item row="8" column="0">
+        <widget class="QCheckBox" name="checkBox_PSE_POWER_OUTPUT">
+         <property name="text">
+          <string>PSE Power Output</string>
+         </property>
+        </widget>
+       </item>
+       <item row="8" column="1">
+        <widget class="QCheckBox" name="checkBox_SMA">
+         <property name="text">
+          <string>SMA</string>
+         </property>
+        </widget>
+       </item>
+       <item row="9" column="0">
+        <widget class="QCheckBox" name="checkBox_SW1">
+         <property name="text">
+          <string>SW1</string>
+         </property>
+        </widget>
+       </item>
+       <item row="9" column="1">
+        <widget class="QCheckBox" name="checkBox_VRAIN_GPIO">
+         <property name="text">
+          <string>VRAIN GPIO</string>
+         </property>
+        </widget>
+       </item>
+       <item row="10" column="0">
+        <widget class="QCheckBox" name="checkBox_SW2">
+         <property name="text">
+          <string>SW2</string>
+         </property>
+        </widget>
+       </item>
+       <item row="10" column="1">
+        <widget class="QCheckBox" name="checkBox_InnoAgent">
+         <property name="text">
+          <string>InnoAgent</string>
+         </property>
+        </widget>
+       </item>
+       <item row="11" column="0">
+        <widget class="QCheckBox" name="checkBox_RTC">
+         <property name="text">
+          <string>RTC</string>
+         </property>
+        </widget>
+       </item>
+       <item row="11" column="1">
+        <widget class="QCheckBox" name="checkBox_GPS">
+         <property name="text">
+          <string>GPS</string>
+         </property>
+        </widget>
+       </item>
+       <item row="12" column="0">
+        <widget class="QCheckBox" name="checkBox_RTC_OUT">
+         <property name="text">
+          <string>RTC OUT</string>
+         </property>
+        </widget>
+       </item>
+       <item row="12" column="1">
+        <widget class="QCheckBox" name="checkBox_DP">
+         <property name="text">
+          <string>DP</string>
+         </property>
+        </widget>
+       </item>
+       <item row="13" column="0">
+        <widget class="QCheckBox" name="checkBox_LED">
+         <property name="text">
+          <string>LED</string>
+         </property>
+        </widget>
+       </item>
+       <item row="13" column="1">
+        <widget class="QCheckBox" name="checkBox_VGA">
+         <property name="text">
+          <string>VGA</string>
+         </property>
+        </widget>
+       </item>
+       <item row="14" column="0">
+        <widget class="QCheckBox" name="checkBox_HDMI">
+         <property name="text">
+          <string>HDMI</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QLabel" name="label_39">
+      <property name="geometry">
+       <rect>
+        <x>620</x>
+        <y>130</y>
+        <width>91</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>資訊欄</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="MB_Information">
+     <attribute name="title">
+      <string>主機板資訊</string>
+     </attribute>
+     <widget class="QGroupBox" name="HW_Information_groupBox">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>521</width>
+        <height>579</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>HW Information</string>
+      </property>
+      <layout class="QFormLayout" name="formLayout">
+       <item row="0" column="0">
+        <widget class="QLabel" name="label">
+         <property name="text">
+          <string>Board Manufacturer:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QLabel" name="valBoardVendor">
+         <property name="text">
+          <string>---</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_2">
+         <property name="text">
+          <string>Board Name:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QLabel" name="valBoardName">
+         <property name="text">
+          <string>---</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="label_3">
+         <property name="text">
+          <string>Board Serial Number:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QLabel" name="valBoardSerial">
+         <property name="text">
+          <string>---</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="label_4">
+         <property name="text">
+          <string>BIOS Version:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QLabel" name="valBiosVersion">
+         <property name="text">
+          <string>---</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0">
+        <widget class="QLabel" name="label_5">
+         <property name="text">
+          <string>BIOS Manufacturer:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="1">
+        <widget class="QLabel" name="valBiosVendor">
+         <property name="text">
+          <string>---</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="0">
+        <widget class="QLabel" name="label_11">
+         <property name="text">
+          <string>CPU NAME:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="1">
+        <widget class="QLabel" name="valCPUName">
+         <property name="text">
+          <string>---</string>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="0">
+        <widget class="QLabel" name="label_6">
+         <property name="text">
+          <string>CPU 溫度:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="1">
+        <widget class="QLabel" name="valCpuTemp">
+         <property name="text">
+          <string>---</string>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="0">
+        <widget class="QLabel" name="label_7">
+         <property name="text">
+          <string>CPU Fan RPM:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="1">
+        <widget class="QLabel" name="valCpuFanRpm">
+         <property name="text">
+          <string>---</string>
+         </property>
+        </widget>
+       </item>
+       <item row="8" column="0">
+        <widget class="QLabel" name="label_18">
+         <property name="text">
+          <string>Memory 1 :</string>
+         </property>
+        </widget>
+       </item>
+       <item row="8" column="1">
+        <widget class="QLabel" name="valMEM1">
+         <property name="text">
+          <string>---</string>
+         </property>
+        </widget>
+       </item>
+       <item row="9" column="0">
+        <widget class="QLabel" name="label_15">
+         <property name="text">
+          <string>Memory 2 :</string>
+         </property>
+        </widget>
+       </item>
+       <item row="9" column="1">
+        <widget class="QLabel" name="valMEM2">
+         <property name="text">
+          <string>---</string>
+         </property>
+        </widget>
+       </item>
+       <item row="10" column="0">
+        <widget class="QLabel" name="label_20">
+         <property name="text">
+          <string>Memory 3 :</string>
+         </property>
+        </widget>
+       </item>
+       <item row="10" column="1">
+        <widget class="QLabel" name="valMEM3">
+         <property name="text">
+          <string>---</string>
+         </property>
+        </widget>
+       </item>
+       <item row="11" column="0">
+        <widget class="QLabel" name="label_25">
+         <property name="text">
+          <string>Memory 4 :</string>
+         </property>
+        </widget>
+       </item>
+       <item row="11" column="1">
+        <widget class="QLabel" name="valMEM4">
+         <property name="text">
+          <string>---</string>
+         </property>
+        </widget>
+       </item>
+       <item row="12" column="0">
+        <widget class="QLabel" name="label_8">
+         <property name="text">
+          <string>System 溫度:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="12" column="1">
+        <widget class="QLabel" name="valSystemTemp">
+         <property name="text">
+          <string>---</string>
+         </property>
+        </widget>
+       </item>
+       <item row="13" column="0">
+        <widget class="QLabel" name="label_10">
+         <property name="text">
+          <string>System Fan 1 RPM:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="13" column="1">
+        <widget class="QLabel" name="valSystemFan1RPM">
+         <property name="text">
+          <string>---</string>
+         </property>
+        </widget>
+       </item>
+       <item row="14" column="0">
+        <widget class="QLabel" name="label_12">
+         <property name="text">
+          <string>System Fan 2 RPM:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="14" column="1">
+        <widget class="QLabel" name="valSystemFan2RPM">
+         <property name="text">
+          <string>---</string>
+         </property>
+        </widget>
+       </item>
+       <item row="15" column="0">
+        <widget class="QLabel" name="label_14">
+         <property name="text">
+          <string>System Fan 3 RPM:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="15" column="1">
+        <widget class="QLabel" name="valSystemFan3RPM">
+         <property name="text">
+          <string>---</string>
+         </property>
+        </widget>
+       </item>
+       <item row="16" column="0">
+        <widget class="QLabel" name="label_16">
+         <property name="text">
+          <string>System Fan 4 RPM:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="16" column="1">
+        <widget class="QLabel" name="valSystemFan4RPM">
+         <property name="text">
+          <string>---</string>
+         </property>
+        </widget>
+       </item>
+       <item row="17" column="0">
+        <widget class="QLabel" name="label_9">
+         <property name="text">
+          <string>MAC1:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="17" column="1">
+        <widget class="QLabel" name="valMAC1">
+         <property name="text">
+          <string>---</string>
+         </property>
+        </widget>
+       </item>
+       <item row="18" column="0">
+        <widget class="QLabel" name="label_13">
+         <property name="text">
+          <string>MAC2:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="18" column="1">
+        <widget class="QLabel" name="valMAC2">
+         <property name="text">
+          <string>---</string>
+         </property>
+        </widget>
+       </item>
+       <item row="19" column="0">
+        <widget class="QLabel" name="label_17">
+         <property name="text">
+          <string>MAC3:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="19" column="1">
+        <widget class="QLabel" name="valMAC3">
+         <property name="text">
+          <string>---</string>
+         </property>
+        </widget>
+       </item>
+       <item row="20" column="0">
+        <widget class="QLabel" name="label_19">
+         <property name="text">
+          <string>MAC4:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="20" column="1">
+        <widget class="QLabel" name="valMAC4">
+         <property name="text">
+          <string>---</string>
+         </property>
+        </widget>
+       </item>
+       <item row="21" column="0">
+        <widget class="QLabel" name="label_21">
+         <property name="text">
+          <string>MAC5:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="21" column="1">
+        <widget class="QLabel" name="label_22">
+         <property name="text">
+          <string>---</string>
+         </property>
+        </widget>
+       </item>
+       <item row="22" column="0">
+        <widget class="QLabel" name="label_23">
+         <property name="text">
+          <string>MAC6:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="22" column="1">
+        <widget class="QLabel" name="label_24">
+         <property name="text">
+          <string>---</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="Device_Items">
+     <attribute name="title">
+      <string>裝置列表</string>
+     </attribute>
+    </widget>
+    <widget class="QWidget" name="tab_2">
+     <attribute name="title">
+      <string>Config 測試裝置數量設定</string>
+     </attribute>
+     <widget class="QGroupBox" name="ekey_groupBox">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>1011</width>
+        <height>731</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>測試裝置數量設定</string>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_3">
+       <item row="4" column="5">
+        <widget class="QLabel" name="label_26">
+         <property name="text">
+          <string>FAN:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="1">
+        <widget class="QToolButton" name="rs485_toolButton">
+         <property name="text">
+          <string>...</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="7">
+        <widget class="QComboBox" name="dc_output_comboBox">
+         <item>
+          <property name="text">
+           <string>0</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>2</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>3</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>4</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>5</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>6</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>7</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>8</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>9</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>10</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="9" column="0">
+        <widget class="QLabel" name="label_79">
+         <property name="text">
+          <string>E-Key</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="3">
+        <widget class="QLabel" name="label_82">
+         <property name="text">
+          <string>LED:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="11" column="2">
+        <widget class="QComboBox" name="BKEY_comboBox">
+         <item>
+          <property name="text">
+           <string>0</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>2</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>3</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>4</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>5</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>6</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>7</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>8</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>9</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>10</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="1" column="4">
+        <widget class="QComboBox" name="vga_comboBox">
+         <item>
+          <property name="text">
+           <string>0</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>2</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>3</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>4</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>5</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>6</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>7</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>8</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>9</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>10</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="5" column="7">
+        <widget class="QComboBox" name="eeprom_comboBox">
+         <item>
+          <property name="text">
+           <string>0</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>1</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="12" column="4">
+        <widget class="QComboBox" name="mcu_connector_comboBox">
+         <item>
+          <property name="text">
+           <string>0</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>2</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>3</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>4</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>5</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>6</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>7</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>8</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>9</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>10</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="6" column="2">
+        <widget class="QComboBox" name="RS485_comboBox">
+         <item>
+          <property name="text">
+           <string>0</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>2</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>3</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>4</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>5</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>6</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>7</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>8</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>9</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>10</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="4" column="6">
+        <widget class="QToolButton" name="fan_toolButton">
+         <property name="text">
+          <string>...</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QToolButton" name="network_toolButton">
+         <property name="text">
+          <string>...</string>
+         </property>
+        </widget>
+       </item>
+       <item row="11" column="4">
+        <widget class="QComboBox" name="sw2_comboBox">
+         <item>
+          <property name="text">
+           <string>0</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>1</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="0" column="3">
+        <widget class="QLabel" name="label_43">
+         <property name="text">
+          <string>HDMI:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="5">
+        <widget class="QLabel" name="label_85">
+         <property name="text">
+          <string>RTC OUT:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="9" column="4">
+        <widget class="QComboBox" name="sma_comboBox">
+         <item>
+          <property name="text">
+           <string>0</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>1</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="6" column="3">
+        <widget class="QLabel" name="label_44">
+         <property name="text">
+          <string>POWER SW CONNECTOR:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="4">
+        <widget class="QComboBox" name="power_connector_comboBox">
+         <item>
+          <property name="text">
+           <string>0</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>1</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="0" column="4">
+        <widget class="QComboBox" name="hdmi_comboBox">
+         <item>
+          <property name="text">
+           <string>0</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>2</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>3</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>4</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>5</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>6</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>7</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>8</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>9</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>10</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_70">
+         <property name="text">
+          <string>USB 2.0:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="0">
+        <widget class="QLabel" name="label_60">
+         <property name="text">
+          <string>RS422:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="6">
+        <widget class="QToolButton" name="i2c_toolButton">
+         <property name="text">
+          <string>...</string>
+         </property>
+        </widget>
+       </item>
+       <item row="10" column="0">
+        <widget class="QLabel" name="label_83">
+         <property name="text">
+          <string>M-Key:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0">
+        <widget class="QLabel" name="label_61">
+         <property name="text">
+          <string>RS232:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="11" column="0">
+        <widget class="QLabel" name="label_67">
+         <property name="text">
+          <string>B-Key:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="5">
+        <widget class="QLabel" name="label_29">
+         <property name="text">
+          <string>EEPROM (RD_Test):</string>
+         </property>
+        </widget>
+       </item>
+       <item row="10" column="3">
+        <widget class="QLabel" name="label_45">
+         <property name="text">
+          <string>SW1:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="9" column="3">
+        <widget class="QLabel" name="label_77">
+         <property name="text">
+          <string>SMA:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="1">
+        <widget class="QToolButton" name="gpio_toolButton">
+         <property name="text">
+          <string>...</string>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="0">
+        <widget class="QLabel" name="label_72">
+         <property name="text">
+          <string>GPIO:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="5">
+        <widget class="QLabel" name="label_115">
+         <property name="text">
+          <string>I2C:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="7">
+        <widget class="QComboBox" name="rtc_out_comboBox">
+         <item>
+          <property name="text">
+           <string>0</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>2</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>3</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>4</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>5</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>6</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>7</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>8</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>9</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>10</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="label_80">
+         <property name="text">
+          <string>NetWork:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="2">
+        <widget class="QComboBox" name="gpio_comboBox">
+         <item>
+          <property name="text">
+           <string>0</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>2</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>3</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>4</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>5</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>6</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>7</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>8</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>9</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>10</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="4" column="3">
+        <widget class="QLabel" name="label_76">
+         <property name="text">
+          <string>POWER BUTTON:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="4">
+        <widget class="QComboBox" name="power_button_comboBox">
+         <item>
+          <property name="text">
+           <string>0</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>1</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="3" column="4">
+        <widget class="QComboBox" name="led_comboBox">
+         <item>
+          <property name="text">
+           <string>0</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>2</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>3</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>4</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>5</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>6</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>7</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>8</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>9</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>10</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="5" column="5">
+        <widget class="QLabel" name="label_27">
+         <property name="text">
+          <string>EEPROM:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="3">
+        <widget class="QLabel" name="label_62">
+         <property name="text">
+          <string>VGA:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_71">
+         <property name="text">
+          <string>USB 3.0:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="10" column="4">
+        <widget class="QComboBox" name="sw1_comboBox">
+         <item>
+          <property name="text">
+           <string>0</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>1</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="4" column="1">
+        <widget class="QToolButton" name="rs232_toolButton">
+         <property name="text">
+          <string>...</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="6">
+        <widget class="QToolButton" name="eeprom_toolButton">
+         <property name="text">
+          <string>...</string>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="3">
+        <widget class="QLabel" name="label_78">
+         <property name="text">
+          <string>RESET BUTTON:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="1">
+        <widget class="QToolButton" name="rs422_toolButton">
+         <property name="text">
+          <string>...</string>
+         </property>
+        </widget>
+       </item>
+       <item row="8" column="4">
+        <widget class="QComboBox" name="recovery_button_comboBox">
+         <item>
+          <property name="text">
+           <string>0</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>1</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="2" column="3">
+        <widget class="QLabel" name="label_68">
+         <property name="text">
+          <string>DP:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="7">
+        <widget class="QComboBox" name="dc_input_comboBox">
+         <item>
+          <property name="text">
+           <string>0</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>2</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>3</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>4</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>5</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>6</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>7</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>8</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>9</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>10</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="10" column="2">
+        <widget class="QComboBox" name="MKEY_comboBox">
+         <item>
+          <property name="text">
+           <string>0</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>2</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>3</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>4</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>5</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>6</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>7</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>8</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>9</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>10</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="3" column="2">
+        <widget class="QComboBox" name="microsd_comboBox">
+         <item>
+          <property name="text">
+           <string>0</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>2</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>3</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>4</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>5</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>6</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>7</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>8</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>9</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>10</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="9" column="1">
+        <widget class="QToolButton" name="ekey_toolButton">
+         <property name="text">
+          <string>...</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="3">
+        <widget class="QLabel" name="label_69">
+         <property name="text">
+          <string>POWER CONNECTOR:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="5">
+        <widget class="QLabel" name="label_84">
+         <property name="text">
+          <string>RTC:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="8" column="2">
+        <widget class="QComboBox" name="spi_comboBox">
+         <item>
+          <property name="text">
+           <string>0</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>2</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>3</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>4</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>5</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>6</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>7</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>8</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>9</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>10</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="6" column="4">
+        <widget class="QComboBox" name="power_sw_connector_comboBox">
+         <item>
+          <property name="text">
+           <string>0</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>1</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="9" column="2">
+        <widget class="QComboBox" name="EKEY_comboBox">
+         <item>
+          <property name="text">
+           <string>0</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>2</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>3</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>4</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>5</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>6</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>7</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>8</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>9</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>10</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="4" column="2">
+        <widget class="QComboBox" name="RS232_comboBox">
+         <item>
+          <property name="text">
+           <string>0</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>2</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>3</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>4</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>5</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>6</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>7</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>8</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>9</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>10</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="0" column="2">
+        <widget class="QComboBox" name="usb2_comboBox">
+         <item>
+          <property name="text">
+           <string>0</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>2</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>3</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>4</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>5</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>6</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>7</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>8</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>9</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>10</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="2" column="5">
+        <widget class="QLabel" name="label_86">
+         <property name="text">
+          <string>DC INPUT:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="8" column="0">
+        <widget class="QLabel" name="label_73">
+         <property name="text">
+          <string>SPI:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="7">
+        <widget class="QComboBox" name="rtc_comboBox">
+         <item>
+          <property name="text">
+           <string>0</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>2</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>3</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>4</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>5</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>6</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>7</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>8</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>9</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>10</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="6" column="0">
+        <widget class="QLabel" name="label_81">
+         <property name="text">
+          <string>RS485:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2">
+        <widget class="QComboBox" name="usb3_comboBox">
+         <item>
+          <property name="text">
+           <string>0</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>2</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>3</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>4</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>5</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>6</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>7</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>8</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>9</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>10</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="label_75">
+         <property name="text">
+          <string>MicroSD:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="11" column="3">
+        <widget class="QLabel" name="label_63">
+         <property name="text">
+          <string>SW2:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="2">
+        <widget class="QComboBox" name="RS422_comboBox">
+         <item>
+          <property name="text">
+           <string>0</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>2</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>3</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>4</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>5</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>6</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>7</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>8</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>9</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>10</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="6" column="7">
+        <widget class="QComboBox" name="eeprom_RD_Test_comboBox">
+         <item>
+          <property name="text">
+           <string>0</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>1</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="12" column="0">
+        <widget class="QLabel" name="label_74">
+         <property name="text">
+          <string>UART:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="2">
+        <widget class="QComboBox" name="network_comboBox">
+         <property name="currentIndex">
+          <number>0</number>
+         </property>
+         <item>
+          <property name="text">
+           <string>0</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>2</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>3</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>4</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>5</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>6</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>7</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>8</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>9</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>10</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="2" column="4">
+        <widget class="QComboBox" name="dp_comboBox">
+         <item>
+          <property name="text">
+           <string>0</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>2</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>3</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>4</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>5</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>6</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>7</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>8</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>9</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>10</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="7" column="7">
+        <widget class="QComboBox" name="i2c_comboBox">
+         <item>
+          <property name="text">
+           <string>0</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>2</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>3</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>4</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>5</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>6</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>7</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>8</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>9</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>10</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="7" column="4">
+        <widget class="QComboBox" name="reset_button_comboBox">
+         <item>
+          <property name="text">
+           <string>0</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>1</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="4" column="7">
+        <widget class="QComboBox" name="fan_comboBox">
+         <item>
+          <property name="text">
+           <string>0</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>2</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>3</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>4</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>5</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>6</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>7</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>8</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>9</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>10</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="12" column="3">
+        <widget class="QLabel" name="label_64">
+         <property name="text">
+          <string>MCU Connector</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="5">
+        <widget class="QLabel" name="label_87">
+         <property name="text">
+          <string>DC OUTPUT:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="8" column="3">
+        <widget class="QLabel" name="label_65">
+         <property name="text">
+          <string>RECOVERY BUTTON:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="12" column="2">
+        <widget class="QComboBox" name="uart_comboBox">
+         <item>
+          <property name="text">
+           <string>0</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>2</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>3</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>4</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>5</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>6</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>7</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>8</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>9</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>10</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="12" column="1">
+        <widget class="QToolButton" name="uart_toolButton">
+         <property name="text">
+          <string>...</string>
+         </property>
+        </widget>
+       </item>
+       <item row="8" column="1">
+        <widget class="QToolButton" name="spi_toolButton">
+         <property name="text">
+          <string>...</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QDialogButtonBox" name="config_save_buttonBox">
+      <property name="geometry">
+       <rect>
+        <x>840</x>
+        <y>740</y>
+        <width>166</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="standardButtons">
+       <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab">
+     <attribute name="title">
+      <string>測試參數設定</string>
+     </attribute>
+     <layout class="QGridLayout" name="gridLayout_13">
+      <item row="0" column="0" rowspan="2">
+       <widget class="QGroupBox" name="RS232_setting_groupBox">
+        <property name="maximumSize">
+         <size>
+          <width>300</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="title">
+         <string>RS232 設定</string>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_7">
+         <item row="1" column="1">
+          <widget class="QLineEdit" name="rs232_2_lineEdit"/>
+         </item>
+         <item row="0" column="0">
+          <widget class="QLabel" name="label_47">
+           <property name="text">
+            <string>1</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="label_51">
+           <property name="text">
+            <string>2</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="label_55">
+           <property name="text">
+            <string>3</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLineEdit" name="rs232_1_lineEdit"/>
+         </item>
+         <item row="2" column="1">
+          <widget class="QLineEdit" name="rs232_3_lineEdit"/>
+         </item>
+         <item row="0" column="3">
+          <widget class="QLineEdit" name="rs232_4_lineEdit"/>
+         </item>
+         <item row="1" column="3">
+          <widget class="QLineEdit" name="rs232_5_lineEdit"/>
+         </item>
+         <item row="2" column="3">
+          <widget class="QLineEdit" name="rs232_6_lineEdit"/>
+         </item>
+         <item row="1" column="2">
+          <widget class="QLabel" name="label_57">
+           <property name="text">
+            <string>5</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="2">
+          <widget class="QLabel" name="label_58">
+           <property name="text">
+            <string>6</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="2">
+          <widget class="QLabel" name="label_56">
+           <property name="text">
+            <string>4</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item row="0" column="1" rowspan="2" colspan="2">
+       <widget class="QGroupBox" name="RS422_setting_groupBox">
+        <property name="maximumSize">
+         <size>
+          <width>300</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="title">
+         <string>RS422 設定</string>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_8">
+         <item row="2" column="1">
+          <widget class="QLineEdit" name="rs422_3_lineEdit"/>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLineEdit" name="rs422_1_lineEdit"/>
+         </item>
+         <item row="0" column="0">
+          <widget class="QLabel" name="label_92">
+           <property name="text">
+            <string>1</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="3">
+          <widget class="QLineEdit" name="rs422_4_lineEdit"/>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="label_99">
+           <property name="text">
+            <string>2</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="2">
+          <widget class="QLabel" name="label_90">
+           <property name="text">
+            <string>5</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="2">
+          <widget class="QLabel" name="label_94">
+           <property name="text">
+            <string>4</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="3">
+          <widget class="QLineEdit" name="rs422_5_lineEdit"/>
+         </item>
+         <item row="2" column="3">
+          <widget class="QLineEdit" name="rs422_6_lineEdit"/>
+         </item>
+         <item row="1" column="1">
+          <widget class="QLineEdit" name="rs422_2_lineEdit"/>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="label_91">
+           <property name="text">
+            <string>3</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="2">
+          <widget class="QLabel" name="label_97">
+           <property name="text">
+            <string>6</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item row="0" column="3" rowspan="2" colspan="2">
+       <widget class="QGroupBox" name="RS485_setting_groupBox">
+        <property name="maximumSize">
+         <size>
+          <width>300</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="title">
+         <string>RS485 設定</string>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_9">
+         <item row="0" column="0">
+          <widget class="QLabel" name="label_102">
+           <property name="text">
+            <string>1</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLineEdit" name="rs485_1_lineEdit"/>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="label_109">
+           <property name="text">
+            <string>2</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QLineEdit" name="rs485_2_lineEdit"/>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="label_101">
+           <property name="text">
+            <string>3</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QLineEdit" name="rs485_3_lineEdit"/>
+         </item>
+         <item row="2" column="3">
+          <widget class="QLineEdit" name="rs485_6_lineEdit"/>
+         </item>
+         <item row="2" column="2">
+          <widget class="QLabel" name="label_107">
+           <property name="text">
+            <string>6</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="3">
+          <widget class="QLineEdit" name="rs485_5_lineEdit"/>
+         </item>
+         <item row="0" column="3">
+          <widget class="QLineEdit" name="rs485_4_lineEdit"/>
+         </item>
+         <item row="0" column="2">
+          <widget class="QLabel" name="label_104">
+           <property name="text">
+            <string>4</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="2">
+          <widget class="QLabel" name="label_100">
+           <property name="text">
+            <string>5</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item row="0" column="5" rowspan="2">
+       <widget class="QGroupBox" name="UART_setting_groupBox">
+        <property name="title">
+         <string>UART 設定</string>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_12">
+         <item row="1" column="0">
+          <widget class="QLabel" name="label_133">
+           <property name="text">
+            <string>2</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QLineEdit" name="uart_3_lineEdit"/>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLineEdit" name="uart_1_lineEdit"/>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="label_128">
+           <property name="text">
+            <string>3</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QLineEdit" name="uart_2_lineEdit"/>
+         </item>
+         <item row="0" column="0">
+          <widget class="QLabel" name="label_131">
+           <property name="text">
+            <string>1</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="3">
+          <widget class="QLineEdit" name="uart_6_lineEdit"/>
+         </item>
+         <item row="2" column="2">
+          <widget class="QLabel" name="label_129">
+           <property name="text">
+            <string>6</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="3">
+          <widget class="QLineEdit" name="uart_5_lineEdit"/>
+         </item>
+         <item row="0" column="3">
+          <widget class="QLineEdit" name="uart_4_lineEdit"/>
+         </item>
+         <item row="0" column="2">
+          <widget class="QLabel" name="label_134">
+           <property name="text">
+            <string>4</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="2">
+          <widget class="QLabel" name="label_130">
+           <property name="text">
+            <string>5</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item row="0" column="6">
+       <widget class="QGroupBox" name="IP_setting_groupBox">
+        <property name="maximumSize">
+         <size>
+          <width>150</width>
+          <height>80</height>
+         </size>
+        </property>
+        <property name="title">
+         <string>Network Ping IP 設定</string>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_11">
+         <item row="0" column="0">
+          <widget class="QLabel" name="label_28">
+           <property name="text">
+            <string>IP:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLineEdit" name="IP_lineEdit"/>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item row="1" column="6" rowspan="2">
+       <widget class="QGroupBox" name="upload_setting_groupBox">
+        <property name="maximumSize">
+         <size>
+          <width>150</width>
+          <height>150</height>
+         </size>
+        </property>
+        <property name="title">
+         <string>FTP Log 上傳位置</string>
+        </property>
+        <layout class="QFormLayout" name="formLayout_4">
+         <item row="0" column="0">
+          <widget class="QRadioButton" name="PD1_FTP_radioButton">
+           <property name="text">
+            <string>PD1 FTP</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QRadioButton" name="PD2_FTP_radioButton">
+           <property name="text">
+            <string>PD2 FTP</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QRadioButton" name="PD3_FTP_radioButton">
+           <property name="text">
+            <string>PD3 FTP</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item row="2" column="0" rowspan="2" colspan="6">
+       <widget class="QGroupBox" name="Fan_setting_groupBox">
+        <property name="maximumSize">
+         <size>
+          <width>900</width>
+          <height>250</height>
+         </size>
+        </property>
+        <property name="title">
+         <string>風扇設定</string>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_2">
+         <item row="0" column="5">
+          <widget class="QLabel" name="label_53">
+           <property name="text">
+            <string>高速設定</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QCheckBox" name="FAN1_people_checkBox">
+           <property name="text">
+            <string>人工判斷</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="2">
+          <widget class="QLineEdit" name="FAN3_Time_lineEdit"/>
+         </item>
+         <item row="4" column="3">
+          <widget class="QLineEdit" name="FAN4_FAN_Path_lineEdit"/>
+         </item>
+         <item row="1" column="6">
+          <widget class="QLineEdit" name="FAN1_Tolerance_lineEdit"/>
+         </item>
+         <item row="5" column="5">
+          <widget class="QLineEdit" name="FAN5_HIGH_speed_lineEdit"/>
+         </item>
+         <item row="2" column="2">
+          <widget class="QLineEdit" name="FAN2_Time_lineEdit"/>
+         </item>
+         <item row="3" column="0">
+          <widget class="QLabel" name="label_48">
+           <property name="text">
+            <string>第三顆</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="3">
+          <widget class="QLineEdit" name="FAN3_FAN_Path_lineEdit"/>
+         </item>
+         <item row="1" column="2">
+          <widget class="QLineEdit" name="FAN1_Time_lineEdit"/>
+         </item>
+         <item row="2" column="4">
+          <widget class="QLineEdit" name="FAN2_LOW_speed_lineEdit"/>
+         </item>
+         <item row="1" column="5">
+          <widget class="QLineEdit" name="FAN1_HIGH_speed_lineEdit"/>
+         </item>
+         <item row="3" column="1">
+          <widget class="QCheckBox" name="FAN3_people_checkBox">
+           <property name="text">
+            <string>人工判斷</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="2">
+          <widget class="QLineEdit" name="FAN4_Time_lineEdit"/>
+         </item>
+         <item row="3" column="5">
+          <widget class="QLineEdit" name="FAN3_HIGH_speed_lineEdit"/>
+         </item>
+         <item row="5" column="0">
+          <widget class="QLabel" name="label_50">
+           <property name="text">
+            <string>第五顆</string>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="1">
+          <widget class="QCheckBox" name="FAN5_people_checkBox">
+           <property name="text">
+            <string>人工判斷</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="5">
+          <widget class="QLineEdit" name="FAN4_HIGH_speed_lineEdit"/>
+         </item>
+         <item row="0" column="6">
+          <widget class="QLabel" name="label_54">
+           <property name="text">
+            <string>容許誤差百分比</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="3">
+          <widget class="QLineEdit" name="FAN1_FAN_Path_lineEdit"/>
+         </item>
+         <item row="2" column="6">
+          <widget class="QLineEdit" name="FAN2_Tolerance_lineEdit"/>
+         </item>
+         <item row="0" column="4">
+          <widget class="QLabel" name="label_52">
+           <property name="text">
+            <string>低速設定</string>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="4">
+          <widget class="QLineEdit" name="FAN5_LOW_speed_lineEdit"/>
+         </item>
+         <item row="5" column="3">
+          <widget class="QLineEdit" name="FAN5_FAN_Path_lineEdit"/>
+         </item>
+         <item row="4" column="0">
+          <widget class="QLabel" name="label_49">
+           <property name="text">
+            <string>第四顆</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="3">
+          <widget class="QLineEdit" name="FAN2_FAN_Path_lineEdit"/>
+         </item>
+         <item row="4" column="6">
+          <widget class="QLineEdit" name="FAN4_Tolerance_lineEdit"/>
+         </item>
+         <item row="3" column="4">
+          <widget class="QLineEdit" name="FAN3_LOW_speed_lineEdit"/>
+         </item>
+         <item row="2" column="1">
+          <widget class="QCheckBox" name="FAN2_people_checkBox">
+           <property name="text">
+            <string>人工判斷</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="2">
+          <widget class="QLabel" name="label_46">
+           <property name="text">
+            <string>緩衝秒數設定</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="1">
+          <widget class="QCheckBox" name="FAN4_people_checkBox">
+           <property name="text">
+            <string>人工判斷</string>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="2">
+          <widget class="QLineEdit" name="FAN5_Time_lineEdit"/>
+         </item>
+         <item row="4" column="4">
+          <widget class="QLineEdit" name="FAN4_LOW_speed_lineEdit"/>
+         </item>
+         <item row="5" column="6">
+          <widget class="QLineEdit" name="FAN5_Tolerance_lineEdit"/>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="label_42">
+           <property name="text">
+            <string>第二顆</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="label_40">
+           <property name="text">
+            <string>第一顆</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="3">
+          <widget class="QLabel" name="label_41">
+           <property name="text">
+            <string>風扇路徑設定</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="4">
+          <widget class="QLineEdit" name="FAN1_LOW_speed_lineEdit"/>
+         </item>
+         <item row="2" column="5">
+          <widget class="QLineEdit" name="FAN2_HIGH_speed_lineEdit"/>
+         </item>
+         <item row="3" column="6">
+          <widget class="QLineEdit" name="FAN3_Tolerance_lineEdit"/>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item row="4" column="0" colspan="2">
+       <widget class="QGroupBox" name="i2c_setting_groupBox">
+        <property name="title">
+         <string>I2C 設定</string>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_10">
+         <item row="5" column="2">
+          <widget class="QLineEdit" name="i2c_addr5_lineEdit"/>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="label_120">
+           <property name="text">
+            <string>第二組</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="3">
+          <widget class="QLineEdit" name="i2c_offset2_lineEdit"/>
+         </item>
+         <item row="3" column="1">
+          <widget class="QLineEdit" name="i2c_bus3_lineEdit"/>
+         </item>
+         <item row="3" column="0">
+          <widget class="QLabel" name="label_121">
+           <property name="text">
+            <string>第三組</string>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="0">
+          <widget class="QLabel" name="label_123">
+           <property name="text">
+            <string>第五組</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="2">
+          <widget class="QLineEdit" name="i2c_addr4_lineEdit"/>
+         </item>
+         <item row="2" column="1">
+          <widget class="QLineEdit" name="i2c_bus2_lineEdit"/>
+         </item>
+         <item row="4" column="3">
+          <widget class="QLineEdit" name="i2c_offset4_lineEdit"/>
+         </item>
+         <item row="3" column="3">
+          <widget class="QLineEdit" name="i2c_offset3_lineEdit"/>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLabel" name="label_116">
+           <property name="text">
+            <string>BUS</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="2">
+          <widget class="QLineEdit" name="i2c_addr2_lineEdit"/>
+         </item>
+         <item row="4" column="1">
+          <widget class="QLineEdit" name="i2c_bus4_lineEdit"/>
+         </item>
+         <item row="1" column="2">
+          <widget class="QLineEdit" name="i2c_addr1_lineEdit"/>
+         </item>
+         <item row="4" column="0">
+          <widget class="QLabel" name="label_122">
+           <property name="text">
+            <string>第四組</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="2">
+          <widget class="QLineEdit" name="i2c_addr3_lineEdit"/>
+         </item>
+         <item row="0" column="2">
+          <widget class="QLabel" name="label_117">
+           <property name="text">
+            <string>Address</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="label_119">
+           <property name="text">
+            <string>第一組</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="3">
+          <widget class="QLineEdit" name="i2c_offset1_lineEdit"/>
+         </item>
+         <item row="5" column="1">
+          <widget class="QLineEdit" name="i2c_bus5_lineEdit"/>
+         </item>
+         <item row="1" column="1">
+          <widget class="QLineEdit" name="i2c_bus1_lineEdit"/>
+         </item>
+         <item row="5" column="3">
+          <widget class="QLineEdit" name="i2c_offset5_lineEdit"/>
+         </item>
+         <item row="0" column="3">
+          <widget class="QLabel" name="label_118">
+           <property name="text">
+            <string>Offset</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item row="4" column="2" colspan="2">
+       <widget class="QGroupBox" name="Ekey_setting_groupBox">
+        <property name="title">
+         <string>E-Key 設定</string>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_6">
+         <item row="0" column="0">
+          <widget class="QLabel" name="label_110">
+           <property name="text">
+            <string>路徑1</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLineEdit" name="ekey_1_lineEdit"/>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="label_111">
+           <property name="text">
+            <string>路徑2</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QLineEdit" name="ekey_2_lineEdit"/>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="label_112">
+           <property name="text">
+            <string>路徑3</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QLineEdit" name="ekey_3_lineEdit"/>
+         </item>
+         <item row="3" column="0">
+          <widget class="QLabel" name="label_113">
+           <property name="text">
+            <string>路徑4</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="1">
+          <widget class="QLineEdit" name="ekey_4_lineEdit"/>
+         </item>
+         <item row="4" column="0">
+          <widget class="QLabel" name="label_114">
+           <property name="text">
+            <string>路徑5</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="1">
+          <widget class="QLineEdit" name="ekey_5_lineEdit"/>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item row="4" column="4" colspan="2">
+       <widget class="QGroupBox" name="SPI_setting_groupBox">
+        <property name="title">
+         <string>SPI 設定</string>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_14">
+         <item row="0" column="0">
+          <widget class="QLabel" name="label_59">
+           <property name="text">
+            <string>Pre cmd</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLineEdit" name="spi_precmd_lineEdit"/>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="label_124">
+           <property name="text">
+            <string>路徑1</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QLineEdit" name="spi_1_lineEdit"/>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="label_125">
+           <property name="text">
+            <string>路徑2</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QLineEdit" name="spi_2_lineEdit"/>
+         </item>
+         <item row="3" column="0">
+          <widget class="QLabel" name="label_126">
+           <property name="text">
+            <string>路徑3</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="1">
+          <widget class="QLineEdit" name="spi_3_lineEdit"/>
+         </item>
+         <item row="4" column="0">
+          <widget class="QLabel" name="label_127">
+           <property name="text">
+            <string>路徑4</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="1">
+          <widget class="QLineEdit" name="spi_4_lineEdit"/>
+         </item>
+         <item row="5" column="0">
+          <widget class="QLabel" name="label_132">
+           <property name="text">
+            <string>路徑5</string>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="1">
+          <widget class="QLineEdit" name="spi_5_lineEdit"/>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item row="5" column="0" colspan="3">
+       <widget class="QGroupBox" name="GPIO_setting_groupBox">
+        <property name="maximumSize">
+         <size>
+          <width>350</width>
+          <height>200</height>
+         </size>
+        </property>
+        <property name="title">
+         <string>GPIO 設定</string>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_5">
+         <item row="2" column="2">
+          <widget class="QLineEdit" name="GPO_pin2_lineEdit"/>
+         </item>
+         <item row="1" column="2">
+          <widget class="QLineEdit" name="GPO_pin1_lineEdit"/>
+         </item>
+         <item row="3" column="4">
+          <widget class="QLineEdit" name="GPI_pin3_lineEdit"/>
+         </item>
+         <item row="4" column="1">
+          <widget class="QLineEdit" name="GPO_num4_lineEdit"/>
+         </item>
+         <item row="2" column="1">
+          <widget class="QLineEdit" name="GPO_num2_lineEdit"/>
+         </item>
+         <item row="0" column="3">
+          <widget class="QLabel" name="label_30">
+           <property name="text">
+            <string>IN NUM</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLabel" name="label_31">
+           <property name="text">
+            <string>OUT NUM</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="0">
+          <widget class="QLabel" name="label_36">
+           <property name="text">
+            <string>第三組</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="3">
+          <widget class="QLineEdit" name="GPI_num3_lineEdit"/>
+         </item>
+         <item row="5" column="2">
+          <widget class="QLineEdit" name="GPO_pin5_lineEdit"/>
+         </item>
+         <item row="1" column="4">
+          <widget class="QLineEdit" name="GPI_pin1_lineEdit"/>
+         </item>
+         <item row="5" column="1">
+          <widget class="QLineEdit" name="GPO_num5_lineEdit"/>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="label_35">
+           <property name="text">
+            <string>第二組</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="4">
+          <widget class="QLineEdit" name="GPI_pin2_lineEdit"/>
+         </item>
+         <item row="5" column="3">
+          <widget class="QLineEdit" name="GPI_num5_lineEdit"/>
+         </item>
+         <item row="2" column="3">
+          <widget class="QLineEdit" name="GPI_num2_lineEdit"/>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="label_34">
+           <property name="text">
+            <string>第一組</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="2">
+          <widget class="QLabel" name="label_33">
+           <property name="text">
+            <string>OUT PIN</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="4">
+          <widget class="QLineEdit" name="GPI_pin4_lineEdit"/>
+         </item>
+         <item row="1" column="1">
+          <widget class="QLineEdit" name="GPO_num1_lineEdit"/>
+         </item>
+         <item row="4" column="0">
+          <widget class="QLabel" name="label_37">
+           <property name="text">
+            <string>第四組</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="4">
+          <widget class="QLabel" name="label_32">
+           <property name="text">
+            <string>IN PIN</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="3">
+          <widget class="QLineEdit" name="GPI_num4_lineEdit"/>
+         </item>
+         <item row="3" column="2">
+          <widget class="QLineEdit" name="GPO_pin3_lineEdit"/>
+         </item>
+         <item row="5" column="0">
+          <widget class="QLabel" name="label_38">
+           <property name="text">
+            <string>第五組</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="2">
+          <widget class="QLineEdit" name="GPO_pin4_lineEdit"/>
+         </item>
+         <item row="5" column="4">
+          <widget class="QLineEdit" name="GPI_pin5_lineEdit"/>
+         </item>
+         <item row="3" column="1">
+          <widget class="QLineEdit" name="GPO_num3_lineEdit"/>
+         </item>
+         <item row="1" column="3">
+          <widget class="QLineEdit" name="GPI_num1_lineEdit"/>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item row="3" column="6" rowspan="2">
+       <widget class="QGroupBox" name="EEPROM_setting_groupBox">
+        <property name="maximumSize">
+         <size>
+          <width>300</width>
+          <height>450</height>
+         </size>
+        </property>
+        <property name="title">
+         <string>EEPROM 設定</string>
+        </property>
+        <layout class="QFormLayout" name="formLayout_2">
+         <item row="0" column="0">
+          <widget class="QLabel" name="I2CBUS_label">
+           <property name="text">
+            <string>BUS : </string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLineEdit" name="BUS_lineEdit"/>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="I2CAddr_label">
+           <property name="text">
+            <string>Address : </string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QLineEdit" name="Addre_lineEdit"/>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="gpionum_label">
+           <property name="text">
+            <string>GPIO NUM : </string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QLineEdit" name="GPIO_NUM_lineEdit"/>
+         </item>
+         <item row="3" column="0">
+          <widget class="QLabel" name="gpiopin_label">
+           <property name="text">
+            <string>GPIO PIN : </string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="1">
+          <widget class="QLineEdit" name="GPIO_PIN_lineEdit"/>
+         </item>
+         <item row="4" column="0">
+          <widget class="QLabel" name="pn_label">
+           <property name="text">
+            <string>PN : </string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="1">
+          <widget class="QLineEdit" name="PN_lineEdit"/>
+         </item>
+         <item row="5" column="0">
+          <widget class="QLabel" name="baordname_label">
+           <property name="text">
+            <string>Board Name : </string>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="1">
+          <widget class="QLineEdit" name="Board_NAME_lineEdit"/>
+         </item>
+         <item row="6" column="0">
+          <widget class="QLabel" name="Boardrevision_label">
+           <property name="text">
+            <string>Board Revision : </string>
+           </property>
+          </widget>
+         </item>
+         <item row="6" column="1">
+          <widget class="QLineEdit" name="Board_Revision_lineEdit"/>
+         </item>
+        </layout>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1031</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuMB">
+    <property name="geometry">
+     <rect>
+      <x>343</x>
+      <y>183</y>
+      <width>136</width>
+      <height>50</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Mother Board Test 2.0</string>
+    </property>
+   </widget>
+   <addaction name="menuMB"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

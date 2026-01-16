@@ -38,7 +38,7 @@ class MESClient:
         self.last_error = ""
 
         # 這裡新增：記錄即將送出的 JSON 內容
-        self._write_mes_log("[POST JSON]", {"url": url, "payload": payload}) # 記錄送出內容, debug 用
+        # self._write_mes_log("[POST JSON]", {"url": url, "payload": payload}) # 記錄送出內容, debug 用
 
         for i in range(self.retries):
             try:

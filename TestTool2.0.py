@@ -1,8 +1,221 @@
 # main.py — 母板測試登入（多重繼承，依 .ui 運作）
+import os
+import sys
+import subprocess
+import shutil
+
+# ============================================================
+# 環境檢查與自動安裝（不需要外部 shell 腳本）
+# ============================================================
+
+def detect_os():
+    """偵測作業系統類型"""
+    if os.path.exists("/etc/os-release"):
+        with open("/etc/os-release") as f:
+            for line in f:
+                if line.startswith("ID="):
+                    return line.strip().split("=")[1].strip('"').lower()
+    return "unknown"
+
+def run_cmd(cmd, check=True):
+    """執行命令並回傳是否成功"""
+    try:
+        result = subprocess.run(cmd, check=check, capture_output=True, text=True)
+        return result.returncode == 0
+    except subprocess.CalledProcessError:
+        return False
+    except FileNotFoundError:
+        return False
+
+# ===== 檢查 Python 套件 , pip 的套件名稱, apt 的套件名稱, 以及安裝python套件的名稱=====
+def check_python_packages():
+    """檢查 Python 套件，回傳缺少的套件清單"""
+    missing = []
+    package_checks = [
+        ("PyQt5", "python3-pyqt5", "PyQt5"),# PyQt5 是 PyQt5 的套件名稱, python3-pyqt5 是 apt 的套件名稱, PyQt5 是 pip 的套件名稱,
+        ("toml", "python3-toml", "toml"),
+        ("serial", "python3-serial", "pyserial"),
+        ("requests", "python3-requests", "requests"),
+        ("yaml", "python3-yaml", "pyyaml"),
+        ("pytest", "python3-pytest", "pytest"),  # unitest.py 需要
+    ]
+    
+    for module_name, apt_name, pip_name in package_checks:
+        try:
+            __import__(module_name)
+        except ImportError:
+            missing.append((module_name, apt_name, pip_name))
+    
+    return missing
+
+# ===== 檢查系統工具 , 系統工具名稱, 以及安裝的系統套件名稱=====
+def check_system_tools():
+    """檢查系統工具，回傳缺少的工具清單"""
+    missing = []
+    tool_checks = [
+        ("dmidecode", "dmidecode"), # dmidecode 是系統工具名稱, dmidecode 是 apt 的套件名稱, dmidecode 是 pip 的套件名稱,
+        ("sensors", "lm-sensors"),
+        ("v4l2-ctl", "v4l-utils"),
+        ("arecord", "alsa-utils"),
+        ("candump", "can-utils"),
+        ("i2cdetect", "i2c-tools"),
+    ]
+    
+    for cmd, pkg in tool_checks:
+        if not shutil.which(cmd):
+            missing.append((cmd, pkg))
+    
+    return missing
+
+def install_packages_apt(python_missing, tools_missing):
+    """使用 apt 安裝套件 (Ubuntu/Debian)"""
+    packages = []
+    
+    # Python 套件 (apt 版本)
+    for _, apt_name, _ in python_missing:
+        packages.append(apt_name)
+    
+    # 系統工具
+    for _, pkg in tools_missing:
+        packages.append(pkg)
+    
+    # 額外的 PyQt5 模組
+    if any(m[0] == "PyQt5" for m in python_missing):
+        packages.append("python3-pyqt5.qtmultimedia")
+    
+    if not packages:
+        return True
+    
+    print(f"\n[安裝] 使用 apt 安裝：{', '.join(packages)}")
+    
+    # 更新套件列表
+    subprocess.run(["sudo", "apt", "update"], check=False)
+    
+    # 安裝套件
+    result = subprocess.run(["sudo", "apt", "install", "-y"] + packages)
+    return result.returncode == 0
+
+def install_packages_pip(python_missing):
+    """使用 pip 安裝 Python 套件（備用方案）"""
+    packages = [pip_name for _, _, pip_name in python_missing]
+    
+    if not packages:
+        return True
+    
+    print(f"\n[安裝] 使用 pip 安裝：{', '.join(packages)}")
+    
+    # 檢查是否需要 --break-system-packages (PEP 668)
+    pip_help = subprocess.run(
+        [sys.executable, "-m", "pip", "install", "--help"],
+        capture_output=True, text=True
+    )
+    
+    cmd = [sys.executable, "-m", "pip", "install"]
+    if "break-system-packages" in pip_help.stdout:
+        cmd.append("--break-system-packages")
+    
+    cmd.extend(packages)
+    result = subprocess.run(cmd)
+    return result.returncode == 0
+
+def check_and_install_dependencies():
+    """檢查必要套件，缺少時詢問是否安裝"""
+    
+    # 檢查缺少的套件
+    python_missing = check_python_packages()
+    tools_missing = check_system_tools()
+    
+    # 如果沒有缺少任何套件，直接返回
+    if not python_missing and not tools_missing:
+        return True
+    
+    # 顯示缺少的套件
+    print("=" * 50)
+    print("  TestTool 2.0 環境檢查")
+    print("=" * 50)
+    
+    if python_missing:
+        print("\n[警告] 缺少以下 Python 套件：")
+        for module_name, _, _ in python_missing:
+            print(f"  - {module_name}")
+    
+    if tools_missing:
+        print("\n[警告] 缺少以下系統工具：")
+        for cmd, pkg in tools_missing:
+            print(f"  - {cmd} ({pkg})")
+    
+    print("")
+    
+    # 詢問是否安裝
+    try:
+        response = input("是否自動安裝缺少的套件？(Y/n) ").strip().lower()
+    except (EOFError, KeyboardInterrupt):
+        print("\n已取消")
+        sys.exit(0)
+    
+    if response not in ('', 'y', 'yes'):
+        print("\n[警告] 跳過安裝，程式可能無法正常運作")
+        sys.exit(1)
+    
+    # 偵測作業系統並安裝
+    os_type = detect_os()
+    print(f"\n[INFO] 偵測到作業系統：{os_type}")
+    
+    success = False
+    
+    if os_type in ("ubuntu", "debian", "linuxmint", "pop"):
+        # Ubuntu/Debian 系統：優先使用 apt
+        success = install_packages_apt(python_missing, tools_missing)
+        
+        # 如果 apt 安裝 Python 套件失敗，嘗試用 pip 作為備用
+        if not success and python_missing:
+            print("\n[INFO] apt 安裝失敗，嘗試使用 pip 作為備用方案...")
+            success = install_packages_pip(python_missing)
+    
+    elif os_type in ("rhel", "centos", "fedora", "rocky", "almalinux"):
+        # RHEL 系統：系統工具用 dnf/yum，Python 用 pip
+        if tools_missing:
+            pkg_mgr = "dnf" if shutil.which("dnf") else "yum"
+            pkgs = [pkg for _, pkg in tools_missing]
+            print(f"\n[安裝] 使用 {pkg_mgr} 安裝系統工具：{', '.join(pkgs)}")
+            subprocess.run(["sudo", pkg_mgr, "install", "-y"] + pkgs)
+        
+        if python_missing:
+            success = install_packages_pip(python_missing)
+        else:
+            success = True
+    
+    else:
+        # 其他系統：只能用 pip 安裝 Python 套件
+        print("\n[警告] 未知的作業系統，系統工具需要手動安裝")
+        if tools_missing:
+            print("請手動安裝：")
+            for cmd, pkg in tools_missing:
+                print(f"  - {pkg}")
+        
+        if python_missing:
+            success = install_packages_pip(python_missing)
+        else:
+            success = True
+    
+    if success:
+        print("\n[OK] 安裝完成！正在重新啟動程式...\n")
+        # 重新執行自己
+        os.execv(sys.executable, [sys.executable] + sys.argv)
+    else:
+        print("\n[錯誤] 安裝失敗，請檢查錯誤訊息")
+        sys.exit(1)
+
+# 在 import 其他模組前先檢查環境
+check_and_install_dependencies()
+
+# ============================================================
+# 正常 import（環境檢查通過後才會執行到這裡）
+# ============================================================
 from PyQt5 import QtWidgets, QtCore, uic
 from PyQt5.QtWidgets import QMessageBox
 from ui_testtool import Ui_meslogin_Dialog   # 你的 .ui 轉出的檔
-import os, json, logging
+import json, logging
 from datetime import datetime
 
 from mes_api import MESClient  # 匯入 MES API 主程式
@@ -201,7 +414,7 @@ class LoginDialog(QtWidgets.QDialog):
 
         self.mode = self.detect_mode(rc)
 
-        # 先建立本次「測試用」log（RD 沒 SN/OP 也會建檔，SN 會是 NA）
+        # 準備 log 目錄（但不立即建立 log 檔案，等開始測試時再建立）
         if self.mode == "RD":
             log_dir = "RD_TEST"
         elif wo:
@@ -209,26 +422,33 @@ class LoginDialog(QtWidgets.QDialog):
         else:
             log_dir = "logs"
 
-        self.useing_logger, self.log_file = setup_useing_logger(log_dir, sn)
-        # 測試 log 的首行摘要（與 MES 無關，保留）
+        # 不立即建立 log 檔案，只準備參數
+        # log 檔案將在開始測試時與 JSON/CSV 一起產生
+        self.useing_logger = None
+        self.log_file = None
+        
+        # 測試 log 的首行摘要（只顯示在 UI，不寫入檔案）
         header = f"流程卡：{rc} | 工單：{wo or ('RD_TEST' if self.mode=='RD' else wo)} | SN: {sn or 'NA'} | 工號：{op or 'NA'} | 模式：{self.mode}"
-        self.ui_log(header)
+        self.mes_ui_only(header)  # 改為只顯示在 UI，不寫入 log
+        tool_version = "v2.0" # 測試工具版本
 
         # 把 log_dir / sn 傳給主視窗
         # self.result_cfg = {"log_dir": log_dir, "sn": sn or "NA"}
-
-        # 傳給主視窗（RD 沒 SN 就用 'RD'）
+        # 傳給主視窗（RD 沒 SN 就用 'RD'）, 這裡是記錄流程卡等資訊的字典, 後續會傳給主視窗用
+        # 注意：user_log_path 設為 None，讓 run_selected_tests 在開始測試時才建立 log 檔案
+        # 這裡是記錄流程卡等資訊的字典, 後續會傳給主視窗用, 提供給MB_Test.py使用, 提供給Test_item.py使用
         self.result_cfg = {
             "log_dir": log_dir,
             "sn": sn or "RD",
-            "user_log_path": self.log_file,        # ★ 把現有 .log 的完整路徑傳下去
-            "meta": {
+            "user_log_path": None,  # 不預先建立 log 檔案，等開始測試時再建立
+            "mes_info_meta": {
                 "runcard": rc,
                 "workorder": wo or "RD_TEST",
                 "sn": sn or "NA",
                 "operator": op or "NA",
                 "mode": self.mode,
                 "header": header,
+                "tool_version": tool_version,
             }
         }
 
@@ -272,7 +492,7 @@ class LoginDialog(QtWidgets.QDialog):
                 # MB_Test()
 
                 # ★ 把站別帶給主程式（MB_Test.py 需要用它來離站）
-                self.result_cfg["meta"]["process_name"] = process_name
+                self.result_cfg["mes_info_meta"]["process_name"] = process_name
                 self.accept()
             else:
                 self.mes_ui_only(f"[進站失敗] RESULT={ent.get('result') or ent.get('error')}")

@@ -75,7 +75,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>工單號碼(Word Order)</string>
+    <string>工單號碼(Work Order)</string>
    </property>
   </widget>
   <widget class="QLineEdit" name="SN_lineEdit">

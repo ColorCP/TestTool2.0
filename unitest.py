@@ -1,5 +1,6 @@
 import os, sys
 from PyQt5.QtWidgets import QApplication, QMessageBox
+import pytest
 
 def ask_yes_no(title: str, text: str, default_no=False):
     """

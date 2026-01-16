@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'TestTool2.0_3.ui'
+# Form implementation generated from reading ui file 'ui_TestTool2.0.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.9
 #
@@ -58,20 +58,10 @@ class Ui_meslogin_Dialog(object):
 
     def retranslateUi(self, meslogin_Dialog):
         _translate = QtCore.QCoreApplication.translate
-        meslogin_Dialog.setWindowTitle(_translate("meslogin_Dialog", "主機板測試工具"))
+        meslogin_Dialog.setWindowTitle(_translate("meslogin_Dialog", "Mother Board Test"))
         self.SN_label.setText(_translate("meslogin_Dialog", "安提機台序號(SN) - 限 11碼"))
         self.mes_ent_btn.setText(_translate("meslogin_Dialog", "進站"))
         self.Runcard_label.setText(_translate("meslogin_Dialog", "流程卡號(Runcard)"))
         self.OP_label.setText(_translate("meslogin_Dialog", "人員工號(Operator)"))
         self.WO_label.setText(_translate("meslogin_Dialog", "工單號碼(Work Order)"))
         self.MES_label.setText(_translate("meslogin_Dialog", "MES資訊"))
-
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    meslogin_Dialog = QtWidgets.QDialog()
-    ui = Ui_meslogin_Dialog()
-    ui.setupUi(meslogin_Dialog)
-    meslogin_Dialog.show()
-    sys.exit(app.exec_())

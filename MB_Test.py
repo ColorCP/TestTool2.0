@@ -1,30 +1,14 @@
-# # from PyQt5 import QtWidgets, QtCore
-# # from PyQt5.QtWidgets import QMessageBox
-# # # from ui_testtool import Ui_meslogin_Dialog   # 你的 .ui 轉出的檔案
-# # from ui_mbtest import Ui_MBWindow
-# # import os, json, logging
-# # from datetime import datetime
-
-# # def mbtest_run():
-# #     print("MB Test is running...")
-
-# # # ===== 進入點 =====
-# # if __name__ == "__main__":
-# #     mbtest_run()
-
-# MB_Test.py
-from math import e
 from PyQt5 import QtWidgets, uic
 from ui_mbtest import Ui_MBWindow
-from ui_Manual_test import Ui_Manual_Test_iTem_Dialog
+# from ui_Manual_test import Ui_Manual_Test_iTem_Dialog
 # from ui_other_setting import Ui_Other_Setting_Dialog
 from PyQt5.QtCore import QTimer, QTime
 import json, subprocess, re, os, glob, pathlib, time, configparser
 from PyQt5.QtWidgets import QMessageBox, QDialog, QCheckBox, QLCDNumber, QComboBox
-from Test_item import run_selected_tests, build_mes_testlog, mes_post, set_current_window, TEST_ITEMS, PERSISTED_STATUS
+from Test_item import run_selected_tests, build_mes_testlog, mes_post, set_current_window, set_current_toml_path, TEST_ITEMS, PERSISTED_STATUS
 # from pathlib import Path
 import logging
-import resources_rc # 這行是為了讓 Qt 資源檔生效
+import resources_rc # 這行是為了讓 Qt 資源檔生效，檔案在 resources_rc.py 中
 from PyQt5.QtGui import QPixmap, QIntValidator, QRegExpValidator
 from PyQt5.QtCore import Qt, QRegExp
 from datetime import datetime, date
@@ -37,30 +21,6 @@ import toml
 # 取得程式根目錄（MB_Test.py 所在目錄）
 PROGRAM_ROOT = os.path.dirname(os.path.abspath(__file__))
 
-# from urllib.parse import urlparse, unquote
-
-# --- 手動項目對話框 ---
-class ManualItemsDialog(QDialog):
-    def __init__(self, parent=None):
-        super().__init__(parent)
-        self.ui = Ui_Manual_Test_iTem_Dialog()
-        self.ui.setupUi(self)  # 一定要呼叫 setupUi()
-        # uic.loadUi("ui_Manual_test.ui", self)
-        if hasattr(self.ui, "buttonBox"):
-            self.ui.buttonBox.accepted.connect(self.accept)
-            self.ui.buttonBox.rejected.connect(self.reject)
-
-    def _all_cbs(self):
-        return self.findChildren(QCheckBox)
-
-    def checked_items(self):
-        return [cb.text() for cb in self._all_cbs() if cb.isChecked()]
-
-    def set_checked(self, names):
-        want = set(names or [])
-        for cb in self._all_cbs():
-            cb.setChecked(cb.text() in want)
-            
 class MBTestWindow(QtWidgets.QMainWindow):
     def __init__(self, cfg=None, parent=None):
         super().__init__(parent)
@@ -71,6 +31,14 @@ class MBTestWindow(QtWidgets.QMainWindow):
         # self.setupUi(self)
 
         # =========================================================
+        # 暫時不使用的功能, 先不顯示在ui，先隱藏起來，避免使用者誤操作
+        # 目前先隱藏 case open 相關的元件，之後有需要再顯示出來
+        self.ui.checkBox_CASEOPEN.setVisible(False)
+        self.ui.caseopen_comboBox.setVisible(False)
+        self.ui.label_138.setVisible(False) #這是case open comboBox前的label
+        # =========================================================
+
+        # =========================================================
         # 測試項目 checkbox → Config 頁面的 comboBox 映射表
         # 之後所有邏輯都只靠這張表，不再用字串推導
         # =========================================================
@@ -78,16 +46,16 @@ class MBTestWindow(QtWidgets.QMainWindow):
             # ---- 自動測項 ----
             self.ui.checkBox_USB2:              self.ui.usb2_comboBox,
             self.ui.checkBox_USB3:              self.ui.usb3_comboBox,
-            self.ui.checkBox_MKEY:              self.ui.MKEY_comboBox,
-            self.ui.checkBox_EKEY:              self.ui.EKEY_comboBox,
-            self.ui.checkBox_BKEY:              self.ui.BKEY_comboBox,
+            self.ui.checkBox_MKEY:              self.ui.mkey_comboBox,
+            self.ui.checkBox_EKEY:              self.ui.ekey_comboBox,
+            self.ui.checkBox_BKEY:              self.ui.bkey_comboBox,
             self.ui.checkBox_NETWORK:           self.ui.network_comboBox,
             self.ui.checkBox_FIBER:             self.ui.fiber_comboBox,
             self.ui.checkBox_CANBUS:            self.ui.canbus_comboBox,
             self.ui.checkBox_MICROSD:           self.ui.microsd_comboBox,
-            self.ui.checkBox_RS232:             self.ui.RS232_comboBox,
-            self.ui.checkBox_RS422:             self.ui.RS422_comboBox,
-            self.ui.checkBox_RS485:             self.ui.RS485_comboBox,
+            self.ui.checkBox_RS232:             self.ui.rs232_comboBox,
+            self.ui.checkBox_RS422:             self.ui.rs422_comboBox,
+            self.ui.checkBox_RS485:             self.ui.rs485_comboBox,
             self.ui.checkBox_UART:              self.ui.uart_comboBox,
             self.ui.checkBox_GPIO:              self.ui.gpio_comboBox,
             self.ui.checkBox_CAMERA:            self.ui.camera_comboBox,
@@ -95,9 +63,11 @@ class MBTestWindow(QtWidgets.QMainWindow):
             self.ui.checkBox_I2C:               self.ui.i2c_comboBox,
             self.ui.checkBox_SPI:               self.ui.spi_comboBox,
             self.ui.checkBox_EEPROM:            self.ui.eeprom_comboBox,
-            self.ui.checkBox_EEPROM_RD:         self.ui.eeprom_RD_Test_comboBox,
+            self.ui.checkBox_EEPROMRD:          self.ui.eepromrdrd_comboBox,
             self.ui.checkBox_CPU:               self.ui.cpu_comboBox,
             self.ui.checkBox_MEM:               self.ui.memory_comboBox,
+            self.ui.checkBox_BIOSVER:           self.ui.biosver_comboBox,
+            self.ui.checkBox_HWPRODUCTNAME:     self.ui.hwproductname_comboBox,
 
             # ---- 人工測項 ----
             self.ui.checkBox_MIC:               self.ui.mic_comboBox,
@@ -107,26 +77,26 @@ class MBTestWindow(QtWidgets.QMainWindow):
             self.ui.checkBox_VGA:               self.ui.vga_comboBox,
             self.ui.checkBox_DP:                self.ui.dp_comboBox,
             self.ui.checkBox_LED:               self.ui.led_comboBox,
-            self.ui.checkBox_Power_Button:      self.ui.power_button_comboBox,
-            self.ui.checkBox_PowerConnector:    self.ui.power_connector_comboBox,
-            self.ui.checkBox_PowerSWConnector:  self.ui.power_sw_connector_comboBox,
-            self.ui.checkBox_Reset_Button:      self.ui.reset_button_comboBox,
-            self.ui.checkBox_Recovery_Button:   self.ui.recovery_button_comboBox,
+            self.ui.checkBox_POWERBUTTON:       self.ui.powerbutton_comboBox,
+            self.ui.checkBox_POWERCONNECTOR:   self.ui.powerconnector_comboBox,
+            self.ui.checkBox_POWERSWCONNECTOR:  self.ui.powerswconnector_comboBox,
+            self.ui.checkBox_RESETBUTTON:       self.ui.resetbutton_comboBox,
+            self.ui.checkBox_RECOVERYBUTTON:    self.ui.recoverybutton_comboBox,
             self.ui.checkBox_SMA:               self.ui.sma_comboBox,
             self.ui.checkBox_SW1:               self.ui.sw1_comboBox,
             self.ui.checkBox_SW2:               self.ui.sw2_comboBox,
-            self.ui.checkBox_MCUConnector:      self.ui.mcu_connector_comboBox,
+            self.ui.checkBox_MCUCONNECTOR:      self.ui.mcuconnector_comboBox,
             self.ui.checkBox_RTC:               self.ui.rtc_comboBox,
-            self.ui.checkBox_RTC_OUT:           self.ui.rtc_out_comboBox,
-            self.ui.checkBox_DC_INPUT:          self.ui.dc_input_comboBox,
-            self.ui.checkBox_DC_OUTPUT:         self.ui.dc_output_comboBox,
-            self.ui.checkBox_CASE_OPEN:         self.ui.caseopen_comboBox,
-            self.ui.checkBox_PD_POWER_INPUT:    self.ui.PD_POWERINPUT_comboBox,
-            self.ui.checkBox_PSE_POWER_OUTPUT:  self.ui.PSE_POWEROUTPUT_comboBox,
+            self.ui.checkBox_RTCOUT:            self.ui.rtcout_comboBox,
+            self.ui.checkBox_DCINPUT:           self.ui.dcinput_comboBox,
+            self.ui.checkBox_DCOUTPUT:          self.ui.dcoutput_comboBox,
+            self.ui.checkBox_CASEOPEN:          self.ui.caseopen_comboBox,
+            self.ui.checkBox_PDPOWERINPUT:      self.ui.pdpowerinput_comboBox,
+            self.ui.checkBox_PSEPOWEROUTPUT:    self.ui.psepoweroutput_comboBox,
             self.ui.checkBox_INNOAGENT:         self.ui.innoagent_comboBox,
             self.ui.checkBox_GPS:               self.ui.gps_comboBox,
         }
-
+        # checkbox 打勾時，顯示的toolButton
         self.checkbox_to_toolbutton = {
             self.ui.checkBox_NETWORK:           self.ui.network_toolButton,
             self.ui.checkBox_RS232:             self.ui.rs232_toolButton,
@@ -135,34 +105,40 @@ class MBTestWindow(QtWidgets.QMainWindow):
             self.ui.checkBox_GPIO:              self.ui.gpio_toolButton,
             self.ui.checkBox_SPI:               self.ui.spi_toolButton,
             self.ui.checkBox_EKEY:              self.ui.ekey_toolButton,
+            self.ui.checkBox_BKEY:              self.ui.bkey_toolButton,
             self.ui.checkBox_FAN:               self.ui.fan_toolButton,
             self.ui.checkBox_EEPROM:            self.ui.eeprom_toolButton,
-            self.ui.checkBox_EEPROM_RD:         self.ui.eepromrd_toolButton,
+            self.ui.checkBox_EEPROMRD:          self.ui.eepromrd_toolButton,
             self.ui.checkBox_UART:              self.ui.uart_toolButton,
             self.ui.checkBox_I2C:               self.ui.i2c_toolButton,
             self.ui.checkBox_CANBUS:            self.ui.canbus_toolButton,
             self.ui.checkBox_CPU:               self.ui.cpu_toolButton,
             self.ui.checkBox_MEM:               self.ui.mem_toolButton,
+            self.ui.checkBox_BIOSVER:           self.ui.biosver_toolButton,
+            self.ui.checkBox_HWPRODUCTNAME:     self.ui.hwproductname_toolButton,
         }
-
+        # checkbox 打勾時，顯示測試項目預覽的設定 groupBox
         self.checkbox_to_preview = {
-            self.ui.checkBox_RS232:           self.ui.RS232_setting_groupBox,
-            self.ui.checkBox_RS422:           self.ui.RS422_setting_groupBox,
-            self.ui.checkBox_RS485:           self.ui.RS485_setting_groupBox,
-            self.ui.checkBox_GPIO:            self.ui.GPIO_setting_groupBox,
-            self.ui.checkBox_SPI:             self.ui.SPI_setting_groupBox,
-            self.ui.checkBox_EKEY:            self.ui.Ekey_setting_groupBox,
-            self.ui.checkBox_I2C:             self.ui.I2C_setting_groupBox,
-            self.ui.checkBox_UART:            self.ui.UART_setting_groupBox,
-            self.ui.checkBox_CANBUS:          self.ui.CANBUS_setting_groupBox,
-            self.ui.checkBox_CPU:             self.ui.CPU_setting_groupBox,
-            self.ui.checkBox_MEM:             self.ui.MEMORY_setting_groupBox,
-            self.ui.checkBox_FAN:             self.ui.Fan_setting_groupBox,
-            self.ui.checkBox_EEPROM:          self.ui.EEPROM_setting_groupBox,
-            self.ui.checkBox_EEPROM_RD:       self.ui.EEPROM_setting_groupBox,
-            self.ui.checkBox_EKEY:            self.ui.Ekey_setting_groupBox,
-            self.ui.checkBox_BKEY:            self.ui.Bkey_setting_groupBox,
-            self.ui.checkBox_NETWORK:         self.ui.IP_setting_groupBox,
+            self.ui.checkBox_RS232:             self.ui.RS232_setting_groupBox,
+            self.ui.checkBox_RS422:             self.ui.RS422_setting_groupBox,
+            self.ui.checkBox_RS485:             self.ui.RS485_setting_groupBox,
+            self.ui.checkBox_GPIO:              self.ui.GPIO_setting_groupBox,
+            self.ui.checkBox_SPI:               self.ui.SPI_setting_groupBox,
+            self.ui.checkBox_EKEY:              self.ui.EKEY_setting_groupBox,
+            self.ui.checkBox_BKEY:              self.ui.BKEY_setting_groupBox,
+            self.ui.checkBox_I2C:               self.ui.I2C_setting_groupBox,
+            self.ui.checkBox_UART:              self.ui.UART_setting_groupBox,
+            self.ui.checkBox_CANBUS:            self.ui.CANBUS_setting_groupBox,
+            self.ui.checkBox_CPU:               self.ui.CPU_setting_groupBox,
+            self.ui.checkBox_MEM:               self.ui.MEMORY_setting_groupBox,
+            self.ui.checkBox_BIOSVER:           self.ui.BIOSVER_setting_groupBox,
+            self.ui.checkBox_HWPRODUCTNAME:     self.ui.HWPRODUCTNAME_setting_groupBox,
+            self.ui.checkBox_FAN:               self.ui.FAN_setting_groupBox,
+            self.ui.checkBox_EEPROM:            self.ui.EEPROM_setting_groupBox,
+            self.ui.checkBox_EEPROMRD:          self.ui.EEPROM_setting_groupBox,
+            self.ui.checkBox_EKEY:              self.ui.EKEY_setting_groupBox,
+            self.ui.checkBox_BKEY:              self.ui.BKEY_setting_groupBox,
+            self.ui.checkBox_NETWORK:           self.ui.IP_setting_groupBox,
         }
 
 
@@ -232,7 +208,7 @@ class MBTestWindow(QtWidgets.QMainWindow):
             lambda: self.popout_group_as_dialog(self.ui.EEPROM_setting_groupBox, "EEPROM RD 設定")
         )
         self.ui.fan_toolButton.clicked.connect(
-            lambda: self.popout_group_as_dialog(self.ui.Fan_setting_groupBox, "FAN 設定")
+            lambda: self.popout_group_as_dialog(self.ui.FAN_setting_groupBox, "FAN 設定")
         )
         self.ui.network_toolButton.clicked.connect(
             lambda: self.popout_group_as_dialog(self.ui.IP_setting_groupBox, "Network 設定")
@@ -247,10 +223,10 @@ class MBTestWindow(QtWidgets.QMainWindow):
             lambda: self.popout_group_as_dialog(self.ui.RS485_setting_groupBox, "RS485 設定")
         )
         self.ui.ekey_toolButton.clicked.connect(
-            lambda: self.popout_group_as_dialog(self.ui.Ekey_setting_groupBox, "E-Key 設定")
+            lambda: self.popout_group_as_dialog(self.ui.EKEY_setting_groupBox, "E-Key 設定")
         )
         self.ui.bkey_toolButton.clicked.connect(
-            lambda: self.popout_group_as_dialog(self.ui.Bkey_setting_groupBox, "B-Key 設定")
+            lambda: self.popout_group_as_dialog(self.ui.BKEY_setting_groupBox, "B-Key 設定")
         )
         self.ui.i2c_toolButton.clicked.connect(
             lambda: self.popout_group_as_dialog(self.ui.I2C_setting_groupBox, "I2C 設定")
@@ -270,6 +246,12 @@ class MBTestWindow(QtWidgets.QMainWindow):
         self.ui.mem_toolButton.clicked.connect(
             lambda: self.popout_group_as_dialog(self.ui.MEMORY_setting_groupBox, "MEM 設定")
         )
+        self.ui.biosver_toolButton.clicked.connect(
+            lambda: self.popout_group_as_dialog(self.ui.BIOSVER_setting_groupBox, "BIOS VERSION 設定")
+        )
+        self.ui.hwproductname_toolButton.clicked.connect(
+            lambda: self.popout_group_as_dialog(self.ui.HWPRODUCTNAME_setting_groupBox, "HW PRODUCT NAME 設定")
+        )
 
         # 如果想另外提供「同時包含人工判斷項目」的版本，可以再加兩顆或用右鍵選單：
         # self.Button_Select_All_Both.clicked.connect(lambda: self.select_all_items(True))
@@ -284,18 +266,15 @@ class MBTestWindow(QtWidgets.QMainWindow):
         self.ui.valBiosVersion.setText(info["bios_version"] or "-")
         self.ui.valBiosVendor.setText(info["bios_vendor"] or "-")
         self.ui.valCPUName.setText(next((ln.split(":",1)[1].strip() for ln in subprocess.check_output(["lscpu"], text=True).splitlines() if ln.lower().startswith(("model name","hardware"))), "-"))
-        mem = self.mem_slot_sizes_for_ui(4) # 取前 4 個
-        self.ui.valMEM1.setText(mem[0])
-        self.ui.valMEM2.setText(mem[1])
-        self.ui.valMEM3.setText(mem[2])
-        self.ui.valMEM4.setText(mem[3])
-        self.all_mac_addresses()  # 填 MAC1..MAC6
+        
+        self.all_mem_slots()   # 填 valMEM1..valMEMN
+        self.all_mac_addresses()  # 填 valMAC1..valMACN
 
         # 取得系統資訊並存到 cfg（BSP、DTS、BOARD、MODULE、CID、CPU、MEMORY）
-        bsp_dts_info = self.get_bsp_and_dts()
-        bsp = bsp_dts_info.get("bsp", "")
-        dts = bsp_dts_info.get("dts", "")
-        board = bsp_dts_info.get("board", "")
+        sys_info = self.get_dts_and_x86_name()
+        bsp = sys_info.get("bsp", "")
+        dts = sys_info.get("dts", "")
+        board = sys_info.get("board", "")
         
         # 如果沒有從 BSP 解析出 BOARD，嘗試從 BSP 名稱解析
         if not board and bsp:
@@ -350,6 +329,11 @@ class MBTestWindow(QtWidgets.QMainWindow):
         self.ui.FAN3_people_checkBox.toggled.connect(self.fan_manual_checkboxes)
         self.ui.FAN4_people_checkBox.toggled.connect(self.fan_manual_checkboxes)
         self.ui.FAN5_people_checkBox.toggled.connect(self.fan_manual_checkboxes)
+
+        # 連接 GPIO 燈號測試模式 checkbox，控制 IN 欄位啟用/禁用
+        gpio_people_cb = getattr(self.ui, "gpio_people_checkBox", None)
+        if gpio_people_cb:
+            gpio_people_cb.toggled.connect(self.gpio_led_mode_checkbox)
 
         # 先載入三種設定檔，把 self.cfg 填滿
         # self.load_ini_into_cfg()   # ./mb_test_config.ini
@@ -433,6 +417,33 @@ class MBTestWindow(QtWidgets.QMainWindow):
                 high.setEnabled(True) # 啟用 FAN1~FAN5 的 HIGH_speed_lineEdit
                 tol.setEnabled(True) # 啟用 FAN1~FAN5 的 Tolerance_lineEdit
 
+    def gpio_led_mode_checkbox(self):
+        """
+        勾選『燈號測試模式』就禁用所有 GPIO IN 欄位（GPI_num, GPI_pin），
+        取消勾選就啟用。因為 LED 燈號測試只需要 OUT pin，不需要 IN pin。
+        """
+        gpio_people_cb = getattr(self.ui, "gpio_people_checkBox", None)
+        if not gpio_people_cb:
+            return
+        
+        is_led_mode = gpio_people_cb.isChecked()
+        
+        # 遍歷所有可能的 GPIO pairs（通常最多 32 組）
+        row = 1
+        while True:
+            gpi_num = getattr(self.ui, f"GPI_num{row}_lineEdit", None)
+            gpi_pin = getattr(self.ui, f"GPI_pin{row}_lineEdit", None)
+            
+            # 如果找不到這個欄位，表示已經到最後一組了
+            if not gpi_num or not gpi_pin:
+                break
+            
+            # 根據 checkbox 狀態啟用/禁用 IN 欄位
+            gpi_num.setEnabled(not is_led_mode)  # LED 模式時禁用
+            gpi_pin.setEnabled(not is_led_mode)  # LED 模式時禁用
+            
+            row += 1
+
     # ===== Config Tab =====
     # 設定 Config 分頁, 限制欄位輸入的內容
     def init_config_tab_validators(self):
@@ -476,33 +487,9 @@ class MBTestWindow(QtWidgets.QMainWindow):
                     pass
         return default
 
-    # def save_serial_section(self, data: dict, prefix: str, count: int):
-    #     """
-    #     儲存 RS232/RS422/RS485 等combobox 類型設定。
-    #     prefix: "RS232" / "RS422" / "RS485"
-    #     count:  下拉選單的期望數量
-    #     """
-    #     cfg = {"expect": count}
-
-    #     # 若 count > 0，依序取 UI 欄位
-    #     if count > 0:
-    #         for i in range(1, count + 1): # 從 1 開始到 count
-    #             le = getattr(self.ui, f"{prefix.lower()}_{i}_lineEdit", None) # 例如 rs232_1_lineEdit
-    #             if not le: # 找不到元件就跳過
-    #                 continue # 繼續下一個迴圈
-    #             val = (le.text() or "").strip() # 取得文字並去除空白
-    #             if val: # 有填值才加入 cfg
-    #                 cfg[f"{prefix}_port_{i}"] = val # 例如 RS232_port_1
-
-    #     # 只有有資料時才寫入，否則刪掉舊資料
-    #     if count > 0 and len(cfg) > 1:
-    #         data[prefix] = cfg
-    #     else:
-    #         data.pop(prefix, None)
-
     def save_ekey_section(self, data: dict, prefix: str, count: int):
         """
-        存 [E-Key] 區段，欄位名稱用 EKEY_PATH_#
+        存 [E-Key] 區段，欄位名稱用 EKEY_path_#
         prefix 目前其實用不到，但保留參數方便之後改
         """
         # 如果 combobox 選 0，就直接把舊的 E-Key 刪掉，不寫入
@@ -519,7 +506,7 @@ class MBTestWindow(QtWidgets.QMainWindow):
                 continue
             txt = le.text().strip()
             if txt:
-                sec[f"EKEY_PATH_{i}"] = txt
+                sec[f"EKEY_path_{i}"] = txt
                 has_item = True
 
         # 只有當有至少一個 PATH 時才寫入，否則也刪掉
@@ -528,6 +515,7 @@ class MBTestWindow(QtWidgets.QMainWindow):
         else:
             data.pop("E-Key", None)
 
+    # 當數量 + 多個 xxx_1_lineEdit～xxx_10_lineEdit」的結構，所以可以用這個函數來保存。
     def save_multi_port_section(self, data, toml_func_name, ui_name, toml_func_path_name, count):
         """
         通用版本：
@@ -535,8 +523,10 @@ class MBTestWindow(QtWidgets.QMainWindow):
         - UI 物件： <ui_name>_<i>_lineEdit
         - TOML Key：<toml_func_path_name>_<i>
         例如：
-        RS232 → ui_name="rs232" 後續程式會帶入組合名稱出來, toml_func_path_name="RS232_port"
-        E-Key → ui_name="ekey" 後續程式會帶入組合名稱出來, toml_func_path_name="EKEY_PATH"
+        RS232 → ui_name="rs232" 後續程式會帶入組合名稱出來, toml_func_path_name="RS232_path"
+        E-Key → ui_name="ekey" 後續程式會帶入組合名稱出來, toml_func_path_name="EKEY_path"
+        
+        修改：不管 count 多少，都會檢查所有可能的路徑並保存所有有內容的路徑
         """
         if count <= 0:
             data.pop(toml_func_name, None)
@@ -545,10 +535,14 @@ class MBTestWindow(QtWidgets.QMainWindow):
         sec = {"expect": count}
         has_item = False
 
-        for i in range(1, count + 1):
+        # 檢查所有可能的路徑（最多檢查到 10 個，涵蓋大部分情況）
+        # 這樣即使 count=1，但填寫了多個路徑，也會全部保存
+        max_check = 10
+        for i in range(1, max_check + 1):
             # UI 物件名稱（通常小寫）
             le = getattr(self.ui, f"{ui_name}_{i}_lineEdit", None)
             if not le:
+                # 如果這個 lineEdit 不存在，繼續檢查下一個
                 continue
             txt = (le.text() or "").strip()
             if txt:
@@ -570,18 +564,19 @@ class MBTestWindow(QtWidgets.QMainWindow):
         
         如果 toml_name 為 None，則自動使用 DTS name 作為檔名：
         - 如果抓取到 DTS name，使用 ./{dts_name}.toml
-        - 如果沒有抓取到 DTS name，使用預設名稱 ./mb_test_config.toml
+        - 如果沒有抓取到 DTS name，則使用 x86 name 作為檔名，使用 ./{x86_name}.toml
+        - 如果沒有抓取到 x86 name，使用預設名稱 ./mb_test_config.toml
         """
         # import toml, re  # ← 需要 re 給 parse_hex 用
         
-        # 如果 toml_name 為 None，自動使用 DTS name 作為檔名
+        # 如果 toml_name 為 None，自動使用 DTS name 或 OEM 名稱作為檔名
         if toml_name is None:
-            dts_info = self.get_bsp_and_dts()
-            print(f"按下存檔按鈕時, 取得 DTS name: {dts_info}") # 印出 DTS name, debug用
-            dts_name = dts_info.get("dts", "")
+            sys_info = self.get_dts_and_x86_name()
+            print(f"按下存檔按鈕時, 取得 DTS name: {sys_info}") # 印出 DTS name, debug用
+            dts_name = sys_info.get("dts", "")
             
             # 處理 DTS name：去掉 .dts 後綴（如果有的話），並清理特殊字元
-            if dts_name and dts_name != "(There is no DTS)": # 如果 DTS name 存在且不為 "(There is no DTS)"，則處理 DTS name
+            if dts_name and dts_name != "(There is no DTS)": # Jetson/ARM 平台：使用 DTS name
                 # 去掉 .dts 後綴
                 if dts_name.endswith('.dts'):
                     dts_name = dts_name[:-4]
@@ -589,10 +584,22 @@ class MBTestWindow(QtWidgets.QMainWindow):
                 dts_name = re.sub(r'[<>:"/\\|?*]', '_', dts_name) # 清理檔名不允許的字元（保留底線、連字號、點號）
                 toml_name = f"./{dts_name}.toml" # 將 DTS name 轉換為 TOML 檔名
             else:
-                # 如果無法取得 DTS name，使用預設檔名
-                toml_name = "./mb_test_config.toml"
+                # x86 平台：從系統讀取 board_name 作為 TOML 檔名（與 Jetson 使用 DTS name 的方式一致）
+                x86_name = self.read_text("/sys/class/dmi/id/board_name", "")  # 直接從系統檔案讀取
+                if x86_name and x86_name != "-":
+                    # 清理檔名不允許的字元（保留底線、連字號、點號）
+                    x86_name = re.sub(r'[<>:"/\\|?*]', '_', x86_name)
+                    toml_name = f"./{x86_name}.toml"  # 將 board_name 轉換為 TOML 檔名
+                else:
+                    # 如果無法取得 board_name，使用預設檔名
+                    toml_name = "./mb_test_config.toml"
 
         def parse_hex(s, default=0x55):
+            """
+            將字串 s 轉換為整數，如果 s 以 "0x" 開頭，則轉換為 16 進位，
+            如果 s 是 16 進位格式，則轉換為 16 進位，如果 s 是 10 進位格式，
+            則轉換為 10 進位，如果 s 無法轉換為整數，則返回 default
+            """
             s = (s or "").strip()
             try:
                 if s.lower().startswith("0x"):
@@ -617,17 +624,17 @@ class MBTestWindow(QtWidgets.QMainWindow):
             data["USB3"] = {"expect": usb3_expect}
 
         # ===== M-Key =====
-        mkey_expect = self.read_combo_int("MKEY_comboBox", default=0)
+        mkey_expect = self.read_combo_int("mkey_comboBox", default=0)
         if mkey_expect > 0:
             data["M-Key"] = {"expect": mkey_expect} # 這裡[]內的名稱會寫入 TOML
 
         # ===== E-Key =====
-        ekey_expect = self.read_combo_int("EKEY_comboBox", default=0)
-        self.save_multi_port_section(data, "E-Key", "ekey", "EKEY_PATH", ekey_expect) 
+        ekey_expect = self.read_combo_int("ekey_comboBox", default=0)
+        self.save_multi_port_section(data, "E-Key", "ekey", "EKEY_path", ekey_expect) 
 
         # ===== B-Key =====
-        bkey_expect = self.read_combo_int("BKEY_comboBox", default=0)
-        self.save_multi_port_section(data, "B-KEY", "bkey", "BKEY_PATH", bkey_expect)
+        bkey_expect = self.read_combo_int("bkey_comboBox", default=0)
+        self.save_multi_port_section(data, "B-KEY", "bkey", "BKEY_path", bkey_expect)
 
         # ===== CPU =====
         cpu_expect = self.read_combo_int("cpu_comboBox", default=0)
@@ -636,6 +643,14 @@ class MBTestWindow(QtWidgets.QMainWindow):
         # ===== MEMORY =====
         mem_expect = self.read_combo_int("memory_comboBox", default=0)
         self.save_multi_port_section(data, "MEMORY", "mem", "MEMORY_SIZE", mem_expect) # 這裡是回填文字到UI, mem_1_lineEdit ~ mem_5_lineEdit, 如果 mem_sizes 的長度小於 i, 則清空文字到UI
+
+        # ===== BIOS VERSION =====（與 CPU、MEM 同用法：biosver_1_lineEdit → BIOSVERSION_name_1）
+        biosver_expect = self.read_combo_int("biosver_comboBox", default=0)
+        self.save_multi_port_section(data, "BIOS VERSION", "biosver", "BIOSVERSION_name", biosver_expect)
+
+        # ===== HW PRODUCT NAME =====
+        hwproductname_expect = self.read_combo_int("hwproductname_comboBox", default=0)
+        self.save_multi_port_section(data, "HW PRODUCT NAME", "hwproductname", "HWPRODUCTNAME_name", hwproductname_expect)
 
         # ===== Network =====
         network_expect = self.read_combo_int("network_comboBox", default=0)
@@ -658,7 +673,7 @@ class MBTestWindow(QtWidgets.QMainWindow):
                 if le:
                     txt = (le.text() or "").strip()
                     if txt:
-                        data["OPTICAL FIBER"][f"FIBER_port_{i}"] = txt
+                        data["OPTICAL FIBER"][f"FIBER_path_{i}"] = txt
         else:
             data.pop("OPTICAL FIBER", None)
 
@@ -706,16 +721,16 @@ class MBTestWindow(QtWidgets.QMainWindow):
             data["Micro SD Card"] = {"expect": microsd_expect} # 這裡[]內的名稱會寫入 TOML
 
         # ===== RS232 =====
-        rs232_expect = self.read_combo_int("RS232_comboBox", default=0)
-        self.save_multi_port_section(data, "RS232", "rs232", "RS232_port", rs232_expect)
+        rs232_expect = self.read_combo_int("rs232_comboBox", default=0)
+        self.save_multi_port_section(data, "RS232", "rs232", "RS232_path", rs232_expect)
 
         # ===== RS422 =====
-        rs422_expect = self.read_combo_int("RS422_comboBox", default=0) # 這行的功能是讀取 combobox 的值並轉成 int
-        self.save_multi_port_section(data, "RS422", "rs422", "RS422_port", rs422_expect) # 如果期望數量大於0, 就依序取 UI 欄位, 寫入 data dict 裡面, 否則刪掉舊資料, 寫入 toml 檔案, 回傳 data dict 給呼叫端顯示/調用
+        rs422_expect = self.read_combo_int("rs422_comboBox", default=0) # 這行的功能是讀取 combobox 的值並轉成 int
+        self.save_multi_port_section(data, "RS422", "rs422", "RS422_path", rs422_expect) # 如果期望數量大於0, 就依序取 UI 欄位, 寫入 data dict 裡面, 否則刪掉舊資料, 寫入 toml 檔案, 回傳 data dict 給呼叫端顯示/調用
 
         # ===== RS485 =====
-        rs485_expect = self.read_combo_int("RS485_comboBox", default=0)
-        self.save_multi_port_section(data, "RS485", "rs485", "RS485_port", rs485_expect)
+        rs485_expect = self.read_combo_int("rs485_comboBox", default=0)
+        self.save_multi_port_section(data, "RS485", "rs485", "RS485_path", rs485_expect)
 
         # ===== UART =====
         uart_expect = self.read_combo_int("uart_comboBox", default=0)
@@ -848,7 +863,7 @@ class MBTestWindow(QtWidgets.QMainWindow):
         # ===== EEPROM RD Test =====
         # 注意：EEPROM RD Test 與 EEPROM 共用同一個 [EEPROM] 區段的配置
         # 所以這裡只需要寫入 [EEPROM RD TEST] 區段的 expect，配置會從 [EEPROM] 區段讀取
-        eeprom_rd_expect = self.read_combo_int("eeprom_RD_Test_comboBox", default=0)
+        eeprom_rd_expect = self.read_combo_int("eepromrdrd_comboBox", default=0)
         if eeprom_rd_expect > 0:
             data["EEPROM RD TEST"] = {"expect": eeprom_rd_expect}
             
@@ -927,24 +942,40 @@ class MBTestWindow(QtWidgets.QMainWindow):
         if gpio_expect > 0:
 
             pairs = []
-            for i in range(1, gpio_expect + 1):
-
-                gpo_num = getattr(self.ui, f"GPO_num{i}_lineEdit", None) # 這行功能是取得 GPO_numX_lineEdit 物件
+            # 讀取 led_mode checkbox 狀態（燈號測試模式）
+            peoplecheck_mode_cb = getattr(self.ui, "gpio_people_checkBox", None)
+            people_mode = peoplecheck_mode_cb.isChecked() if peoplecheck_mode_cb else False
+            
+            # 找出所有實際填寫的內容（檢查範圍：1 到 100，或直到找不到 UI 物件為止）
+            for i in range(1, 101):  # 檢查 1 到 100 組
+                gpo_num = getattr(self.ui, f"GPO_num{i}_lineEdit", None)
                 gpo_pin = getattr(self.ui, f"GPO_pin{i}_lineEdit", None)
                 gpi_num = getattr(self.ui, f"GPI_num{i}_lineEdit", None)
                 gpi_pin = getattr(self.ui, f"GPI_pin{i}_lineEdit", None)
+
+                # 如果 UI 物件不存在，表示已經到最後一組了
+                if not gpo_num or not gpo_pin:
+                    break
 
                 gpo_num_txt = gpo_num.text().strip() if gpo_num else "" # 這行功能是取得 GPO_numX_lineEdit 的文字並去除空白
                 gpo_pin_txt = gpo_pin.text().strip() if gpo_pin else ""
                 gpi_num_txt = gpi_num.text().strip() if gpi_num else ""
                 gpi_pin_txt = gpi_pin.text().strip() if gpi_pin else ""
 
-                if gpo_num_txt or gpo_pin_txt or gpi_num_txt or gpi_pin_txt:
-                    pairs.append(f"{gpo_num_txt},{gpo_pin_txt},{gpi_num_txt},{gpi_pin_txt}")
+                # 檢查是否有填寫內容（至少要有 OUT 欄位）
+                if gpo_num_txt or gpo_pin_txt:
+                    if people_mode:
+                        # 燈號測試模式：只儲存 OUT 欄位（2 欄位格式）
+                        pairs.append(f"{gpo_num_txt},{gpo_pin_txt}")
+                    else:
+                        # Loopback 測試模式：儲存完整 4 欄位格式
+                        if gpo_num_txt or gpo_pin_txt or gpi_num_txt or gpi_pin_txt:
+                            pairs.append(f"{gpo_num_txt},{gpo_pin_txt},{gpi_num_txt},{gpi_pin_txt}")
 
             data["GPIO"] = {
                 "expect": gpio_expect,
                 "pairs": pairs,
+                "led_mode": people_mode,  # 燈號測試模式：true=人工判斷，false=自動驗證
             }
         else:
             data.pop("GPIO", None)
@@ -958,22 +989,22 @@ class MBTestWindow(QtWidgets.QMainWindow):
             "VGA": "vga_comboBox",
             "DP": "dp_comboBox",
             "LED": "led_comboBox",
-            "POWER CONNECTOR": "power_connector_comboBox",
-            "POWER SW CONNECTOR": "power_sw_connector_comboBox",
-            "POWER BUTTON": "power_button_comboBox",
-            "RESET BUTTON": "reset_button_comboBox",
-            "RECOVERY BUTTON": "recovery_button_comboBox",
+            "POWER CONNECTOR": "powerconnector_comboBox",
+            "POWER SW CONNECTOR": "powerswconnector_comboBox",
+            "POWER BUTTON": "powerbutton_comboBox",
+            "RESET BUTTON": "resetbutton_comboBox",
+            "RECOVERY BUTTON": "recoverybutton_comboBox",
             "SMA": "sma_comboBox",
             "SW1": "sw1_comboBox",
             "SW2": "sw2_comboBox",
-            "MCU Connector": "mcu_connector_comboBox",
+            "MCU Connector": "mcuconnector_comboBox",
             "RTC": "rtc_comboBox",
-            "RTC OUT": "rtc_out_comboBox",
-            "DC INPUT": "dc_input_comboBox",
-            "DC OUTPUT": "dc_output_comboBox",
+            "RTC OUT": "rtcout_comboBox",
+            "DC INPUT": "dcinput_comboBox",
+            "DC OUTPUT": "dcoutput_comboBox",
             "CASE OPEN": "caseopen_comboBox",
-            "PD POWER INPUT": "PD_POWERINPUT_comboBox",
-            "PSE POWER OUTPUT": "PSE_POWEROUTPUT_comboBox",
+            "PD POWER INPUT": "pdpowerinput_comboBox",
+            "PSE POWER OUTPUT": "psepoweroutput_comboBox",
             "InnoAgent": "innoagent_comboBox",
             "GPS": "gps_comboBox",
         }
@@ -986,23 +1017,10 @@ class MBTestWindow(QtWidgets.QMainWindow):
 
         self.ui.Information_textEdit.append(f"[DEBUG] Save TOML data: {data}")
 
-
-        # # ===== HDMI ===== 獨立撰寫範例
-        # hdmi_expect = self.read_combo_int("hdmi_comboBox", default=0)
-        # if hdmi_expect > 0:
-        #     data["HDMI"] = {"expect": hdmi_expect}
-        # self.ui.Information_textEdit.append(f"[DEBUG] Save TOML data: {data}")
-
         # ===== FTP =====
         target = self.get_ftp_target_from_ui() or self.cfg.get("ftp_target", "")
         if target:
             data["FTP"] = {"target": target}
-
-        # ===== 區段名稱轉換（在更新 cfg 之前） =====
-        # 注意：E-Key 已經在第 627 行使用 "E-Key" 名稱，所以這裡的轉換不會執行
-        # 保留此轉換是為了向後相容，如果未來有其他地方使用 "EKEY" 名稱
-        # if "EKEY" in data:
-        #     data["E-Key"] = data.pop("EKEY")
 
         # ===== 同步記憶體 cfg（避免殘留舊鍵） =====
         # 保存執行時設定（這些不在 TOML 中，不應該被清空）
@@ -1053,6 +1071,8 @@ class MBTestWindow(QtWidgets.QMainWindow):
         camera              = item_cfg.get("CAMERA", {})
         cpu                 = item_cfg.get("CPU", {})
         memory              = item_cfg.get("MEMORY", {})
+        biosver             = item_cfg.get("BIOS VERSION", {})
+        hwproductname       = item_cfg.get("HW PRODUCT NAME", {})
         # ===== 手動測項 =====
         mic                 = item_cfg.get("MIC", {})
         linein              = item_cfg.get("LINE IN", {})
@@ -1101,7 +1121,7 @@ class MBTestWindow(QtWidgets.QMainWindow):
 
         # --- M-Key ---
         check_mkey = getattr(self.ui, "checkBox_MKEY", None)
-        combo_mkey = getattr(self.ui, "MKEY_comboBox", None)
+        combo_mkey = getattr(self.ui, "mkey_comboBox", None)
         if check_mkey and combo_mkey:
             if mkey and int(mkey.get("expect", 0)) > 0:
                 check_mkey.setChecked(True)
@@ -1111,7 +1131,7 @@ class MBTestWindow(QtWidgets.QMainWindow):
 
         # E-Key
         check_ekey = getattr(self.ui, "checkBox_EKEY", None)
-        combo_ekey = getattr(self.ui, "EKEY_comboBox", None)
+        combo_ekey = getattr(self.ui, "ekey_comboBox", None)
         if check_ekey and combo_ekey:
             if ekey and int(ekey.get("expect", 0)) > 0:
                 check_ekey.setChecked(True)
@@ -1122,12 +1142,12 @@ class MBTestWindow(QtWidgets.QMainWindow):
             le = getattr(self.ui, f"ekey_{i}_lineEdit", None)
             if not le:
                 continue
-            val = ekey.get(f"EKEY_PATH_{i}", "") # 這裡是回填文字到UI, cpu_1_lineEdit ~ cpu_5_lineEdit, 如果 cpu_models 的長度小於 i, 則清空文字到UI
+            val = ekey.get(f"EKEY_path_{i}", "") # 這裡是回填文字到UI, cpu_1_lineEdit ~ cpu_5_lineEdit, 如果 cpu_models 的長度小於 i, 則清空文字到UI
             le.setText("" if val is None else str(val))
 
         # B-Key
         check_bkey = getattr(self.ui, "checkBox_BKEY", None)
-        combo_bkey = getattr(self.ui, "BKEY_comboBox", None)
+        combo_bkey = getattr(self.ui, "bkey_comboBox", None)
         if check_bkey and combo_bkey:
             if bkey and int(bkey.get("expect", 0)) > 0:
                 check_bkey.setChecked(True)
@@ -1138,7 +1158,7 @@ class MBTestWindow(QtWidgets.QMainWindow):
             le = getattr(self.ui, f"bkey_{i}_lineEdit", None)
             if not le:
                 continue
-            val = bkey.get(f"BKEY_PATH_{i}", "") # 這裡是回填文字到UI, bkey_1_lineEdit ~ bkey_5_lineEdit
+            val = bkey.get(f"BKEY_path_{i}", "") # 這裡是回填文字到UI, bkey_1_lineEdit ~ bkey_5_lineEdit
             le.setText("" if val is None else str(val))
 
         # CPU
@@ -1171,6 +1191,38 @@ class MBTestWindow(QtWidgets.QMainWindow):
             if not le:
                 continue
             val = memory.get(f"MEMORY_SIZE_{i}", "")
+            le.setText("" if val is None else str(val))
+
+        # BIOS VERSION（與 CPU、MEM 同用法：BIOSVERSION_name_1 → biosver_1_lineEdit）
+        check_biosver = getattr(self.ui, "checkBox_BIOSVER", None)
+        combo_biosver = getattr(self.ui, "biosver_comboBox", None)
+        if check_biosver and combo_biosver:
+            if biosver and int(biosver.get("expect", 0)) > 0:
+                check_biosver.setChecked(True)
+                combo_biosver.setCurrentText(str(int(biosver.get("expect", 0))))
+            else:
+                check_biosver.setChecked(False)
+        for i in range(1, 11):
+            le = getattr(self.ui, f"biosver_{i}_lineEdit", None)
+            if not le:
+                continue
+            val = biosver.get(f"BIOSVERSION_name_{i}", "")
+            le.setText("" if val is None else str(val))
+
+        # HW PRODUCT NAME
+        check_hwproductname = getattr(self.ui, "checkBox_HWPRODUCTNAME", None)
+        combo_hwproductname = getattr(self.ui, "hwproductname_comboBox", None)
+        if check_hwproductname and combo_hwproductname:
+            if hwproductname and int(hwproductname.get("expect", 0)) > 0:
+                check_hwproductname.setChecked(True)
+                combo_hwproductname.setCurrentText(str(int(hwproductname.get("expect", 0))))
+            else:
+                check_hwproductname.setChecked(False)
+        for i in range(1, 11):
+            le = getattr(self.ui, f"hwproductname_{i}_lineEdit", None)
+            if not le:
+                continue
+            val = hwproductname.get(f"HWPRODUCTNAME_name_{i}", "")
             le.setText("" if val is None else str(val))
 
         # CAMERA
@@ -1211,13 +1263,13 @@ class MBTestWindow(QtWidgets.QMainWindow):
             else:
                 check_fiber.setChecked(False)
 
-        # 依序回填 10 格 FIBER_port
+        # 依序回填 10 格 FIBER_path
         for i in range(1, 11):
-            fiber_port = f"FIBER_port_{i}" # TOML 裡的名稱, 要與 save_toml_cfg 對應, i是 1~10
+            fiber_path = f"FIBER_path_{i}" # TOML 裡的名稱, 要與 save_toml_cfg 對應, i是 1~10
             get_fiber = getattr(self.ui, f"fiber_{i}_lineEdit", None) # 主要功能是取得 lineEdit 元件然後回填文字到UI
             if not get_fiber:
                 continue
-            get_fiber.setText(str(fiber.get(fiber_port, "")))
+            get_fiber.setText(str(fiber.get(fiber_path, "")))
 
         # CAN BUS
         check_canbus = getattr(self.ui, "checkBox_CANBUS", None)
@@ -1252,7 +1304,7 @@ class MBTestWindow(QtWidgets.QMainWindow):
 
         # RS232
         check_rs232 = getattr(self.ui, "checkBox_RS232", None)
-        combo_rs232 = getattr(self.ui, "RS232_comboBox", None)
+        combo_rs232 = getattr(self.ui, "rs232_comboBox", None)
         if check_rs232 and combo_rs232:
             if rs232 and int(rs232.get("expect", 0)) > 0:
                 check_rs232.setChecked(True)
@@ -1260,17 +1312,17 @@ class MBTestWindow(QtWidgets.QMainWindow):
             else:
                 check_rs232.setChecked(False)
 
-        # 依序回填 10 格 RS232_port
+        # 依序回填 10 格 RS232_path
         for i in range(1, 11):
-            rs232_port = f"RS232_port_{i}" # TOML 裡的名稱, 要與 save_toml_cfg 對應, i是 1~10
+            rs232_path = f"RS232_path_{i}" # TOML 裡的名稱, 要與 save_toml_cfg 對應, i是 1~10
             get_rs232 = getattr(self.ui, f"rs232_{i}_lineEdit", None) # 主要功能是取得 lineEdit 元件然後回填文字到UI
             if not get_rs232:
                 continue
-            get_rs232.setText(str(rs232.get(rs232_port, "")))
+            get_rs232.setText(str(rs232.get(rs232_path, "")))
 
         # RS422
         check_rs422 = getattr(self.ui, "checkBox_RS422", None)
-        combo_rs422 = getattr(self.ui, "RS422_comboBox", None)
+        combo_rs422 = getattr(self.ui, "rs422_comboBox", None)
         if check_rs422 and combo_rs422:
             if rs422 and int(rs422.get("expect", 0)) > 0:
                 check_rs422.setChecked(True)
@@ -1278,18 +1330,18 @@ class MBTestWindow(QtWidgets.QMainWindow):
             else:
                 check_rs422.setChecked(False)
 
-        # 依序回填 10 格 RS422_port
+        # 依序回填 10 格 RS422_path
         for i in range(1, 11):
-            rs422_port = f"RS422_port_{i}" # TOML 裡的名稱, 要與 save_toml_cfg 對應, i是 1~10
+            rs422_path = f"RS422_path_{i}" # TOML 裡的名稱, 要與 save_toml_cfg 對應, i是 1~10
             get_rs422 = getattr(self.ui, f"rs422_{i}_lineEdit", None) # 主要功能是取得 lineEdit 元件然後回填文字到UI
             if not get_rs422:
                 continue
-            get_rs422.setText(str(rs422.get(rs422_port, "")))
+            get_rs422.setText(str(rs422.get(rs422_path, "")))
 
 
         # RS485
         check_rs485 = getattr(self.ui, "checkBox_RS485", None)
-        combo_rs485 = getattr(self.ui, "RS485_comboBox", None)
+        combo_rs485 = getattr(self.ui, "rs485_comboBox", None)
         if check_rs485 and combo_rs485:
             if rs485 and int(rs485.get("expect", 0)) > 0:
                 check_rs485.setChecked(True)
@@ -1297,13 +1349,13 @@ class MBTestWindow(QtWidgets.QMainWindow):
             else:
                 check_rs485.setChecked(False)
 
-        # 依序回填 10 格 RS485_port
+        # 依序回填 10 格 RS485_path
         for i in range(1, 11):
-            rs485_port = f"RS485_port_{i}" # TOML 裡的名稱, 要與 save_toml_cfg 對應, i是 1~10
+            rs485_path = f"RS485_path_{i}" # TOML 裡的名稱, 要與 save_toml_cfg 對應, i是 1~10
             get_rs485 = getattr(self.ui, f"rs485_{i}_lineEdit", None) # 主要功能是取得 lineEdit 元件然後回填文字到UI
             if not get_rs485:
                 continue
-            get_rs485.setText(str(rs485.get(rs485_port, "")))
+            get_rs485.setText(str(rs485.get(rs485_path, "")))
 
         # UART
         check_uart = getattr(self.ui, "checkBox_UART", None)
@@ -1349,14 +1401,7 @@ class MBTestWindow(QtWidgets.QMainWindow):
                 continue
             le.setText(str(spi.get(spi_key, "")))
 
-
         # # 依序回填 5 格 SPI_path
-        # for i in range(1, 6):
-        #     key = f"SPI_path_{i}" # TOML 裡的名稱, 要與 save_toml_cfg 對應, i是 1~5, SPI_path_1 ~ SPI_path_5
-        #     le = getattr(self.ui, f"spi_{i}_lineEdit", None) # 主要功能是取得 lineEdit 元件然後回填文字到UI, spi_1_lineEdit ~ spi_5_lineEdit
-        #     if not le:
-        #         continue
-        #     le.setText(str(spi.get(key, ""))) # 回填文字
         for i in range(1, 6):
             spi_path = f"SPI_path_{i}" # TOML 裡的名稱, 要與 save_toml_cfg 對應, i是 1~5, SPI_path_1 ~ SPI_path_5
             get_spi = getattr(self.ui, f"spi_{i}_lineEdit", None) # 主要功能是取得 lineEdit 元件然後回填文字到UI, spi_1_lineEdit ~ spi_5_lineEdit
@@ -1458,8 +1503,8 @@ class MBTestWindow(QtWidgets.QMainWindow):
         #                         if hasattr(self.ui, "EEPROM_enable_checkBox") else False)
         
         # EEPROM RD Test
-        check_eeprom_rd = getattr(self.ui, "checkBox_EEPROM_RD", None)
-        combo_eeprom_rd = getattr(self.ui, "eeprom_RD_Test_comboBox", None)
+        check_eeprom_rd = getattr(self.ui, "checkBox_EEPROMRD", None)
+        combo_eeprom_rd = getattr(self.ui, "eepromrdrd_comboBox", None)
         if check_eeprom_rd and combo_eeprom_rd:
             if eeprom_rd and int(eeprom_rd.get("expect", 0)) > 0:
                 check_eeprom_rd.setChecked(True)
@@ -1546,6 +1591,12 @@ class MBTestWindow(QtWidgets.QMainWindow):
 
             row += 1
 
+        # --- LED 模式 checkbox（燈號測試模式）---
+        peoplecheck_mode_cb = getattr(self.ui, "gpio_people_checkBox", None)
+        if peoplecheck_mode_cb:
+            people_mode = bool(gpio.get("led_mode", False))
+            peoplecheck_mode_cb.setChecked(people_mode)
+
         # MIC
         check_mic = getattr(self.ui, "checkBox_MIC", None)
         combo_mic = getattr(self.ui, "mic_comboBox", None)
@@ -1617,8 +1668,8 @@ class MBTestWindow(QtWidgets.QMainWindow):
                 check_led.setChecked(False)
 
         # POWER BUTTON
-        check_POWER_BUTTON = getattr(self.ui, "checkBox_Power_Button", None)
-        combo_POWER_BUTTON = getattr(self.ui, "power_button_comboBox", None)
+        check_POWER_BUTTON = getattr(self.ui, "checkBox_POWERBUTTON", None)
+        combo_POWER_BUTTON = getattr(self.ui, "powerbutton_comboBox", None)
         if check_POWER_BUTTON and combo_POWER_BUTTON:
             # power_btn = c.get("POWER BUTTON", {})
             if power_btn and int(power_btn.get("expect", 0)) > 0: # 有設定且大於0
@@ -1628,8 +1679,8 @@ class MBTestWindow(QtWidgets.QMainWindow):
                 check_POWER_BUTTON.setChecked(False) # 不勾選checkbox
 
         # POWER CONNECTOR
-        check_POWER_CONNECTOR = getattr(self.ui, "checkBox_PowerConnector", None)
-        combo_POWER_CONNECTOR = getattr(self.ui, "power_connector_comboBox", None)
+        check_POWER_CONNECTOR = getattr(self.ui, "checkBox_POWERCONNECTOR", None)
+        combo_POWER_CONNECTOR = getattr(self.ui, "powerconnector_comboBox", None)
         if check_POWER_CONNECTOR and combo_POWER_CONNECTOR:
             # power_connector = c.get("POWER CONNECTOR", {})
             if power_connector and int(power_connector.get("expect", 0)) > 0:
@@ -1639,8 +1690,8 @@ class MBTestWindow(QtWidgets.QMainWindow):
                 check_POWER_CONNECTOR.setChecked(False)
         
         # POWER SW CONNECTOR
-        check_POWER_SW_CONNECTOR = getattr(self.ui, "checkBox_PowerSWConnector", None)
-        combo_POWER_SW_CONNECTOR = getattr(self.ui, "power_sw_connector_comboBox", None)
+        check_POWER_SW_CONNECTOR = getattr(self.ui, "checkBox_POWERSWCONNECTOR", None)
+        combo_POWER_SW_CONNECTOR = getattr(self.ui, "powerswconnector_comboBox", None)
         if check_POWER_SW_CONNECTOR and combo_POWER_SW_CONNECTOR:
             # power_sw = c.get("POWER SW CONNECTOR", {})
             if power_sw and int(power_sw.get("expect", 0)) > 0:
@@ -1651,8 +1702,8 @@ class MBTestWindow(QtWidgets.QMainWindow):
 
         # RESET BUTTON
         # if hasattr(self.ui, "checkBox_Reset_Button") and hasattr(self.ui, "reset_button_comboBox"):
-        check_RESET_BUTTON = getattr(self.ui, "checkBox_Reset_Button", None)
-        combo_RESET_BUTTON = getattr(self.ui, "reset_button_comboBox", None)
+        check_RESET_BUTTON = getattr(self.ui, "checkBox_RESETBUTTON", None)
+        combo_RESET_BUTTON = getattr(self.ui, "resetbutton_comboBox", None)
         if check_RESET_BUTTON and combo_RESET_BUTTON:
             # reset_btn = c.get("RESET BUTTON", {})
             if reset_btn and int(reset_btn.get("expect", 0)) > 0:
@@ -1664,8 +1715,8 @@ class MBTestWindow(QtWidgets.QMainWindow):
         # RECOVERY BUTTON
         # if hasattr(self.ui, "checkBox_Recovery_Button") and hasattr(self.ui, "recovery_button_comboBox"):
             # recovery_btn = c.get("RECOVERY BUTTON", {})
-        check_RECOVERY_BUTTON = getattr(self.ui, "checkBox_Recovery_Button", None)
-        combo_RECOVERY_BUTTON = getattr(self.ui, "recovery_button_comboBox", None)
+        check_RECOVERY_BUTTON = getattr(self.ui, "checkBox_RECOVERYBUTTON", None)
+        combo_RECOVERY_BUTTON = getattr(self.ui, "recoverybutton_comboBox", None)
         if check_RECOVERY_BUTTON and combo_RECOVERY_BUTTON:
             if recovery_btn and int(recovery_btn.get("expect", 0)) > 0:
                 check_RECOVERY_BUTTON.setChecked(True)
@@ -1711,8 +1762,8 @@ class MBTestWindow(QtWidgets.QMainWindow):
 
         # MCU CONNECTOR
         # if hasattr(self.ui, "checkBox_MCUConnector") and hasattr(self.ui, "mcu_connector_comboBox"):
-        check_MCU_CONNECTOR = getattr(self.ui, "checkBox_MCUConnector", None)
-        combo_MCU_CONNECTOR = getattr(self.ui, "mcu_connector_comboBox", None)
+        check_MCU_CONNECTOR = getattr(self.ui, "checkBox_MCUCONNECTOR", None)
+        combo_MCU_CONNECTOR = getattr(self.ui, "mcuconnector_comboBox", None)
         if check_MCU_CONNECTOR and combo_MCU_CONNECTOR:
             # mcu_connector = c.get("MCU Connector", {})
             if mcu_connector and int(mcu_connector.get("expect", 0)) > 0:
@@ -1735,8 +1786,8 @@ class MBTestWindow(QtWidgets.QMainWindow):
 
         # RTC OUT
         # if hasattr(self.ui, "checkBox_RTC_OUT") and hasattr(self.ui, "rtc_out_comboBox"):
-        check_RTC_OUT = getattr(self.ui, "checkBox_RTC_OUT", None)
-        combo_RTC_OUT = getattr(self.ui, "rtc_out_comboBox", None)
+        check_RTC_OUT = getattr(self.ui, "checkBox_RTCOUT", None)
+        combo_RTC_OUT = getattr(self.ui, "rtcout_comboBox", None)
         if check_RTC_OUT and combo_RTC_OUT:
             # rtc_out = c.get("RTC OUT", {})
             if rtc_out and int(rtc_out.get("expect", 0)) > 0:
@@ -1747,8 +1798,8 @@ class MBTestWindow(QtWidgets.QMainWindow):
 
         # DC INPUT
         # if hasattr(self.ui, "checkBox_DC_INPUT") and hasattr(self.ui, "dc_input_comboBox"):
-        check_DC_INPUT = getattr(self.ui, "checkBox_DC_INPUT", None)
-        combo_DC_INPUT = getattr(self.ui, "dc_input_comboBox", None)
+        check_DC_INPUT = getattr(self.ui, "checkBox_DCINPUT", None)
+        combo_DC_INPUT = getattr(self.ui, "dcinput_comboBox", None)
         if check_DC_INPUT and combo_DC_INPUT:
             # dc_input = c.get("DC INPUT", {})
             if dc_input and int(dc_input.get("expect", 0)) > 0:
@@ -1759,8 +1810,8 @@ class MBTestWindow(QtWidgets.QMainWindow):
 
         # DC OUTPUT
         # if hasattr(self.ui, "checkBox_DC_OUTPUT") and hasattr(self.ui, "dc_output_comboBox"):
-        check_DC_OUTPUT = getattr(self.ui, "checkBox_DC_OUTPUT", None)
-        combo_DC_OUTPUT = getattr(self.ui, "dc_output_comboBox", None)
+        check_DC_OUTPUT = getattr(self.ui, "checkBox_DCOUTPUT", None)
+        combo_DC_OUTPUT = getattr(self.ui, "dcoutput_comboBox", None)
         if check_DC_OUTPUT and combo_DC_OUTPUT:
             # dc_output = c.get("DC OUTPUT", {})
             if dc_output and int(dc_output.get("expect", 0)) > 0:
@@ -1770,7 +1821,7 @@ class MBTestWindow(QtWidgets.QMainWindow):
                 check_DC_OUTPUT.setChecked(False)
 
         # CASE OPEN
-        check_CASE_OPEN = getattr(self.ui, "checkBox_CASE_OPEN", None)
+        check_CASE_OPEN = getattr(self.ui, "checkBox_CASEOPEN", None)
         combo_CASE_OPEN = getattr(self.ui, "caseopen_comboBox", None)
         if check_CASE_OPEN and combo_CASE_OPEN:
             if case_open and int(case_open.get("expect", 0)) > 0:
@@ -1780,8 +1831,8 @@ class MBTestWindow(QtWidgets.QMainWindow):
                 check_CASE_OPEN.setChecked(False)
 
         # PD POWER INPUT
-        check_PD_POWER_INPUT = getattr(self.ui, "checkBox_PD_POWER_INPUT", None)
-        combo_PD_POWER_INPUT = getattr(self.ui, "PD_POWERINPUT_comboBox", None)
+        check_PD_POWER_INPUT = getattr(self.ui, "checkBox_PDPOWERINPUT", None)
+        combo_PD_POWER_INPUT = getattr(self.ui, "pdpowerinput_comboBox", None)
         if check_PD_POWER_INPUT and combo_PD_POWER_INPUT:
             if pd_power_input and int(pd_power_input.get("expect", 0)) > 0:
                 check_PD_POWER_INPUT.setChecked(True)
@@ -1790,8 +1841,8 @@ class MBTestWindow(QtWidgets.QMainWindow):
                 check_PD_POWER_INPUT.setChecked(False)
 
         # PSE POWER OUTPUT
-        check_PSE_POWER_OUTPUT = getattr(self.ui, "checkBox_PSE_POWER_OUTPUT", None)
-        combo_PSE_POWER_OUTPUT = getattr(self.ui, "PSE_POWEROUTPUT_comboBox", None)
+        check_PSE_POWER_OUTPUT = getattr(self.ui, "checkBox_PSEPOWEROUTPUT", None)
+        combo_PSE_POWER_OUTPUT = getattr(self.ui, "psepoweroutput_comboBox", None)
         if check_PSE_POWER_OUTPUT and combo_PSE_POWER_OUTPUT:
             if pse_power_output and int(pse_power_output.get("expect", 0)) > 0:
                 check_PSE_POWER_OUTPUT.setChecked(True)
@@ -1864,17 +1915,6 @@ class MBTestWindow(QtWidgets.QMainWindow):
         # 如需立刻套到畫面，可選擇：
         # self.apply_tomlcfg_to_ui(data)
 
-    # def on_config_save(self):
-    #     """按下『儲存設定』：讀分頁→更新 cfg→寫 INI/YAML/TOML→訊息區回饋。"""
-    #     values = self.read_config_tab_values()
-    #     self.cfg.update(values)
-    #     # 寫入三種格式（你原本就有的）
-    #     # self.save_cfg_to_ini()
-    #     # self.save_yaml_cfg()
-    #     self.save_toml_cfg()
-    #     self.ui.Information_textEdit.append(f"[Config] 已更新：{values}")
-    #     QMessageBox.information(self, "Config設定", "Config設定已成功儲存, 請關閉程式並重新開啟, 以讀取Config")
-
     def on_config_cancel(self):
         """按下『取消』：不做任何事就關閉對話框。"""
         QMessageBox.information(self, "Config設定", "已取消設定變更。")
@@ -1919,12 +1959,12 @@ class MBTestWindow(QtWidgets.QMainWindow):
         """
         # 如果 toml_name 為 None，自動選擇 TOML 檔名
         if toml_file_name is None:
-            sys_dts_name = self.get_bsp_and_dts() # 使用 get_bsp_and_dts() 函式，取得 DTS name
-            print(f"載入TOML 設定檔時, 取得 DTS name: {sys_dts_name}") # 印出 DTS name, debug用
-            dts_name = sys_dts_name.get("dts", "") # 如果沒有讀到 DTS name，則使用預設值 "(There is no DTS)"
+            sys_info = self.get_dts_and_x86_name() # 使用 get_dts_and_x86_name() 函式，取得 DTS name
+            print(f"載入TOML 設定檔時, 取得 DTS or x86 name: {sys_info}") # 印出 DTS name, debug用
+            dts_name = sys_info.get("dts", "") # 如果沒有讀到 DTS name，則使用預設值 "(There is no DTS)"
             
             # 處理 DTS name：去掉 .dts 後綴（如果有的話），並清理特殊字元
-            if dts_name and dts_name != "(There is no DTS)": # 如果 DTS name 存在且不為 "(There is no DTS)"，則處理 DTS name
+            if dts_name and dts_name != "(There is no DTS)": # Jetson/ARM 平台：使用 DTS name
                 # 去掉 .dts 後綴
                 if dts_name.endswith('.dts'):
                     dts_name = dts_name[:-4] # 去掉 .dts 後綴
@@ -1939,47 +1979,53 @@ class MBTestWindow(QtWidgets.QMainWindow):
                     # 如果檔案不存在，使用預設檔名
                     toml_file_name = "./mb_test_config.toml" # 使用預設檔名
             else:
-                # 如果無法取得 DTS name，使用預設檔名
-                toml_file_name = "./mb_test_config.toml" # 使用預設檔名
+                # x86 平台：從系統讀取 board_name 作為 TOML 檔名（與 Jetson 使用 DTS name 的方式一致）
+                x86_name = self.read_text("/sys/class/dmi/id/board_name", "")  # 直接從系統檔案讀取
+                if x86_name and x86_name != "-":
+                    # 清理檔名不允許的字元（保留底線、連字號、點號）
+                    x86_name = re.sub(r'[<>:"/\\|?*]', '_', x86_name)
+                    x86_toml_name = f"./{x86_name}.toml"  # 將 board_name 轉換為 TOML 檔名
+                    
+                    # 如果對應的 TOML 檔案存在，就使用此檔案
+                    if os.path.exists(x86_toml_name):
+                        toml_file_name = x86_toml_name
+                    else:
+                        # 如果檔案不存在，使用預設檔名
+                        toml_file_name = "./mb_test_config.toml"
+                else:
+                    # 如果無法取得 board_name，使用預設檔名
+                    toml_file_name = "./mb_test_config.toml" # 使用預設檔名
         
         # 標記這次有沒有成功讀到 TOML 設定
         self.toml_loaded = False
 
         if not os.path.exists(toml_file_name):
-            self.ui.Information_textEdit.append("未找到TOML 設定檔，使用預設值。")
-            self.ui.config_read_TextLabel.setText("未找到TOML 設定檔，使用預設值。")
+            toml_display_name = os.path.basename(toml_file_name)  # 只顯示檔名，不顯示路徑
+            # self.ui.Information_textEdit.append(f"未找到TOML 設定檔：{toml_file_name}，使用預設值。")
+            # self.ui.config_read_TextLabel.setText(f"未找到TOML 設定檔：{toml_display_name}，使用預設值。")
+            self.ui.config_read_TextLabel.setText(f"未找到TOML 設定檔：程式使用預設狀態。")
             self.ui.config_read_TextLabel.setStyleSheet("color: red;")
             self.unlock_all_items_from_toml()      # ★ 全開放
             return
-        # if tomllib is None:
-        #     self.ui.Information_textEdit.append("[警告] 目前 Python 沒有 tomllib（需要 3.11+），無法讀 TOML。")
-        #     return
-        # with open(path, "rb") as f:
-        #     data = tomllib.load(f) or {}
-
         try:
             with open(toml_file_name, "r", encoding="utf-8") as f:
                 data = toml.load(f) or {}
-
-            # --- 標準化 E-Key 區段名稱 ---
-            # # 目的：不管是 [EKEY]、[E-KEY]、[E-Key] 都統一成 "E-Key"
-            # ekey_sec = None
-            # for key in ("E-KEY", "EKEY", "EKey", "E-Key"):
-            #     if key in data:
-            #         ekey_sec = data.pop(key)
-            #         break
-            # if ekey_sec is not None:
-            #     data["E-Key"] = ekey_sec
-
             self.cfg.update(data)
+            # 設定全域 TOML 路徑，讓 Test_item.toml_get 使用正確的檔案
+            set_current_toml_path(toml_file_name)
             self.ui.Information_textEdit.append(f"載入TOML 設定檔：{toml_file_name}")
-            self.ui.config_read_TextLabel.setText("已讀取 TOML 設定檔")
+            # 顯示實際讀到的 TOML 檔名
+            toml_display_name = os.path.basename(toml_file_name)  # 只顯示檔名，不顯示路徑
+            self.ui.config_read_TextLabel.setText(f"已讀取 TOML 設定檔：{toml_display_name}")
             self.ui.config_read_TextLabel.setStyleSheet("color: green;")
             self.toml_loaded = True # 標記這次有沒有成功讀到 TOML 設定
 
         except Exception as e:
-            self.ui.Information_textEdit.append(f"[警告] 讀取TOML 設定檔失敗：{e}")
-            QMessageBox.warning(self, "設定檔錯誤", f"讀取 TOML 設定檔失敗：{e}")
+            self.ui.Information_textEdit.append(f"[警告] 讀取TOML 設定檔失敗：{toml_file_name} - {e}")
+            toml_display_name = os.path.basename(toml_file_name)  # 只顯示檔名，不顯示路徑
+            self.ui.config_read_TextLabel.setText(f"讀取 TOML 設定檔失敗：{toml_display_name}")
+            self.ui.config_read_TextLabel.setStyleSheet("color: red;")
+            QMessageBox.warning(self, "設定檔錯誤", f"讀取 TOML 設定檔失敗：{toml_file_name}\n錯誤：{e}")
             return
 
         # 用分段表格 → 攤平成 self.cfg 你現有的鍵
@@ -2054,78 +2100,118 @@ class MBTestWindow(QtWidgets.QMainWindow):
         except Exception:
             return []
 
+    def _parse_one_dmidecode_memory_block(self, block_text):
+        """
+        解析 dmidecode 單一 Memory Device 區塊，回傳 (容量字串, 插槽名稱)。
+        容量：'16.0 GiB' 或 '---'；插槽：如 'Controller0-ChannelA-DIMM0'，無則 ''。
+        """
+        # 插槽名稱（Locator）
+        loc_match = re.search(r"\n\s*Locator:\s*(.+)", block_text)
+        locator = loc_match.group(1).strip() if loc_match else ""
+
+        # 容量（Size）那一行
+        size_match = re.search(r"\n\s*Size:\s*(.+)", block_text)
+        if not size_match:
+            return ("---", locator)
+        size_val = size_match.group(1).strip()
+
+        # 空插槽（no module installed 等）
+        if re.search(r"(?i)no module installed|not installed|unknown", size_val):
+            return ("---", locator)
+
+        # 數字 + GB/MB → 換算成 GiB 字串
+        num_unit = re.match(r"(?i)\s*(\d+(?:\.\d+)?)\s*(GB|MB)\s*$", size_val)
+        if num_unit:
+            num, unit = float(num_unit.group(1)), num_unit.group(2).upper()
+            gib = num if unit == "GB" else num / 1024
+            return (f"{gib:.1f} GiB", locator)
+        return (size_val, locator)
+
     def mem_slot_sizes_for_ui(self, max_slots=4):
         """
-        回傳長度=max_slots 的清單，每格為 '16.0 GiB' 或 '---'
-        1) 先讀 EDAC（/sys/devices/system/edac/mc/mc*/dimm*/size, MB）
-        2) 再讀 dmidecode -t 17（強制 LANG=C）
+        向系統取得記憶體插槽資料，回傳「剛好 max_slots 筆」的列表，供 UI 顯示用。
+        回傳 [(容量, 插槽名稱), ...]，長度固定為 max_slots（不足補 ("---", "")，超過則截斷）。
+        ARM/Jetson：/proc/meminfo（只有總記憶體，無插槽）；x86：dmidecode -t 17（每槽容量與 Locator）。
+        對應關係：MAC 的「取系統資料」是 mac_address()，由 all_mac_addresses() 呼叫；MEM 的「取系統資料」是本函式，由 all_mem_slots() 呼叫。
         """
-        # # --- 1) EDAC ---
-        # paths = sorted(glob.glob("/sys/devices/system/edac/mc/mc*/dimm*/size"))
-        # sizes = []
-        # for p in paths:
-        #     try:
-        #         mb = int(open(p).read().strip())
-        #     except Exception:
-        #         mb = 0
-        #     sizes.append(f"{mb/1024:.1f} GiB" if mb > 0 else "---")
-        # if sizes:
-        #     return (sizes + ["---"] * max_slots)[:max_slots]
+        empty_slot = ("---", "")
+        fail_result = [empty_slot] * max_slots
 
-        # --- 2) dmidecode ---
+        # --- ARM/Jetson：只有總記憶體，無插槽 ---
+        if os.path.exists("/proc/device-tree/model"):
+            try:
+                with open("/proc/meminfo", "r") as f:
+                    for line in f:
+                        if line.startswith("MemTotal:"):
+                            kb = int(line.split()[1])
+                            gib = kb / 1024 / 1024
+                            size_str = f"{int(gib)} GiB" if gib == int(gib) else f"{gib:.1f} GiB"
+                            result = [(size_str, "")] + [empty_slot] * (max_slots - 1)
+                            return result[:max_slots]
+            except Exception as e:
+                self.ui.Information_textEdit.append(f"[MEM] 讀取 /proc/meminfo 失敗：{e}")
+                return fail_result
+
+        # --- x86：dmidecode 取得每槽容量與插槽名 ---
         exe = shutil.which("dmidecode")
         if not exe:
-            self.ui.Information_textEdit.append("[MEM] 找不到 dmidecode：請先安裝（例如 sudo apt install dmidecode）")
-            return ["---"] * max_slots
-
-        env = os.environ.copy()
-        env["LANG"] = "C"; env["LC_ALL"] = "C"
+            self.ui.Information_textEdit.append("[MEM] 找不到 dmidecode，請安裝（如 sudo apt install dmidecode）")
+            return fail_result
 
         try:
             out = subprocess.check_output(
                 [exe, "-t", "17"],
-                text=True, stderr=subprocess.STDOUT, env=env, timeout=6.0
+                text=True, stderr=subprocess.STDOUT,
+                env={**os.environ, "LANG": "C", "LC_ALL": "C"},
+                timeout=6.0
             )
         except subprocess.CalledProcessError as e:
-            msg = e.output.strip() if isinstance(e.output, str) else str(e)
-            if "Permission denied" in msg or "permission" in msg.lower():
+            msg = (e.output or "").strip() if isinstance(e.output, str) else str(e)
+            if "permission" in msg.lower():
                 self.ui.Information_textEdit.append(
-                    "[MEM] dmidecode 權限不足：請執行\n"
-                    "  sudo setcap cap_sys_rawio=ep $(which dmidecode)\n"
-                    "或用 sudo 跑一次程式。"
+                    "[MEM] dmidecode 權限不足，請執行：\n"
+                    "  sudo setcap cap_sys_rawio=ep $(which dmidecode)\n或改用 sudo 執行程式。"
                 )
             else:
                 self.ui.Information_textEdit.append(f"[MEM] dmidecode 失敗：{msg}")
-            return ["---"] * max_slots
+            return fail_result
         except subprocess.TimeoutExpired:
-            self.ui.Information_textEdit.append("[MEM] dmidecode 逾時（已超過 6 秒），請再試一次或用 sudo 執行。")
-            return ["---"] * max_slots
+            self.ui.Information_textEdit.append("[MEM] dmidecode 逾時（>6 秒），請重試或改用 sudo。")
+            return fail_result
         except Exception as e:
-            self.ui.Information_textEdit.append(f"[MEM] 執行 dmidecode 失敗：{e}")
-            return ["---"] * max_slots
+            self.ui.Information_textEdit.append(f"[MEM] dmidecode 錯誤：{e}")
+            return fail_result
 
-        # 解析 Size
-        sizes = []
-        blocks = re.split(r"\n\s*Memory Device\s*\n", "\n"+out)
-        for b in blocks[1:]:
-            m = re.search(r"\n\s*Size:\s*(.+)", b)
-            if not m:
-                continue
-            val = m.group(1).strip()
-            if re.search(r"(?i)no module installed|not installed|unknown", val):
-                sizes.append("---"); continue
-            m2 = re.match(r"(?i)\s*(\d+(?:\.\d+)?)\s*(GB|MB)\s*$", val)
-            if m2:
-                num = float(m2.group(1)); unit = m2.group(2).upper()
-                sizes.append(f"{(num if unit=='GB' else num/1024):.1f} GiB")
-            else:
-                sizes.append(val)
+        # 依序解析每個 Memory Device 區塊
+        blocks = re.split(r"\n\s*Memory Device\s*\n", "\n" + out)
+        result = [self._parse_one_dmidecode_memory_block(b) for b in blocks[1:]]
 
-        if not sizes:
-            self.ui.Information_textEdit.append("[MEM] dmidecode 正常執行，但沒有解析到任何 DIMM 容量。")
-            return ["---"] * max_slots
+        if not result:
+            self.ui.Information_textEdit.append("[MEM] dmidecode 無解析到任何 DIMM。")
+            return fail_result
 
-        return (sizes + ["---"]*max_slots)[:max_slots]
+        # 不足 max_slots 則補空槽
+        while len(result) < max_slots:
+            result.append(empty_slot)
+        return result[:max_slots]
+
+    def all_mem_slots(self):
+        """把找到的記憶體插槽依序填到 valMEM1..valMEMN，多餘的補 "---"。依 UI 有幾個 valMEM 自動決定欄位數（與 all_mac_addresses 同一寫法）。"""
+        # --- 第一步：數 UI 有幾個 MEM 欄位 ---
+        # getattr(self.ui, "valMEM1", None) 會取得 self.ui.valMEM1；若沒有這個屬性就回傳 None。
+        # 從 valMEM1 開始依序檢查，直到某個 valMEM(N+1) 不存在為止，n_mem_slots 就是欄位數。
+        n_mem_slots = 0
+        while getattr(self.ui, f"valMEM{n_mem_slots + 1}", None) is not None:
+            n_mem_slots += 1
+        if n_mem_slots == 0:
+            return
+        # --- 第二步：取得系統各插槽容量與插槽名（列表，長度 n_mem_slots）---
+        mem = self.mem_slot_sizes_for_ui(n_mem_slots) # 取得系統各插槽容量與插槽名（列表，長度 n_mem_slots）
+        # --- 第三步：依序填到 valMEM1 ~ valMEM(N)，有資料就填容量(插槽名)，沒有就填 "---" ---
+        for i in range(n_mem_slots):
+            size_str, locator_str = mem[i] if i < len(mem) else ("---", "") # 有資料就填容量(插槽名)，沒有就填 "---"
+            display = f"{size_str} ({locator_str})" if locator_str else size_str
+            getattr(self.ui, f"valMEM{i+1}").setText(display)
 
     def mac_address(self):
         """回傳 [(iface, MAC), ...]，只收實體介面、排除 lo / 00:00:..."""
@@ -2151,35 +2237,55 @@ class MBTestWindow(QtWidgets.QMainWindow):
             pass
         return macs
     
-    def all_mac_addresses(self):
-        """把找到的 MAC 依序填到 valMAC1..valMAC6，多餘的補 '-'"""
+    def all_mac_addresses(self): # 此函式的功能是將mac_address()函式的結果依序填到 valMAC1..valMACN
+        """把找到的 MAC 依序填到 valMAC1..valMACN，多餘的補 '-'。依 UI 有幾個 valMAC 自動決定欄位數（與 MEM 同一寫法）。"""
+        # --- 第一步：數 UI 有幾個 MAC 欄位 ---
+        # getattr(self.ui, "valMAC1", None) 會取得 self.ui.valMAC1；若沒有這個屬性就回傳 None。
+        # 從 valMAC1 開始依序檢查，直到某個 valMAC(N+1) 不存在為止，n_mac_slots 就是欄位數。
+        n_mac_slots = 0 # 設定0是為了讓while迴圈可以正常執行，並且在第一次執行時，n_mac_slots會被設置為1
+        while getattr(self.ui, f"valMAC{n_mac_slots + 1}", None) is not None: # 依序檢查 valMAC1, valMAC2, ...
+            n_mac_slots += 1 # 有幾個 valMAC 欄位
+        if n_mac_slots == 0: # 沒有 valMAC 欄位，直接返回
+            return
+        # --- 第二步：取得系統所有 MAC 位址（列表）---
         macs_only = [mac for iface, mac in self.mac_address()] # 只取 MAC
-        for i in range(6): # 填 6 個欄位
-            label = getattr(self.ui, f"valMAC{i+1}", None) # valMAC1..valMAC6
-            if label: # 找到這個屬性
-                if i < len(macs_only): # 有對應的 MAC
-                    label.setText(macs_only[i]) # 填 MAC
-                else: # 沒有對應的 MAC
-                    label.setText("-") # 補 '-'
+        # --- 第三步：依序填到 valMAC1 ~ valMAC(N)，有 MAC 就填，沒有就填 "---" ---
+        for i in range(n_mac_slots): # 填 N 個欄位
+            label = getattr(self.ui, f"valMAC{i+1}", None) # valMAC1..valMACN
+            if label is None: # 找到這個屬性
+                continue # 找不到這個屬性，直接跳過
+            if i < len(macs_only): # 有對應的 MAC
+                label.setText(macs_only[i]) # 填 MAC
+            else: # 沒有對應的 MAC
+                label.setText("---") # 補 '---'
     
     # ===== 取得系統資訊（BSP、DTS、BOARD、MODULE、CID、CPU、MEMORY）=====
-    def get_bsp_and_dts(self):
-        """取得 BSP 和 DTS（參考 test_tool.sh 的做法）"""
+    def get_dts_and_x86_name(self):
+        """取得 BSP 和 DTS（參考 test_tool.sh 的做法）
+        
+        回傳值：
+        - platform_type: 平台類型 ("jetson", "rk", "arm", "x86", "unknown")
+        - dts: DTS 檔案名稱
+        - bsp: BSP 名稱
+        - board: 板子名稱
+        """
+        platform_type = "unknown"
         dts = ""
         bsp = ""
         board = ""
         
-        # NVIDIA 平台
+        # 1. NVIDIA Jetson 平台
         dts_path = "/proc/device-tree/nvidia,dtsfilename"
         if os.path.exists(dts_path):
             try:
                 with open(dts_path, "rb") as f:
                     dts = f.read().rstrip(b'\x00').decode('utf-8', errors='ignore')
                 bsp = dts[:-4] if dts.endswith('.dts') else dts  # 去掉 .dts
+                platform_type = "jetson"
             except Exception:
                 pass
         
-        # ARM 平台
+        # 2. ARM 平台（包含 RK/Rockchip）
         if not dts and os.path.exists("/proc/device-tree/model"):
             try:
                 with open("/proc/device-tree/model", "rb") as f:
@@ -2187,37 +2293,33 @@ class MBTestWindow(QtWidgets.QMainWindow):
                 dts = "(There is no DTS)"
                 bsp = model
                 board = model
+                
+                # 判斷是 RK 還是其他 ARM 平台
+                if "rk" in model.lower() or "rockchip" in model.lower():
+                    platform_type = "rk"
+                else:
+                    platform_type = "arm"
             except Exception:
                 pass
         
-        # x86 平台
+        # 3. x86 平台
         if not bsp:
+            platform_type = "x86"
+            # 直接從 /sys/class/dmi/id/board_name 讀取板子名稱
             try:
-                result = subprocess.check_output(
-                    ["dmidecode"], text=True, stderr=subprocess.DEVNULL, timeout=5
-                )
-                # 從 dmidecode 取得 OEM-specific Strings
-                for line in result.split('\n'):
-                    if 'OEM-specific' in line:
-                        # 找下一個 "Strings:" 行
-                        lines = result.split('\n')
-                        idx = lines.index(line) if line in lines else -1
-                        if idx >= 0:
-                            for i in range(idx, min(idx+20, len(lines))):
-                                if 'Strings:' in lines[i] and i+1 < len(lines):
-                                    oem_val = lines[i+1].strip().split()[0] if lines[i+1].strip() else ""
-                                    if oem_val:
-                                        bsp = f"{oem_val}_1"
-                                        board = oem_val
-                                        break
-                        break
-                if not dts:
-                    dts = "(There is no DTS)"
+                board_name = self.read_text("/sys/class/dmi/id/board_name", "")
+                if board_name and board_name != "-":
+                    board = board_name
+                    bsp = f"{board_name}"
             except Exception:
-                if not dts:
-                    dts = "(There is no DTS)"
+                pass
         
-        return {"bsp": bsp or "", "dts": dts or "(There is no DTS)", "board": board or ""}
+        return {
+            "platform_type": platform_type,
+            "bsp or x86 name": bsp or "",
+            "dts": dts or "(There is no DTS)",
+            "board": board or ""
+        }
     
     def get_board_from_bsp(self, bsp):
         """從 BSP 名稱解析 BOARD（參考 test_tool.sh 的做法）"""
@@ -2295,75 +2397,91 @@ class MBTestWindow(QtWidgets.QMainWindow):
     
     def get_memory_info(self):
         """取得記憶體資訊（參考 test_tool.sh 的做法）"""
-        exe = shutil.which("dmidecode")
-        if not exe:
-            return ""
         
-        env = os.environ.copy()
-        env["LANG"] = "C"
-        env["LC_ALL"] = "C"
+        # 先判斷是否為 ARM/Jetson 平台
+        is_arm_platform = os.path.exists("/proc/device-tree/model")
         
-        try:
-            out = subprocess.check_output(
-                [exe, "-t", "memory"],
-                text=True, stderr=subprocess.DEVNULL, env=env, timeout=6.0
-            )
-            # 取得 Size 資訊（每 5 行取一次，類似 test_tool.sh 的 awk 'NR % 5 == 1'）
-            # test_tool.sh: dmidecode -t memory | grep -i size | awk 'NR % 5 == 1'
-            sizes = []
-            size_lines = []
-            for line in out.split('\n'):
-                if 'Size:' in line and 'size' in line.lower():
-                    size_lines.append(line)
-            
-            # 每 5 行取一次（索引 0, 5, 10, ...）
-            for i in range(0, len(size_lines), 5):
-                if i < len(size_lines):
-                    line = size_lines[i]
-                    # 提取 Size 後面的內容
-                    match = re.search(r'Size:\s*(.+)', line, re.IGNORECASE)
-                    if match:
-                        size_val = match.group(1).strip()
-                        if size_val and 'No Module Installed' not in size_val.upper():
-                            sizes.append(size_val)
-            
-            # 組合成字串，用 / 分隔（類似 test_tool.sh 的 MEM_INFO=$MEM_INFO$single_memory\/\）
-            if sizes:
-                return " / ".join(sizes)
-        except Exception:
-            pass
+        # x86 平台：優先使用 dmidecode（與 test_tool.sh 一致）
+        if not is_arm_platform:
+            exe = shutil.which("dmidecode")
+            if exe:
+                env = os.environ.copy()
+                env["LANG"] = "C"
+                env["LC_ALL"] = "C"
+                
+                try:
+                    out = subprocess.check_output(
+                        [exe, "-t", "memory"],
+                        text=True, stderr=subprocess.DEVNULL, env=env, timeout=6.0
+                    )
+                    # 取得 Size 資訊（每 5 行取一次，類似 test_tool.sh 的 awk 'NR % 5 == 1'）
+                    # test_tool.sh: dmidecode -t memory | grep -i size | awk 'NR % 5 == 1'
+                    sizes = []
+                    size_lines = []
+                    for line in out.split('\n'):
+                        if 'Size:' in line and 'size' in line.lower():
+                            size_lines.append(line)
+                    
+                    # 每 5 行取一次（索引 0, 5, 10, ...）
+                    for i in range(0, len(size_lines), 5):
+                        if i < len(size_lines):
+                            line = size_lines[i]
+                            # 提取 Size 後面的內容
+                            match = re.search(r'Size:\s*(.+)', line, re.IGNORECASE)
+                            if match:
+                                size_val = match.group(1).strip()
+                                if size_val and 'No Module Installed' not in size_val.upper():
+                                    sizes.append(size_val)
+                    
+                    # 組合成字串，用 / 分隔（類似 test_tool.sh 的 MEM_INFO=$MEM_INFO$single_memory\/\）
+                    if sizes:
+                        return " / ".join(sizes)
+                except Exception:
+                    pass
+        
+        # ARM/Jetson 平台：使用 /proc/meminfo（dmidecode 在 ARM 平台可能不可用或資訊不完整）
+        if is_arm_platform:
+            try:
+                with open("/proc/meminfo", "r") as f:
+                    for line in f:
+                        if line.startswith("MemTotal:"):
+                            kb = int(line.split()[1])
+                            # 轉換為 GB，保留 2 位小數，但如果是整數則不顯示小數
+                            gb = kb / 1024 / 1024
+                            if gb == int(gb):
+                                return f"{int(gb)} GB"
+                            else:
+                                return f"{gb:.2f} GB"
+            except Exception:
+                pass
+        
+        # 如果 x86 平台的 dmidecode 失敗，也嘗試使用 /proc/meminfo 作為備用方案
+        if not is_arm_platform:
+            try:
+                with open("/proc/meminfo", "r") as f:
+                    for line in f:
+                        if line.startswith("MemTotal:"):
+                            kb = int(line.split()[1])
+                            gb = kb / 1024 / 1024
+                            if gb == int(gb):
+                                return f"{int(gb)} GB"
+                            else:
+                                return f"{gb:.2f} GB"
+            except Exception:
+                pass
         
         return ""
 
     def set_related_widgets_enables(self, cb: QCheckBox, enabled: bool):
         """
-        依照 checkbox 的 objectName，順便把對應的 ComboBox 一起啟用/停用。
-
-        規則：
-        - checkbox 名稱：checkBox_USB2
-        - 對應 comboBox：usb2_comboBox / USB2_comboBox / Usb2_comboBox 其中之一
-        （邏輯跟 validate_test_config 裡找 ComboBox 的規則一樣）
+        依照 checkbox 打勾狀態，把對應的 ComboBox 一起啟用/停用。
+        對應關係來自 self.checkbox_to_combo（與 UI 物件名稱一致）。
         """
-
         if not cb:
             return
-
-        obj_name = cb.objectName() or ""
-        if not obj_name.startswith("checkBox_"):
-            return
-
-        base = obj_name[len("checkBox_"):]   # 例如 "USB2" / "MICROSD" / "MKEY" / "GPIO"
-
-        candidate_names = [
-            f"{base}_comboBox",          # USB2_comboBox / MKEY_comboBox / EKEY_comboBox ...
-            f"{base.lower()}_comboBox",  # usb2_comboBox / microsd_comboBox / gpio_comboBox ...
-            f"{base.capitalize()}_comboBox",  # MicroSD_comboBox 之類，保險用
-        ]
-
-        for name in candidate_names:
-            w = getattr(self.ui, name, None)
-            if w is not None:
-                w.setEnabled(enabled)
+        combo = self.checkbox_to_combo.get(cb)
+        if combo is not None:
+            combo.setEnabled(enabled)
     
     def lock_items_from_toml(self):
         """
@@ -2557,6 +2675,7 @@ class MBTestWindow(QtWidgets.QMainWindow):
             for ui_name, _method, checkbox_name in TEST_ITEMS # 來自 test_item.py, TEST_ITEMS, 第一欄是UI顯示名稱, 第三欄是 checkbox 物件名稱
         }
 
+    # 改變測試項目顯示顏色
     def color_change(self, display_name: str, status: str, tip: str = ""):
         cb = self.BTN_MAP.get(display_name)
         if not cb:
@@ -2789,7 +2908,7 @@ class MBTestWindow(QtWidgets.QMainWindow):
         complete_meta = self.build_complete_meta()
         
         # MB_Test.py -> all_test_items()
-        result, text, item_status, actual_log_path = run_selected_tests(
+        result, text, item_status, actual_result_path = run_selected_tests(
             selected_display_names,
             log_dir = self.cfg.get("log_dir"),
             sn = self.cfg.get("sn"),
@@ -2797,9 +2916,9 @@ class MBTestWindow(QtWidgets.QMainWindow):
             log_path = self.cfg.get("user_log_path"),  # 如果為 None，會在 run_selected_tests 中產生
             window = self,  # 傳入主視窗參考以更新目前測試項目顯示, 提供給Test_item.py使用
         )
-        # 更新 cfg 中的 user_log_path，供後續 rename_log 使用
-        if actual_log_path:
-            self.cfg["user_log_path"] = actual_log_path
+        # 更新 cfg 中的 user_log_path（目前存放本輪主要輸出的 JSON 路徑），供後續 rename_log 使用
+        if actual_result_path:
+            self.cfg["user_log_path"] = actual_result_path
         try:
             self.ui.Information_textEdit.append(text)
         except Exception:
@@ -2807,7 +2926,7 @@ class MBTestWindow(QtWidgets.QMainWindow):
 
         # 變色
         for name, status in item_status.items():
-            # 這裡先不放 tip；如果之後你回傳 item_message，就可以塞進來
+            # 這裡先不放 tip；如果之後回傳 item_message，就可以塞進來
             self.color_change(name, status) # 改顏色 name是顯示名稱, status是 'PASS'/'FAIL' 等等
 
         # 只依據本次有勾選的項目計算 Pass/Fail
@@ -2910,8 +3029,6 @@ class MBTestWindow(QtWidgets.QMainWindow):
             return
         
         p = pathlib.Path(log_path)
-        if not p.exists():
-            return
 
         # 先關掉 logger 的檔案 handler（避免檔案被占用）
         lg = logging.getLogger("useing")
@@ -3110,7 +3227,7 @@ class MBTestWindow(QtWidgets.QMainWindow):
             self.ui.Button_Upload.setStyleSheet("background-color: red; color: white;")
 
         # 立刻去 FTP 重算 PASS/FAIL，並把結果顯示到右下角 LCD
-        self.refresh_ftp_counts(only_ext=".log") # 只數 .log
+        self.refresh_ftp_counts(only_ext=".json") # 只數 .json
 
 
     # ---- FTP 統計 _PASS/_FAIL 檔案數 ----
@@ -3154,9 +3271,9 @@ class MBTestWindow(QtWidgets.QMainWindow):
                 pass
             return False
 
-    def _ftp_count_pass_fail_in_dir(self, ftp, remote_dir, only_ext=".log"):
+    def _ftp_count_pass_fail_in_dir(self, ftp, remote_dir, only_ext=".json"):
         """
-        遞迴統計 remote_dir 底下檔名含 _PASS/_FAIL 的檔數（預設只數 .log）。
+        遞迴統計 remote_dir 底下檔名含 _PASS/_FAIL 的檔數（預設只數 .json）。
         回傳 dict: {"pass": x, "fail": y, "total": x+y}
         """
         counts = {"pass": 0, "fail": 0}
@@ -3230,7 +3347,7 @@ class MBTestWindow(QtWidgets.QMainWindow):
         #     return {"name":"PD3", "host":"172.23.168.107", "user":"Aetina_testlog", "pwd":"Nvidia0201"}
         # return None
 
-    def refresh_ftp_counts(self, only_ext=".log"):
+    def refresh_ftp_counts(self, only_ext=".json"):
         """
         依『WO 資料夾名』＋『radio 選擇的 FTP』遞迴統計 _PASS/_FAIL 檔數，
         並更新右下角 LCD。

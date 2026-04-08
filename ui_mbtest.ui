@@ -38,7 +38,7 @@
       <x>0</x>
       <y>0</y>
       <width>1020</width>
-      <height>861</height>
+      <height>871</height>
      </rect>
     </property>
     <property name="maximumSize">
@@ -67,80 +67,10 @@
        <string>自動測試項目</string>
       </property>
       <layout class="QGridLayout" name="gridLayout">
-       <item row="12" column="0">
-        <widget class="QCheckBox" name="checkBox_FAN">
-         <property name="text">
-          <string>FAN</string>
-         </property>
-        </widget>
-       </item>
        <item row="6" column="0">
         <widget class="QCheckBox" name="checkBox_RS422">
          <property name="text">
           <string>RS422</string>
-         </property>
-        </widget>
-       </item>
-       <item row="4" column="0">
-        <widget class="QCheckBox" name="checkBox_MICROSD">
-         <property name="text">
-          <string>Micro SD Card</string>
-         </property>
-        </widget>
-       </item>
-       <item row="13" column="0">
-        <widget class="QCheckBox" name="checkBox_EEPROM">
-         <property name="text">
-          <string>EEPROM</string>
-         </property>
-        </widget>
-       </item>
-       <item row="14" column="0">
-        <widget class="QCheckBox" name="checkBox_EEPROM_RD">
-         <property name="text">
-          <string>EEPROM (RD Test)</string>
-         </property>
-        </widget>
-       </item>
-       <item row="7" column="0">
-        <widget class="QCheckBox" name="checkBox_RS485">
-         <property name="text">
-          <string>RS485</string>
-         </property>
-        </widget>
-       </item>
-       <item row="10" column="0">
-        <widget class="QCheckBox" name="checkBox_EKEY">
-         <property name="text">
-          <string>E-Key</string>
-         </property>
-        </widget>
-       </item>
-       <item row="19" column="0">
-        <widget class="QCheckBox" name="checkBox_CAMERA">
-         <property name="text">
-          <string>Camera</string>
-         </property>
-        </widget>
-       </item>
-       <item row="11" column="0">
-        <widget class="QCheckBox" name="checkBox_BKEY">
-         <property name="text">
-          <string>B-Key</string>
-         </property>
-        </widget>
-       </item>
-       <item row="17" column="0">
-        <widget class="QCheckBox" name="checkBox_UART">
-         <property name="text">
-          <string>UART</string>
-         </property>
-        </widget>
-       </item>
-       <item row="21" column="0">
-        <widget class="QCheckBox" name="checkBox_MEM">
-         <property name="text">
-          <string>MEMORY</string>
          </property>
         </widget>
        </item>
@@ -151,10 +81,10 @@
          </property>
         </widget>
        </item>
-       <item row="3" column="0">
-        <widget class="QCheckBox" name="checkBox_FIBER">
+       <item row="21" column="0">
+        <widget class="QCheckBox" name="checkBox_MEM">
          <property name="text">
-          <string>Optical Fiber</string>
+          <string>MEMORY</string>
          </property>
         </widget>
        </item>
@@ -165,38 +95,10 @@
          </property>
         </widget>
        </item>
-       <item row="1" column="0">
-        <widget class="QCheckBox" name="checkBox_USB3">
+       <item row="12" column="0">
+        <widget class="QCheckBox" name="checkBox_FAN">
          <property name="text">
-          <string>USB3.0</string>
-         </property>
-        </widget>
-       </item>
-       <item row="8" column="0">
-        <widget class="QCheckBox" name="checkBox_CANBUS">
-         <property name="text">
-          <string>CAN BUS</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="0">
-        <widget class="QCheckBox" name="checkBox_NETWORK">
-         <property name="text">
-          <string>NetWork</string>
-         </property>
-        </widget>
-       </item>
-       <item row="5" column="0">
-        <widget class="QCheckBox" name="checkBox_RS232">
-         <property name="text">
-          <string>RS232</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="0">
-        <widget class="QCheckBox" name="checkBox_USB2">
-         <property name="text">
-          <string>USB2.0</string>
+          <string>FAN</string>
          </property>
         </widget>
        </item>
@@ -207,6 +109,76 @@
          </property>
         </widget>
        </item>
+       <item row="1" column="0">
+        <widget class="QCheckBox" name="checkBox_USB3">
+         <property name="text">
+          <string>USB3.0</string>
+         </property>
+        </widget>
+       </item>
+       <item row="19" column="0">
+        <widget class="QCheckBox" name="checkBox_CAMERA">
+         <property name="text">
+          <string>Camera</string>
+         </property>
+        </widget>
+       </item>
+       <item row="22" column="0">
+        <widget class="QCheckBox" name="checkBox_BIOSVER">
+         <property name="text">
+          <string>BIOS VERSION</string>
+         </property>
+        </widget>
+       </item>
+       <item row="11" column="0">
+        <widget class="QCheckBox" name="checkBox_BKEY">
+         <property name="text">
+          <string>B-Key</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="0">
+        <widget class="QCheckBox" name="checkBox_RS232">
+         <property name="text">
+          <string>RS232</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0">
+        <widget class="QCheckBox" name="checkBox_MICROSD">
+         <property name="text">
+          <string>Micro SD Card</string>
+         </property>
+        </widget>
+       </item>
+       <item row="14" column="0">
+        <widget class="QCheckBox" name="checkBox_EEPROMRD">
+         <property name="text">
+          <string>EEPROM (RD Test)</string>
+         </property>
+        </widget>
+       </item>
+       <item row="10" column="0">
+        <widget class="QCheckBox" name="checkBox_EKEY">
+         <property name="text">
+          <string>E-Key</string>
+         </property>
+        </widget>
+       </item>
+       <item row="17" column="0">
+        <widget class="QCheckBox" name="checkBox_UART">
+         <property name="text">
+          <string>UART</string>
+         </property>
+        </widget>
+       </item>
+       <item row="13" column="0">
+        <widget class="QCheckBox" name="checkBox_EEPROM">
+         <property name="text">
+          <string>EEPROM</string>
+         </property>
+        </widget>
+       </item>
        <item row="15" column="0">
         <widget class="QCheckBox" name="checkBox_GPIO">
          <property name="text">
@@ -214,10 +186,52 @@
          </property>
         </widget>
        </item>
+       <item row="2" column="0">
+        <widget class="QCheckBox" name="checkBox_NETWORK">
+         <property name="text">
+          <string>NetWork</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QCheckBox" name="checkBox_USB2">
+         <property name="text">
+          <string>USB2.0</string>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="0">
+        <widget class="QCheckBox" name="checkBox_RS485">
+         <property name="text">
+          <string>RS485</string>
+         </property>
+        </widget>
+       </item>
        <item row="20" column="0">
         <widget class="QCheckBox" name="checkBox_CPU">
          <property name="text">
           <string>CPU NAME</string>
+         </property>
+        </widget>
+       </item>
+       <item row="8" column="0">
+        <widget class="QCheckBox" name="checkBox_CANBUS">
+         <property name="text">
+          <string>CAN BUS</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QCheckBox" name="checkBox_FIBER">
+         <property name="text">
+          <string>Optical Fiber</string>
+         </property>
+        </widget>
+       </item>
+       <item row="23" column="0">
+        <widget class="QCheckBox" name="checkBox_HWPRODUCTNAME">
+         <property name="text">
+          <string>HW PRODUCT NAME</string>
          </property>
         </widget>
        </item>
@@ -413,14 +427,14 @@
       </property>
       <layout class="QGridLayout" name="gridLayout_4">
        <item row="1" column="0">
-        <widget class="QCheckBox" name="checkBox_PowerSWConnector">
+        <widget class="QCheckBox" name="checkBox_POWERSWCONNECTOR">
          <property name="text">
           <string>Power SW Connector</string>
          </property>
         </widget>
        </item>
        <item row="5" column="1">
-        <widget class="QCheckBox" name="checkBox_Reset_Button">
+        <widget class="QCheckBox" name="checkBox_RESETBUTTON">
          <property name="text">
           <string>Reset Button</string>
          </property>
@@ -454,29 +468,22 @@
          </property>
         </widget>
        </item>
-       <item row="3" column="1">
-        <widget class="QCheckBox" name="checkBox_CASE_OPEN">
-         <property name="text">
-          <string>CASE OPEN</string>
-         </property>
-        </widget>
-       </item>
        <item row="2" column="0">
-        <widget class="QCheckBox" name="checkBox_MCUConnector">
+        <widget class="QCheckBox" name="checkBox_MCUCONNECTOR">
          <property name="text">
           <string>MCU Connector</string>
          </property>
         </widget>
        </item>
        <item row="4" column="1">
-        <widget class="QCheckBox" name="checkBox_Power_Button">
+        <widget class="QCheckBox" name="checkBox_POWERBUTTON">
          <property name="text">
           <string>Power Button</string>
          </property>
         </widget>
        </item>
        <item row="0" column="0">
-        <widget class="QCheckBox" name="checkBox_PowerConnector">
+        <widget class="QCheckBox" name="checkBox_POWERCONNECTOR">
          <property name="text">
           <string>Power Connector</string>
          </property>
@@ -497,14 +504,14 @@
         </widget>
        </item>
        <item row="6" column="0">
-        <widget class="QCheckBox" name="checkBox_PSE_POWER_OUTPUT">
+        <widget class="QCheckBox" name="checkBox_PSEPOWEROUTPUT">
          <property name="text">
           <string>PSE POWER OUTPUT</string>
          </property>
         </widget>
        </item>
        <item row="4" column="0">
-        <widget class="QCheckBox" name="checkBox_DC_INPUT">
+        <widget class="QCheckBox" name="checkBox_DCINPUT">
          <property name="text">
           <string>DC Input</string>
          </property>
@@ -518,14 +525,14 @@
         </widget>
        </item>
        <item row="3" column="0">
-        <widget class="QCheckBox" name="checkBox_DC_OUTPUT">
+        <widget class="QCheckBox" name="checkBox_DCOUTPUT">
          <property name="text">
           <string>DC Output</string>
          </property>
         </widget>
        </item>
        <item row="6" column="1">
-        <widget class="QCheckBox" name="checkBox_Recovery_Button">
+        <widget class="QCheckBox" name="checkBox_RECOVERYBUTTON">
          <property name="text">
           <string>Recovery Button</string>
          </property>
@@ -546,14 +553,14 @@
         </widget>
        </item>
        <item row="5" column="0">
-        <widget class="QCheckBox" name="checkBox_PD_POWER_INPUT">
+        <widget class="QCheckBox" name="checkBox_PDPOWERINPUT">
          <property name="text">
           <string>PD POWER INPUT</string>
          </property>
         </widget>
        </item>
        <item row="10" column="0">
-        <widget class="QCheckBox" name="checkBox_RTC_OUT">
+        <widget class="QCheckBox" name="checkBox_RTCOUT">
          <property name="text">
           <string>RTC OUT</string>
          </property>
@@ -580,10 +587,17 @@
          </property>
         </widget>
        </item>
-       <item row="10" column="1">
+       <item row="3" column="1">
         <widget class="QCheckBox" name="checkBox_LED">
          <property name="text">
           <string>LED</string>
+         </property>
+        </widget>
+       </item>
+       <item row="10" column="1">
+        <widget class="QCheckBox" name="checkBox_CASEOPEN">
+         <property name="text">
+          <string>CASE OPEN</string>
          </property>
         </widget>
        </item>
@@ -625,8 +639,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>521</width>
-        <height>579</height>
+        <width>1011</width>
+        <height>831</height>
        </rect>
       </property>
       <property name="title">
@@ -935,7 +949,7 @@
         </widget>
        </item>
        <item row="21" column="1">
-        <widget class="QLabel" name="label_22">
+        <widget class="QLabel" name="valMAC5">
          <property name="text">
           <string>---</string>
          </property>
@@ -949,7 +963,7 @@
         </widget>
        </item>
        <item row="22" column="1">
-        <widget class="QLabel" name="label_24">
+        <widget class="QLabel" name="valMAC6">
          <property name="text">
           <string>---</string>
          </property>
@@ -980,8 +994,95 @@
        <string>測試裝置數量設定</string>
       </property>
       <layout class="QGridLayout" name="gridLayout_3">
-       <item row="9" column="1">
-        <widget class="QToolButton" name="spi_toolButton">
+       <item row="7" column="8">
+        <widget class="QComboBox" name="sw2_comboBox">
+         <item>
+          <property name="text">
+           <string>0</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>1</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="5" column="3">
+        <widget class="QLabel" name="label_43">
+         <property name="text">
+          <string>HDMI</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="6">
+        <widget class="QLabel" name="label_84">
+         <property name="text">
+          <string>RTC</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="2">
+        <widget class="QComboBox" name="rs232_comboBox">
+         <item>
+          <property name="text">
+           <string>0</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>2</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>3</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>4</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>5</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>6</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>7</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>8</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>9</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>10</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="1" column="4">
+        <widget class="QToolButton" name="mem_toolButton">
          <property name="text">
           <string>...</string>
          </property>
@@ -994,333 +1095,6 @@
          </property>
         </widget>
        </item>
-       <item row="12" column="8">
-        <widget class="QComboBox" name="caseopen_comboBox">
-         <item>
-          <property name="text">
-           <string>0</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>1</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>2</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>3</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>4</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>5</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>6</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>7</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>8</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>9</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>10</string>
-          </property>
-         </item>
-        </widget>
-       </item>
-       <item row="0" column="5">
-        <widget class="QComboBox" name="cpu_comboBox">
-         <item>
-          <property name="text">
-           <string>0</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>1</string>
-          </property>
-         </item>
-        </widget>
-       </item>
-       <item row="14" column="6">
-        <widget class="QLabel" name="label_142">
-         <property name="text">
-          <string>InnoAgent</string>
-         </property>
-        </widget>
-       </item>
-       <item row="5" column="2">
-        <widget class="QComboBox" name="RS232_comboBox">
-         <item>
-          <property name="text">
-           <string>0</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>1</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>2</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>3</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>4</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>5</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>6</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>7</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>8</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>9</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>10</string>
-          </property>
-         </item>
-        </widget>
-       </item>
-       <item row="6" column="1">
-        <widget class="QToolButton" name="rs422_toolButton">
-         <property name="text">
-          <string>...</string>
-         </property>
-        </widget>
-       </item>
-       <item row="14" column="2">
-        <widget class="QComboBox" name="i2c_comboBox">
-         <item>
-          <property name="text">
-           <string>0</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>1</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>2</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>3</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>4</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>5</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>6</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>7</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>8</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>9</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>10</string>
-          </property>
-         </item>
-        </widget>
-       </item>
-       <item row="10" column="2">
-        <widget class="QComboBox" name="EKEY_comboBox">
-         <item>
-          <property name="text">
-           <string>0</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>1</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>2</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>3</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>4</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>5</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>6</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>7</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>8</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>9</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>10</string>
-          </property>
-         </item>
-        </widget>
-       </item>
-       <item row="14" column="5">
-        <widget class="QComboBox" name="PD_POWERINPUT_comboBox">
-         <item>
-          <property name="text">
-           <string>0</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>1</string>
-          </property>
-         </item>
-        </widget>
-       </item>
-       <item row="15" column="3">
-        <widget class="QLabel" name="label_140">
-         <property name="text">
-          <string>PSE POWER OUTPUT</string>
-         </property>
-        </widget>
-       </item>
-       <item row="9" column="6">
-        <widget class="QLabel" name="label_96">
-         <property name="text">
-          <string>MIC</string>
-         </property>
-        </widget>
-       </item>
-       <item row="11" column="3">
-        <widget class="QLabel" name="label_78">
-         <property name="text">
-          <string>RESET BUTTON</string>
-         </property>
-        </widget>
-       </item>
-       <item row="4" column="8">
-        <widget class="QComboBox" name="dc_output_comboBox">
-         <item>
-          <property name="text">
-           <string>0</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>1</string>
-          </property>
-         </item>
-        </widget>
-       </item>
-       <item row="9" column="5">
-        <widget class="QComboBox" name="power_connector_comboBox">
-         <item>
-          <property name="text">
-           <string>0</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>1</string>
-          </property>
-         </item>
-        </widget>
-       </item>
        <item row="11" column="1">
         <widget class="QToolButton" name="fan_toolButton">
          <property name="text">
@@ -1328,10 +1102,17 @@
          </property>
         </widget>
        </item>
-       <item row="9" column="0">
-        <widget class="QLabel" name="label_73">
+       <item row="13" column="1">
+        <widget class="QToolButton" name="eepromrd_toolButton">
          <property name="text">
-          <string>SPI</string>
+          <string>...</string>
+         </property>
+        </widget>
+       </item>
+       <item row="15" column="1">
+        <widget class="QToolButton" name="canbus_toolButton">
+         <property name="text">
+          <string>...</string>
          </property>
         </widget>
        </item>
@@ -1342,36 +1123,22 @@
          </property>
         </widget>
        </item>
-       <item row="0" column="0">
-        <widget class="QLabel" name="label_70">
+       <item row="5" column="6">
+        <widget class="QLabel" name="label_77">
          <property name="text">
-          <string>USB 2.0</string>
+          <string>SMA</string>
          </property>
         </widget>
        </item>
-       <item row="8" column="3">
-        <widget class="QLabel" name="label_76">
+       <item row="14" column="1">
+        <widget class="QToolButton" name="i2c_toolButton">
          <property name="text">
-          <string>POWER BUTTON</string>
+          <string>...</string>
          </property>
         </widget>
        </item>
-       <item row="5" column="3">
-        <widget class="QLabel" name="label_43">
-         <property name="text">
-          <string>HDMI</string>
-         </property>
-        </widget>
-       </item>
-       <item row="10" column="0">
-        <widget class="QLabel" name="label_79">
-         <property name="text">
-          <string>E-Key</string>
-         </property>
-        </widget>
-       </item>
-       <item row="8" column="5">
-        <widget class="QComboBox" name="power_button_comboBox">
+       <item row="12" column="5">
+        <widget class="QComboBox" name="recoverybutton_comboBox">
          <item>
           <property name="text">
            <string>0</string>
@@ -1384,8 +1151,64 @@
          </item>
         </widget>
        </item>
-       <item row="13" column="5">
-        <widget class="QComboBox" name="led_comboBox">
+       <item row="0" column="8">
+        <widget class="QComboBox" name="rtc_comboBox">
+         <item>
+          <property name="text">
+           <string>0</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>1</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="2" column="3">
+        <widget class="QLabel" name="label_74">
+         <property name="text">
+          <string>UART</string>
+         </property>
+        </widget>
+       </item>
+       <item row="15" column="5">
+        <widget class="QComboBox" name="psepoweroutput_comboBox">
+         <item>
+          <property name="text">
+           <string>0</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>1</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="10" column="0">
+        <widget class="QLabel" name="label_79">
+         <property name="text">
+          <string>E-Key</string>
+         </property>
+        </widget>
+       </item>
+       <item row="15" column="0">
+        <widget class="QLabel" name="label_88">
+         <property name="text">
+          <string>CAN BUS</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="3">
+        <widget class="QLabel" name="label_67">
+         <property name="text">
+          <string>B-Key</string>
+         </property>
+        </widget>
+       </item>
+       <item row="13" column="8">
+        <widget class="QComboBox" name="gps_comboBox">
          <item>
           <property name="text">
            <string>0</string>
@@ -1443,32 +1266,171 @@
          </item>
         </widget>
        </item>
-       <item row="4" column="6">
-        <widget class="QLabel" name="label_87">
+       <item row="9" column="8">
+        <widget class="QComboBox" name="mic_comboBox">
+         <item>
+          <property name="text">
+           <string>0</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>1</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="8" column="8">
+        <widget class="QComboBox" name="camera_comboBox">
+         <item>
+          <property name="text">
+           <string>0</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>2</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>3</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>4</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>5</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>6</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>7</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>8</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>9</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>10</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="6" column="2">
+        <widget class="QComboBox" name="rs422_comboBox">
+         <item>
+          <property name="text">
+           <string>0</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>2</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>3</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>4</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>5</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>6</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>7</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>8</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>9</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>10</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="12" column="0">
+        <widget class="QLabel" name="label_27">
          <property name="text">
-          <string>DC OUTPUT</string>
+          <string>EEPROM</string>
          </property>
         </widget>
        </item>
-       <item row="13" column="3">
-        <widget class="QLabel" name="label_82">
+       <item row="9" column="3">
+        <widget class="QLabel" name="label_69">
          <property name="text">
-          <string>LED</string>
+          <string>POWER CONNECTOR</string>
          </property>
         </widget>
        </item>
-       <item row="1" column="3">
-        <widget class="QLabel" name="label_106">
+       <item row="8" column="1">
+        <widget class="QToolButton" name="gpio_toolButton">
          <property name="text">
-          <string>MEMORY</string>
+          <string>...</string>
          </property>
         </widget>
        </item>
-       <item row="11" column="0">
-        <widget class="QLabel" name="label_26">
-         <property name="text">
-          <string>FAN</string>
-         </property>
+       <item row="10" column="5">
+        <widget class="QComboBox" name="powerswconnector_comboBox">
+         <item>
+          <property name="text">
+           <string>0</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>1</string>
+          </property>
+         </item>
         </widget>
        </item>
        <item row="0" column="2">
@@ -1530,29 +1492,15 @@
          </item>
         </widget>
        </item>
-       <item row="8" column="0">
-        <widget class="QLabel" name="label_72">
+       <item row="4" column="4">
+        <widget class="QToolButton" name="bkey_toolButton">
          <property name="text">
-          <string>GPIO</string>
+          <string>...</string>
          </property>
         </widget>
        </item>
-       <item row="12" column="2">
-        <widget class="QComboBox" name="eeprom_comboBox">
-         <item>
-          <property name="text">
-           <string>0</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>1</string>
-          </property>
-         </item>
-        </widget>
-       </item>
-       <item row="6" column="5">
-        <widget class="QComboBox" name="vga_comboBox">
+       <item row="8" column="2">
+        <widget class="QComboBox" name="gpio_comboBox">
          <item>
           <property name="text">
            <string>0</string>
@@ -1606,90 +1554,6 @@
          <item>
           <property name="text">
            <string>10</string>
-          </property>
-         </item>
-        </widget>
-       </item>
-       <item row="15" column="5">
-        <widget class="QComboBox" name="PSE_POWEROUTPUT_comboBox">
-         <item>
-          <property name="text">
-           <string>0</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>1</string>
-          </property>
-         </item>
-        </widget>
-       </item>
-       <item row="8" column="1">
-        <widget class="QToolButton" name="gpio_toolButton">
-         <property name="text">
-          <string>...</string>
-         </property>
-        </widget>
-       </item>
-       <item row="6" column="8">
-        <widget class="QComboBox" name="sw1_comboBox">
-         <item>
-          <property name="text">
-           <string>0</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>1</string>
-          </property>
-         </item>
-        </widget>
-       </item>
-       <item row="1" column="0">
-        <widget class="QLabel" name="label_71">
-         <property name="text">
-          <string>USB 3.0</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="8">
-        <widget class="QComboBox" name="mcu_connector_comboBox">
-         <item>
-          <property name="text">
-           <string>0</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>1</string>
-          </property>
-         </item>
-        </widget>
-       </item>
-       <item row="4" column="0">
-        <widget class="QLabel" name="label_75">
-         <property name="text">
-          <string>MicroSD</string>
-         </property>
-        </widget>
-       </item>
-       <item row="14" column="3">
-        <widget class="QLabel" name="label_139">
-         <property name="text">
-          <string>PD POWER INPUT</string>
-         </property>
-        </widget>
-       </item>
-       <item row="9" column="8">
-        <widget class="QComboBox" name="mic_comboBox">
-         <item>
-          <property name="text">
-           <string>0</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>1</string>
           </property>
          </item>
         </widget>
@@ -1753,50 +1617,774 @@
          </item>
         </widget>
        </item>
-       <item row="7" column="0">
-        <widget class="QLabel" name="label_81">
+       <item row="13" column="3">
+        <widget class="QLabel" name="label_82">
          <property name="text">
-          <string>RS485</string>
+          <string>LED</string>
          </property>
         </widget>
        </item>
-       <item row="5" column="6">
-        <widget class="QLabel" name="label_77">
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_70">
          <property name="text">
-          <string>SMA</string>
+          <string>USB 2.0</string>
          </property>
         </widget>
        </item>
-       <item row="7" column="8">
-        <widget class="QComboBox" name="sw2_comboBox">
-         <item>
-          <property name="text">
-           <string>0</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>1</string>
-          </property>
-         </item>
-        </widget>
-       </item>
-       <item row="5" column="8">
-        <widget class="QComboBox" name="sma_comboBox">
-         <item>
-          <property name="text">
-           <string>0</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>1</string>
-          </property>
-         </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="label_80">
+         <property name="text">
+          <string>NetWork</string>
+         </property>
         </widget>
        </item>
        <item row="7" column="5">
         <widget class="QComboBox" name="dp_comboBox">
+         <item>
+          <property name="text">
+           <string>0</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>2</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>3</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>4</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>5</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>6</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>7</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>8</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>9</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>10</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="0" column="4">
+        <widget class="QToolButton" name="cpu_toolButton">
+         <property name="text">
+          <string>...</string>
+         </property>
+        </widget>
+       </item>
+       <item row="10" column="1">
+        <widget class="QToolButton" name="ekey_toolButton">
+         <property name="text">
+          <string>...</string>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="6">
+        <widget class="QLabel" name="label_45">
+         <property name="text">
+          <string>SW1</string>
+         </property>
+        </widget>
+       </item>
+       <item row="14" column="5">
+        <widget class="QComboBox" name="pdpowerinput_comboBox">
+         <item>
+          <property name="text">
+           <string>0</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>1</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="0" column="3">
+        <widget class="QLabel" name="label_105">
+         <property name="text">
+          <string>CPU</string>
+         </property>
+        </widget>
+       </item>
+       <item row="12" column="2">
+        <widget class="QComboBox" name="eeprom_comboBox">
+         <item>
+          <property name="text">
+           <string>0</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>1</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="8" column="0">
+        <widget class="QLabel" name="label_72">
+         <property name="text">
+          <string>GPIO</string>
+         </property>
+        </widget>
+       </item>
+       <item row="10" column="2">
+        <widget class="QComboBox" name="ekey_comboBox">
+         <item>
+          <property name="text">
+           <string>0</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>2</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>3</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>4</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>5</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>6</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>7</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>8</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>9</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>10</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="10" column="8">
+        <widget class="QComboBox" name="linein_comboBox">
+         <item>
+          <property name="text">
+           <string>0</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>1</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="6" column="3">
+        <widget class="QLabel" name="label_62">
+         <property name="text">
+          <string>VGA</string>
+         </property>
+        </widget>
+       </item>
+       <item row="13" column="2">
+        <widget class="QComboBox" name="eepromrdrd_comboBox">
+         <item>
+          <property name="text">
+           <string>0</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>1</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="0" column="5">
+        <widget class="QComboBox" name="cpu_comboBox">
+         <item>
+          <property name="text">
+           <string>0</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>1</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="11" column="6">
+        <widget class="QLabel" name="label_103">
+         <property name="text">
+          <string>SPEAKER</string>
+         </property>
+        </widget>
+       </item>
+       <item row="14" column="2">
+        <widget class="QComboBox" name="i2c_comboBox">
+         <item>
+          <property name="text">
+           <string>0</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>2</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>3</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>4</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>5</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>6</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>7</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>8</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>9</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>10</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="11" column="5">
+        <widget class="QComboBox" name="resetbutton_comboBox">
+         <item>
+          <property name="text">
+           <string>0</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>1</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="15" column="2">
+        <widget class="QComboBox" name="canbus_comboBox">
+         <item>
+          <property name="text">
+           <string>0</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>2</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>3</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>4</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>5</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>6</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>7</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>8</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>9</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>10</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="1" column="3">
+        <widget class="QLabel" name="label_106">
+         <property name="text">
+          <string>MEMORY</string>
+         </property>
+        </widget>
+       </item>
+       <item row="8" column="3">
+        <widget class="QLabel" name="label_76">
+         <property name="text">
+          <string>POWER BUTTON</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="8">
+        <widget class="QComboBox" name="dcoutput_comboBox">
+         <item>
+          <property name="text">
+           <string>0</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>1</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="3" column="3">
+        <widget class="QLabel" name="label_83">
+         <property name="text">
+          <string>M-Key</string>
+         </property>
+        </widget>
+       </item>
+       <item row="9" column="2">
+        <widget class="QComboBox" name="spi_comboBox">
+         <item>
+          <property name="text">
+           <string>0</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>2</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>3</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>4</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>5</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>6</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>7</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>8</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>9</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>10</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="7" column="3">
+        <widget class="QLabel" name="label_68">
+         <property name="text">
+          <string>DP</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0">
+        <widget class="QLabel" name="label_75">
+         <property name="text">
+          <string>MicroSD</string>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="1">
+        <widget class="QToolButton" name="rs485_toolButton">
+         <property name="text">
+          <string>...</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="5">
+        <widget class="QComboBox" name="uart_comboBox">
+         <item>
+          <property name="text">
+           <string>0</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>2</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>3</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>4</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>5</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>6</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>7</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>8</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>9</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>10</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="7" column="2">
+        <widget class="QComboBox" name="rs485_comboBox">
+         <item>
+          <property name="text">
+           <string>0</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>2</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>3</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>4</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>5</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>6</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>7</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>8</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>9</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>10</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="5" column="1">
+        <widget class="QToolButton" name="rs232_toolButton">
+         <property name="text">
+          <string>...</string>
+         </property>
+        </widget>
+       </item>
+       <item row="15" column="3">
+        <widget class="QLabel" name="label_140">
+         <property name="text">
+          <string>PSE POWER OUTPUT</string>
+         </property>
+        </widget>
+       </item>
+       <item row="9" column="1">
+        <widget class="QToolButton" name="spi_toolButton">
+         <property name="text">
+          <string>...</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="4">
+        <widget class="QToolButton" name="uart_toolButton">
+         <property name="text">
+          <string>...</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="0">
+        <widget class="QLabel" name="label_61">
+         <property name="text">
+          <string>RS232</string>
+         </property>
+        </widget>
+       </item>
+       <item row="8" column="5">
+        <widget class="QComboBox" name="powerbutton_comboBox">
+         <item>
+          <property name="text">
+           <string>0</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>1</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="3" column="5">
+        <widget class="QComboBox" name="mkey_comboBox">
+         <item>
+          <property name="text">
+           <string>0</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>2</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>3</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>4</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>5</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>6</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>7</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>8</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>9</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>10</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="2" column="8">
+        <widget class="QComboBox" name="dcinput_comboBox">
+         <item>
+          <property name="text">
+           <string>0</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>1</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="9" column="0">
+        <widget class="QLabel" name="label_73">
+         <property name="text">
+          <string>SPI</string>
+         </property>
+        </widget>
+       </item>
+       <item row="9" column="5">
+        <widget class="QComboBox" name="powerconnector_comboBox">
+         <item>
+          <property name="text">
+           <string>0</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>1</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="13" column="5">
+        <widget class="QComboBox" name="led_comboBox">
          <item>
           <property name="text">
            <string>0</string>
@@ -1916,234 +2504,8 @@
          </item>
         </widget>
        </item>
-       <item row="4" column="2">
-        <widget class="QComboBox" name="microsd_comboBox">
-         <item>
-          <property name="text">
-           <string>0</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>1</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>2</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>3</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>4</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>5</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>6</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>7</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>8</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>9</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>10</string>
-          </property>
-         </item>
-        </widget>
-       </item>
-       <item row="4" column="3">
-        <widget class="QLabel" name="label_67">
-         <property name="text">
-          <string>B-Key</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="5">
-        <widget class="QComboBox" name="MKEY_comboBox">
-         <item>
-          <property name="text">
-           <string>0</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>1</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>2</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>3</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>4</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>5</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>6</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>7</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>8</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>9</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>10</string>
-          </property>
-         </item>
-        </widget>
-       </item>
-       <item row="12" column="0">
-        <widget class="QLabel" name="label_27">
-         <property name="text">
-          <string>EEPROM</string>
-         </property>
-        </widget>
-       </item>
-       <item row="6" column="3">
-        <widget class="QLabel" name="label_62">
-         <property name="text">
-          <string>VGA</string>
-         </property>
-        </widget>
-       </item>
-       <item row="10" column="3">
-        <widget class="QLabel" name="label_44">
-         <property name="text">
-          <string>POWER SW CONNECTOR</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="2">
-        <widget class="QComboBox" name="fiber_comboBox">
-         <item>
-          <property name="text">
-           <string>0</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>1</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>2</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>3</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>4</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>5</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>6</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>7</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>8</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>9</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>10</string>
-          </property>
-         </item>
-        </widget>
-       </item>
-       <item row="11" column="5">
-        <widget class="QComboBox" name="reset_button_comboBox">
-         <item>
-          <property name="text">
-           <string>0</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>1</string>
-          </property>
-         </item>
-        </widget>
-       </item>
-       <item row="0" column="3">
-        <widget class="QLabel" name="label_105">
-         <property name="text">
-          <string>CPU</string>
-         </property>
-        </widget>
-       </item>
        <item row="4" column="5">
-        <widget class="QComboBox" name="BKEY_comboBox">
+        <widget class="QComboBox" name="bkey_comboBox">
          <item>
           <property name="text">
            <string>0</string>
@@ -2201,50 +2563,22 @@
          </item>
         </widget>
        </item>
-       <item row="14" column="0">
-        <widget class="QLabel" name="label_115">
+       <item row="2" column="1">
+        <widget class="QToolButton" name="network_toolButton">
          <property name="text">
-          <string>I2C</string>
+          <string>...</string>
          </property>
         </widget>
        </item>
-       <item row="2" column="8">
-        <widget class="QComboBox" name="dc_input_comboBox">
-         <item>
-          <property name="text">
-           <string>0</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>1</string>
-          </property>
-         </item>
-        </widget>
-       </item>
-       <item row="7" column="6">
-        <widget class="QLabel" name="label_63">
+       <item row="3" column="0">
+        <widget class="QLabel" name="label_66">
          <property name="text">
-          <string>SW2</string>
+          <string>Optical Fiber</string>
          </property>
         </widget>
        </item>
-       <item row="0" column="6">
-        <widget class="QLabel" name="label_84">
-         <property name="text">
-          <string>RTC</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="3">
-        <widget class="QLabel" name="label_83">
-         <property name="text">
-          <string>M-Key</string>
-         </property>
-        </widget>
-       </item>
-       <item row="13" column="8">
-        <widget class="QComboBox" name="gps_comboBox">
+       <item row="6" column="5">
+        <widget class="QComboBox" name="vga_comboBox">
          <item>
           <property name="text">
            <string>0</string>
@@ -2302,29 +2636,8 @@
          </item>
         </widget>
        </item>
-       <item row="2" column="6">
-        <widget class="QLabel" name="label_86">
-         <property name="text">
-          <string>DC INPUT</string>
-         </property>
-        </widget>
-       </item>
-       <item row="10" column="5">
-        <widget class="QComboBox" name="power_sw_connector_comboBox">
-         <item>
-          <property name="text">
-           <string>0</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>1</string>
-          </property>
-         </item>
-        </widget>
-       </item>
-       <item row="0" column="8">
-        <widget class="QComboBox" name="rtc_comboBox">
+       <item row="5" column="8">
+        <widget class="QComboBox" name="sma_comboBox">
          <item>
           <property name="text">
            <string>0</string>
@@ -2396,134 +2709,15 @@
          </item>
         </widget>
        </item>
-       <item row="7" column="1">
-        <widget class="QToolButton" name="rs485_toolButton">
+       <item row="14" column="3">
+        <widget class="QLabel" name="label_139">
          <property name="text">
-          <string>...</string>
+          <string>PD POWER INPUT</string>
          </property>
         </widget>
        </item>
-       <item row="6" column="6">
-        <widget class="QLabel" name="label_45">
-         <property name="text">
-          <string>SW1</string>
-         </property>
-        </widget>
-       </item>
-       <item row="5" column="0">
-        <widget class="QLabel" name="label_61">
-         <property name="text">
-          <string>RS232</string>
-         </property>
-        </widget>
-       </item>
-       <item row="10" column="6">
-        <widget class="QLabel" name="label_98">
-         <property name="text">
-          <string>LINE IN</string>
-         </property>
-        </widget>
-       </item>
-       <item row="9" column="3">
-        <widget class="QLabel" name="label_69">
-         <property name="text">
-          <string>POWER CONNECTOR</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="4">
-        <widget class="QToolButton" name="cpu_toolButton">
-         <property name="text">
-          <string>...</string>
-         </property>
-        </widget>
-       </item>
-       <item row="14" column="1">
-        <widget class="QToolButton" name="i2c_toolButton">
-         <property name="text">
-          <string>...</string>
-         </property>
-        </widget>
-       </item>
-       <item row="10" column="8">
-        <widget class="QComboBox" name="linein_comboBox">
-         <item>
-          <property name="text">
-           <string>0</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>1</string>
-          </property>
-         </item>
-        </widget>
-       </item>
-       <item row="1" column="4">
-        <widget class="QToolButton" name="mem_toolButton">
-         <property name="text">
-          <string>...</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="6">
-        <widget class="QLabel" name="label_64">
-         <property name="text">
-          <string>MCU Connector</string>
-         </property>
-        </widget>
-       </item>
-       <item row="12" column="1">
-        <widget class="QToolButton" name="eeprom_toolButton">
-         <property name="text">
-          <string>...</string>
-         </property>
-        </widget>
-       </item>
-       <item row="11" column="6">
-        <widget class="QLabel" name="label_103">
-         <property name="text">
-          <string>SPEAKER</string>
-         </property>
-        </widget>
-       </item>
-       <item row="12" column="5">
-        <widget class="QComboBox" name="recovery_button_comboBox">
-         <item>
-          <property name="text">
-           <string>0</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>1</string>
-          </property>
-         </item>
-        </widget>
-       </item>
-       <item row="5" column="1">
-        <widget class="QToolButton" name="rs232_toolButton">
-         <property name="text">
-          <string>...</string>
-         </property>
-        </widget>
-       </item>
-       <item row="4" column="4">
-        <widget class="QToolButton" name="bkey_toolButton">
-         <property name="text">
-          <string>...</string>
-         </property>
-        </widget>
-       </item>
-       <item row="12" column="6">
-        <widget class="QLabel" name="label_138">
-         <property name="text">
-          <string>CASE OPEN</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="5">
-        <widget class="QComboBox" name="memory_comboBox">
+       <item row="3" column="2">
+        <widget class="QComboBox" name="fiber_comboBox">
          <item>
           <property name="text">
            <string>0</string>
@@ -2579,6 +2773,13 @@
            <string>10</string>
           </property>
          </item>
+        </widget>
+       </item>
+       <item row="9" column="6">
+        <widget class="QLabel" name="label_96">
+         <property name="text">
+          <string>MIC</string>
+         </property>
         </widget>
        </item>
        <item row="5" column="5">
@@ -2640,8 +2841,8 @@
          </item>
         </widget>
        </item>
-       <item row="9" column="2">
-        <widget class="QComboBox" name="spi_comboBox">
+       <item row="1" column="5">
+        <widget class="QComboBox" name="memory_comboBox">
          <item>
           <property name="text">
            <string>0</string>
@@ -2699,7 +2900,297 @@
          </item>
         </widget>
        </item>
-       <item row="14" column="8">
+       <item row="2" column="6">
+        <widget class="QLabel" name="label_86">
+         <property name="text">
+          <string>DC INPUT</string>
+         </property>
+        </widget>
+       </item>
+       <item row="11" column="0">
+        <widget class="QLabel" name="label_26">
+         <property name="text">
+          <string>FAN</string>
+         </property>
+        </widget>
+       </item>
+       <item row="10" column="6">
+        <widget class="QLabel" name="label_98">
+         <property name="text">
+          <string>LINE IN</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="6">
+        <widget class="QLabel" name="label_64">
+         <property name="text">
+          <string>MCU Connector</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="8">
+        <widget class="QComboBox" name="rtcout_comboBox">
+         <item>
+          <property name="text">
+           <string>0</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>1</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="1" column="6">
+        <widget class="QLabel" name="label_85">
+         <property name="text">
+          <string>RTC OUT</string>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="6">
+        <widget class="QLabel" name="label_63">
+         <property name="text">
+          <string>SW2</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="8">
+        <widget class="QComboBox" name="mcuconnector_comboBox">
+         <item>
+          <property name="text">
+           <string>0</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>1</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="13" column="0">
+        <widget class="QLabel" name="label_29">
+         <property name="text">
+          <string>EEPROM (RD Test)</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="6">
+        <widget class="QLabel" name="label_87">
+         <property name="text">
+          <string>DC OUTPUT</string>
+         </property>
+        </widget>
+       </item>
+       <item row="8" column="6">
+        <widget class="QLabel" name="label_95">
+         <property name="text">
+          <string>Camera</string>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="8">
+        <widget class="QComboBox" name="sw1_comboBox">
+         <item>
+          <property name="text">
+           <string>0</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>1</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="12" column="1">
+        <widget class="QToolButton" name="eeprom_toolButton">
+         <property name="text">
+          <string>...</string>
+         </property>
+        </widget>
+       </item>
+       <item row="11" column="8">
+        <widget class="QComboBox" name="speaker_comboBox">
+         <item>
+          <property name="text">
+           <string>0</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>1</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="13" column="6">
+        <widget class="QLabel" name="label_141">
+         <property name="text">
+          <string>GPS</string>
+         </property>
+        </widget>
+       </item>
+       <item row="10" column="3">
+        <widget class="QLabel" name="label_44">
+         <property name="text">
+          <string>POWER SW CONNECTOR</string>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="0">
+        <widget class="QLabel" name="label_81">
+         <property name="text">
+          <string>RS485</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="2">
+        <widget class="QComboBox" name="microsd_comboBox">
+         <item>
+          <property name="text">
+           <string>0</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>2</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>3</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>4</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>5</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>6</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>7</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>8</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>9</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>10</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="14" column="0">
+        <widget class="QLabel" name="label_115">
+         <property name="text">
+          <string>I2C</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_71">
+         <property name="text">
+          <string>USB 3.0</string>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="1">
+        <widget class="QToolButton" name="rs422_toolButton">
+         <property name="text">
+          <string>...</string>
+         </property>
+        </widget>
+       </item>
+       <item row="11" column="3">
+        <widget class="QLabel" name="label_78">
+         <property name="text">
+          <string>RESET BUTTON</string>
+         </property>
+        </widget>
+       </item>
+       <item row="16" column="2">
+        <widget class="QComboBox" name="biosver_comboBox">
+         <item>
+          <property name="text">
+           <string>0</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>1</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="16" column="5">
+        <widget class="QComboBox" name="hwproductname_comboBox">
+         <item>
+          <property name="text">
+           <string>0</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>1</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="16" column="0">
+        <widget class="QLabel" name="label_143">
+         <property name="text">
+          <string>BIOS Version</string>
+         </property>
+        </widget>
+       </item>
+       <item row="16" column="3">
+        <widget class="QLabel" name="label_144">
+         <property name="text">
+          <string>HW Product Name</string>
+         </property>
+        </widget>
+       </item>
+       <item row="16" column="1">
+        <widget class="QToolButton" name="biosver_toolButton">
+         <property name="text">
+          <string>...</string>
+         </property>
+        </widget>
+       </item>
+       <item row="16" column="4">
+        <widget class="QToolButton" name="hwproductname_toolButton">
+         <property name="text">
+          <string>...</string>
+         </property>
+        </widget>
+       </item>
+       <item row="12" column="8">
         <widget class="QComboBox" name="innoagent_comboBox">
          <item>
           <property name="text">
@@ -2758,8 +3249,15 @@
          </item>
         </widget>
        </item>
-       <item row="6" column="2">
-        <widget class="QComboBox" name="RS422_comboBox">
+       <item row="12" column="6">
+        <widget class="QLabel" name="label_142">
+         <property name="text">
+          <string>InnoAgent</string>
+         </property>
+        </widget>
+       </item>
+       <item row="14" column="8">
+        <widget class="QComboBox" name="caseopen_comboBox">
          <item>
           <property name="text">
            <string>0</string>
@@ -2817,438 +3315,10 @@
          </item>
         </widget>
        </item>
-       <item row="8" column="8">
-        <widget class="QComboBox" name="camera_comboBox">
-         <item>
-          <property name="text">
-           <string>0</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>1</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>2</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>3</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>4</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>5</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>6</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>7</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>8</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>9</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>10</string>
-          </property>
-         </item>
-        </widget>
-       </item>
-       <item row="3" column="0">
-        <widget class="QLabel" name="label_66">
+       <item row="14" column="6">
+        <widget class="QLabel" name="label_138">
          <property name="text">
-          <string>Optical Fiber</string>
-         </property>
-        </widget>
-       </item>
-       <item row="13" column="6">
-        <widget class="QLabel" name="label_141">
-         <property name="text">
-          <string>GPS</string>
-         </property>
-        </widget>
-       </item>
-       <item row="8" column="2">
-        <widget class="QComboBox" name="gpio_comboBox">
-         <item>
-          <property name="text">
-           <string>0</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>1</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>2</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>3</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>4</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>5</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>6</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>7</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>8</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>9</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>10</string>
-          </property>
-         </item>
-        </widget>
-       </item>
-       <item row="7" column="2">
-        <widget class="QComboBox" name="RS485_comboBox">
-         <item>
-          <property name="text">
-           <string>0</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>1</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>2</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>3</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>4</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>5</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>6</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>7</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>8</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>9</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>10</string>
-          </property>
-         </item>
-        </widget>
-       </item>
-       <item row="1" column="6">
-        <widget class="QLabel" name="label_85">
-         <property name="text">
-          <string>RTC OUT</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="1">
-        <widget class="QToolButton" name="network_toolButton">
-         <property name="text">
-          <string>...</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="8">
-        <widget class="QComboBox" name="rtc_out_comboBox">
-         <item>
-          <property name="text">
-           <string>0</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>1</string>
-          </property>
-         </item>
-        </widget>
-       </item>
-       <item row="10" column="1">
-        <widget class="QToolButton" name="ekey_toolButton">
-         <property name="text">
-          <string>...</string>
-         </property>
-        </widget>
-       </item>
-       <item row="11" column="8">
-        <widget class="QComboBox" name="speaker_comboBox">
-         <item>
-          <property name="text">
-           <string>0</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>1</string>
-          </property>
-         </item>
-        </widget>
-       </item>
-       <item row="8" column="6">
-        <widget class="QLabel" name="label_95">
-         <property name="text">
-          <string>Camera</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="0">
-        <widget class="QLabel" name="label_80">
-         <property name="text">
-          <string>NetWork</string>
-         </property>
-        </widget>
-       </item>
-       <item row="7" column="3">
-        <widget class="QLabel" name="label_68">
-         <property name="text">
-          <string>DP</string>
-         </property>
-        </widget>
-       </item>
-       <item row="15" column="1">
-        <widget class="QToolButton" name="canbus_toolButton">
-         <property name="text">
-          <string>...</string>
-         </property>
-        </widget>
-       </item>
-       <item row="15" column="0">
-        <widget class="QLabel" name="label_88">
-         <property name="text">
-          <string>CAN BUS</string>
-         </property>
-        </widget>
-       </item>
-       <item row="15" column="2">
-        <widget class="QComboBox" name="canbus_comboBox">
-         <item>
-          <property name="text">
-           <string>0</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>1</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>2</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>3</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>4</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>5</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>6</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>7</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>8</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>9</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>10</string>
-          </property>
-         </item>
-        </widget>
-       </item>
-       <item row="13" column="2">
-        <widget class="QComboBox" name="eeprom_RD_Test_comboBox">
-         <item>
-          <property name="text">
-           <string>0</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>1</string>
-          </property>
-         </item>
-        </widget>
-       </item>
-       <item row="13" column="1">
-        <widget class="QToolButton" name="eepromrd_toolButton">
-         <property name="text">
-          <string>...</string>
-         </property>
-        </widget>
-       </item>
-       <item row="13" column="0">
-        <widget class="QLabel" name="label_29">
-         <property name="text">
-          <string>EEPROM (RD Test)</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="5">
-        <widget class="QComboBox" name="uart_comboBox">
-         <item>
-          <property name="text">
-           <string>0</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>1</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>2</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>3</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>4</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>5</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>6</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>7</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>8</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>9</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>10</string>
-          </property>
-         </item>
-        </widget>
-       </item>
-       <item row="2" column="4">
-        <widget class="QToolButton" name="uart_toolButton">
-         <property name="text">
-          <string>...</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="3">
-        <widget class="QLabel" name="label_74">
-         <property name="text">
-          <string>UART</string>
+          <string>CASE OPEN</string>
          </property>
         </widget>
        </item>
@@ -3343,7 +3413,7 @@
        </widget>
       </item>
       <item row="4" column="1">
-       <widget class="QGroupBox" name="Bkey_setting_groupBox">
+       <widget class="QGroupBox" name="BKEY_setting_groupBox">
         <property name="title">
          <string>B-Key 設定</string>
         </property>
@@ -3402,7 +3472,7 @@
        </widget>
       </item>
       <item row="4" column="0">
-       <widget class="QGroupBox" name="Ekey_setting_groupBox">
+       <widget class="QGroupBox" name="EKEY_setting_groupBox">
         <property name="title">
          <string>E-Key 設定</string>
         </property>
@@ -3685,7 +3755,7 @@
        </widget>
       </item>
       <item row="2" column="4">
-       <widget class="QGroupBox" name="upload_setting_groupBox">
+       <widget class="QGroupBox" name="FTP_setting_groupBox">
         <property name="maximumSize">
          <size>
           <width>150</width>
@@ -3752,8 +3822,11 @@
       <string>測試參數預覽2</string>
      </attribute>
      <layout class="QGridLayout" name="gridLayout_18">
-      <item row="1" column="1">
-       <widget class="QGroupBox" name="RS422_setting_groupBox">
+      <item row="1" column="0">
+       <widget class="QGroupBox" name="RS232_setting_groupBox">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
         <property name="maximumSize">
          <size>
           <width>300</width>
@@ -3761,66 +3834,108 @@
          </size>
         </property>
         <property name="title">
-         <string>RS422 設定</string>
+         <string>RS232 設定</string>
         </property>
-        <layout class="QGridLayout" name="gridLayout_8">
-         <item row="2" column="1">
-          <widget class="QLineEdit" name="rs422_3_lineEdit"/>
-         </item>
-         <item row="0" column="1">
-          <widget class="QLineEdit" name="rs422_1_lineEdit"/>
+        <layout class="QGridLayout" name="gridLayout_7">
+         <item row="1" column="1">
+          <widget class="QLineEdit" name="rs232_2_lineEdit">
+           <property name="maximumSize">
+            <size>
+             <width>120</width>
+             <height>27</height>
+            </size>
+           </property>
+          </widget>
          </item>
          <item row="0" column="0">
-          <widget class="QLabel" name="label_92">
+          <widget class="QLabel" name="label_47">
            <property name="text">
             <string>1</string>
            </property>
           </widget>
          </item>
-         <item row="0" column="3">
-          <widget class="QLineEdit" name="rs422_4_lineEdit"/>
-         </item>
          <item row="1" column="0">
-          <widget class="QLabel" name="label_99">
+          <widget class="QLabel" name="label_51">
            <property name="text">
             <string>2</string>
            </property>
           </widget>
          </item>
-         <item row="1" column="2">
-          <widget class="QLabel" name="label_90">
-           <property name="text">
-            <string>5</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="2">
-          <widget class="QLabel" name="label_94">
-           <property name="text">
-            <string>4</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="3">
-          <widget class="QLineEdit" name="rs422_5_lineEdit"/>
-         </item>
-         <item row="2" column="3">
-          <widget class="QLineEdit" name="rs422_6_lineEdit"/>
-         </item>
-         <item row="1" column="1">
-          <widget class="QLineEdit" name="rs422_2_lineEdit"/>
-         </item>
          <item row="2" column="0">
-          <widget class="QLabel" name="label_91">
+          <widget class="QLabel" name="label_55">
            <property name="text">
             <string>3</string>
            </property>
           </widget>
          </item>
+         <item row="0" column="1">
+          <widget class="QLineEdit" name="rs232_1_lineEdit">
+           <property name="maximumSize">
+            <size>
+             <width>120</width>
+             <height>27</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QLineEdit" name="rs232_3_lineEdit">
+           <property name="maximumSize">
+            <size>
+             <width>120</width>
+             <height>27</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="3">
+          <widget class="QLineEdit" name="rs232_4_lineEdit">
+           <property name="maximumSize">
+            <size>
+             <width>120</width>
+             <height>27</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="3">
+          <widget class="QLineEdit" name="rs232_5_lineEdit">
+           <property name="maximumSize">
+            <size>
+             <width>120</width>
+             <height>27</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="3">
+          <widget class="QLineEdit" name="rs232_6_lineEdit">
+           <property name="maximumSize">
+            <size>
+             <width>120</width>
+             <height>27</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="2">
+          <widget class="QLabel" name="label_57">
+           <property name="text">
+            <string>5</string>
+           </property>
+          </widget>
+         </item>
          <item row="2" column="2">
-          <widget class="QLabel" name="label_97">
+          <widget class="QLabel" name="label_58">
            <property name="text">
             <string>6</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="2">
+          <widget class="QLabel" name="label_56">
+           <property name="text">
+            <string>4</string>
            </property>
           </widget>
          </item>
@@ -3848,7 +3963,14 @@
           </widget>
          </item>
          <item row="0" column="3">
-          <widget class="QLineEdit" name="uart_4_lineEdit"/>
+          <widget class="QLineEdit" name="uart_4_lineEdit">
+           <property name="maximumSize">
+            <size>
+             <width>120</width>
+             <height>27</height>
+            </size>
+           </property>
+          </widget>
          </item>
          <item row="2" column="0">
           <widget class="QLabel" name="label_128">
@@ -3858,16 +3980,44 @@
           </widget>
          </item>
          <item row="2" column="3">
-          <widget class="QLineEdit" name="uart_6_lineEdit"/>
+          <widget class="QLineEdit" name="uart_6_lineEdit">
+           <property name="maximumSize">
+            <size>
+             <width>120</width>
+             <height>27</height>
+            </size>
+           </property>
+          </widget>
          </item>
          <item row="1" column="1">
-          <widget class="QLineEdit" name="uart_2_lineEdit"/>
+          <widget class="QLineEdit" name="uart_2_lineEdit">
+           <property name="maximumSize">
+            <size>
+             <width>120</width>
+             <height>27</height>
+            </size>
+           </property>
+          </widget>
          </item>
          <item row="2" column="1">
-          <widget class="QLineEdit" name="uart_3_lineEdit"/>
+          <widget class="QLineEdit" name="uart_3_lineEdit">
+           <property name="maximumSize">
+            <size>
+             <width>120</width>
+             <height>27</height>
+            </size>
+           </property>
+          </widget>
          </item>
          <item row="0" column="1">
-          <widget class="QLineEdit" name="uart_1_lineEdit"/>
+          <widget class="QLineEdit" name="uart_1_lineEdit">
+           <property name="maximumSize">
+            <size>
+             <width>120</width>
+             <height>27</height>
+            </size>
+           </property>
+          </widget>
          </item>
          <item row="1" column="0">
           <widget class="QLabel" name="label_133">
@@ -3884,7 +4034,14 @@
           </widget>
          </item>
          <item row="1" column="3">
-          <widget class="QLineEdit" name="uart_5_lineEdit"/>
+          <widget class="QLineEdit" name="uart_5_lineEdit">
+           <property name="maximumSize">
+            <size>
+             <width>120</width>
+             <height>27</height>
+            </size>
+           </property>
+          </widget>
          </item>
          <item row="0" column="0">
           <widget class="QLabel" name="label_131">
@@ -3896,11 +4053,8 @@
         </layout>
        </widget>
       </item>
-      <item row="1" column="0">
-       <widget class="QGroupBox" name="RS232_setting_groupBox">
-        <property name="enabled">
-         <bool>true</bool>
-        </property>
+      <item row="1" column="1">
+       <widget class="QGroupBox" name="RS422_setting_groupBox">
         <property name="maximumSize">
          <size>
           <width>300</width>
@@ -3908,66 +4062,108 @@
          </size>
         </property>
         <property name="title">
-         <string>RS232 設定</string>
+         <string>RS422 設定</string>
         </property>
-        <layout class="QGridLayout" name="gridLayout_7">
-         <item row="1" column="1">
-          <widget class="QLineEdit" name="rs232_2_lineEdit"/>
+        <layout class="QGridLayout" name="gridLayout_8">
+         <item row="2" column="1">
+          <widget class="QLineEdit" name="rs422_3_lineEdit">
+           <property name="maximumSize">
+            <size>
+             <width>120</width>
+             <height>27</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLineEdit" name="rs422_1_lineEdit">
+           <property name="maximumSize">
+            <size>
+             <width>120</width>
+             <height>27</height>
+            </size>
+           </property>
+          </widget>
          </item>
          <item row="0" column="0">
-          <widget class="QLabel" name="label_47">
+          <widget class="QLabel" name="label_92">
            <property name="text">
             <string>1</string>
            </property>
           </widget>
          </item>
+         <item row="0" column="3">
+          <widget class="QLineEdit" name="rs422_4_lineEdit">
+           <property name="maximumSize">
+            <size>
+             <width>120</width>
+             <height>27</height>
+            </size>
+           </property>
+          </widget>
+         </item>
          <item row="1" column="0">
-          <widget class="QLabel" name="label_51">
+          <widget class="QLabel" name="label_99">
            <property name="text">
             <string>2</string>
            </property>
           </widget>
          </item>
-         <item row="2" column="0">
-          <widget class="QLabel" name="label_55">
-           <property name="text">
-            <string>3</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="1">
-          <widget class="QLineEdit" name="rs232_1_lineEdit"/>
-         </item>
-         <item row="2" column="1">
-          <widget class="QLineEdit" name="rs232_3_lineEdit"/>
-         </item>
-         <item row="0" column="3">
-          <widget class="QLineEdit" name="rs232_4_lineEdit"/>
-         </item>
-         <item row="1" column="3">
-          <widget class="QLineEdit" name="rs232_5_lineEdit"/>
-         </item>
-         <item row="2" column="3">
-          <widget class="QLineEdit" name="rs232_6_lineEdit"/>
-         </item>
          <item row="1" column="2">
-          <widget class="QLabel" name="label_57">
+          <widget class="QLabel" name="label_90">
            <property name="text">
             <string>5</string>
            </property>
           </widget>
          </item>
-         <item row="2" column="2">
-          <widget class="QLabel" name="label_58">
+         <item row="0" column="2">
+          <widget class="QLabel" name="label_94">
            <property name="text">
-            <string>6</string>
+            <string>4</string>
            </property>
           </widget>
          </item>
-         <item row="0" column="2">
-          <widget class="QLabel" name="label_56">
+         <item row="1" column="3">
+          <widget class="QLineEdit" name="rs422_5_lineEdit">
+           <property name="maximumSize">
+            <size>
+             <width>120</width>
+             <height>27</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="3">
+          <widget class="QLineEdit" name="rs422_6_lineEdit">
+           <property name="maximumSize">
+            <size>
+             <width>120</width>
+             <height>27</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QLineEdit" name="rs422_2_lineEdit">
+           <property name="maximumSize">
+            <size>
+             <width>120</width>
+             <height>27</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="label_91">
            <property name="text">
-            <string>4</string>
+            <string>3</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="2">
+          <widget class="QLabel" name="label_97">
+           <property name="text">
+            <string>6</string>
            </property>
           </widget>
          </item>
@@ -3994,7 +4190,14 @@
           </widget>
          </item>
          <item row="0" column="1">
-          <widget class="QLineEdit" name="rs485_1_lineEdit"/>
+          <widget class="QLineEdit" name="rs485_1_lineEdit">
+           <property name="maximumSize">
+            <size>
+             <width>120</width>
+             <height>27</height>
+            </size>
+           </property>
+          </widget>
          </item>
          <item row="1" column="0">
           <widget class="QLabel" name="label_109">
@@ -4004,7 +4207,14 @@
           </widget>
          </item>
          <item row="1" column="1">
-          <widget class="QLineEdit" name="rs485_2_lineEdit"/>
+          <widget class="QLineEdit" name="rs485_2_lineEdit">
+           <property name="maximumSize">
+            <size>
+             <width>120</width>
+             <height>27</height>
+            </size>
+           </property>
+          </widget>
          </item>
          <item row="2" column="0">
           <widget class="QLabel" name="label_101">
@@ -4014,10 +4224,24 @@
           </widget>
          </item>
          <item row="2" column="1">
-          <widget class="QLineEdit" name="rs485_3_lineEdit"/>
+          <widget class="QLineEdit" name="rs485_3_lineEdit">
+           <property name="maximumSize">
+            <size>
+             <width>120</width>
+             <height>27</height>
+            </size>
+           </property>
+          </widget>
          </item>
          <item row="2" column="3">
-          <widget class="QLineEdit" name="rs485_6_lineEdit"/>
+          <widget class="QLineEdit" name="rs485_6_lineEdit">
+           <property name="maximumSize">
+            <size>
+             <width>120</width>
+             <height>27</height>
+            </size>
+           </property>
+          </widget>
          </item>
          <item row="2" column="2">
           <widget class="QLabel" name="label_107">
@@ -4027,10 +4251,24 @@
           </widget>
          </item>
          <item row="1" column="3">
-          <widget class="QLineEdit" name="rs485_5_lineEdit"/>
+          <widget class="QLineEdit" name="rs485_5_lineEdit">
+           <property name="maximumSize">
+            <size>
+             <width>120</width>
+             <height>27</height>
+            </size>
+           </property>
+          </widget>
          </item>
          <item row="0" column="3">
-          <widget class="QLineEdit" name="rs485_4_lineEdit"/>
+          <widget class="QLineEdit" name="rs485_4_lineEdit">
+           <property name="maximumSize">
+            <size>
+             <width>120</width>
+             <height>27</height>
+            </size>
+           </property>
+          </widget>
          </item>
          <item row="0" column="2">
           <widget class="QLabel" name="label_104">
@@ -4049,8 +4287,8 @@
         </layout>
        </widget>
       </item>
-      <item row="0" column="0" colspan="3">
-       <widget class="QGroupBox" name="Fan_setting_groupBox">
+      <item row="0" column="0" colspan="4">
+       <widget class="QGroupBox" name="FAN_setting_groupBox">
         <property name="maximumSize">
          <size>
           <width>900</width>
@@ -4244,145 +4482,7 @@
         </layout>
        </widget>
       </item>
-      <item row="3" column="0" colspan="2">
-       <widget class="QGroupBox" name="GPIO_setting_groupBox">
-        <property name="maximumSize">
-         <size>
-          <width>350</width>
-          <height>200</height>
-         </size>
-        </property>
-        <property name="title">
-         <string>GPIO 設定</string>
-        </property>
-        <layout class="QGridLayout" name="gridLayout_5">
-         <item row="4" column="0">
-          <widget class="QLabel" name="label_37">
-           <property name="text">
-            <string>第四組</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="3">
-          <widget class="QLineEdit" name="GPI_num1_lineEdit"/>
-         </item>
-         <item row="1" column="4">
-          <widget class="QLineEdit" name="GPI_pin1_lineEdit"/>
-         </item>
-         <item row="5" column="1">
-          <widget class="QLineEdit" name="GPO_num5_lineEdit"/>
-         </item>
-         <item row="4" column="1">
-          <widget class="QLineEdit" name="GPO_num4_lineEdit"/>
-         </item>
-         <item row="0" column="4">
-          <widget class="QLabel" name="label_32">
-           <property name="text">
-            <string>IN PIN</string>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="4">
-          <widget class="QLineEdit" name="GPI_pin3_lineEdit"/>
-         </item>
-         <item row="5" column="3">
-          <widget class="QLineEdit" name="GPI_num5_lineEdit"/>
-         </item>
-         <item row="3" column="2">
-          <widget class="QLineEdit" name="GPO_pin3_lineEdit"/>
-         </item>
-         <item row="4" column="2">
-          <widget class="QLineEdit" name="GPO_pin4_lineEdit"/>
-         </item>
-         <item row="1" column="1">
-          <widget class="QLineEdit" name="GPO_num1_lineEdit"/>
-         </item>
-         <item row="3" column="3">
-          <widget class="QLineEdit" name="GPI_num3_lineEdit"/>
-         </item>
-         <item row="0" column="1">
-          <widget class="QLabel" name="label_31">
-           <property name="text">
-            <string>OUT NUM</string>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="4">
-          <widget class="QLineEdit" name="GPI_pin2_lineEdit"/>
-         </item>
-         <item row="5" column="0">
-          <widget class="QLabel" name="label_38">
-           <property name="text">
-            <string>第五組</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="0">
-          <widget class="QLabel" name="label_34">
-           <property name="text">
-            <string>第一組</string>
-           </property>
-          </widget>
-         </item>
-         <item row="5" column="2">
-          <widget class="QLineEdit" name="GPO_pin5_lineEdit"/>
-         </item>
-         <item row="3" column="1">
-          <widget class="QLineEdit" name="GPO_num3_lineEdit"/>
-         </item>
-         <item row="2" column="3">
-          <widget class="QLineEdit" name="GPI_num2_lineEdit"/>
-         </item>
-         <item row="4" column="3">
-          <widget class="QLineEdit" name="GPI_num4_lineEdit"/>
-         </item>
-         <item row="0" column="2">
-          <widget class="QLabel" name="label_33">
-           <property name="text">
-            <string>OUT PIN</string>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="0">
-          <widget class="QLabel" name="label_36">
-           <property name="text">
-            <string>第三組</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="2">
-          <widget class="QLineEdit" name="GPO_pin1_lineEdit"/>
-         </item>
-         <item row="2" column="2">
-          <widget class="QLineEdit" name="GPO_pin2_lineEdit"/>
-         </item>
-         <item row="4" column="4">
-          <widget class="QLineEdit" name="GPI_pin4_lineEdit"/>
-         </item>
-         <item row="2" column="0">
-          <widget class="QLabel" name="label_35">
-           <property name="text">
-            <string>第二組</string>
-           </property>
-          </widget>
-         </item>
-         <item row="5" column="4">
-          <widget class="QLineEdit" name="GPI_pin5_lineEdit"/>
-         </item>
-         <item row="0" column="3">
-          <widget class="QLabel" name="label_30">
-           <property name="text">
-            <string>IN NUM</string>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="1">
-          <widget class="QLineEdit" name="GPO_num2_lineEdit"/>
-         </item>
-        </layout>
-       </widget>
-      </item>
-      <item row="1" column="2">
+      <item row="1" column="3">
        <widget class="QGroupBox" name="CPU_setting_groupBox">
         <property name="title">
          <string>CPU 型號設定</string>
@@ -4394,7 +4494,158 @@
         </layout>
        </widget>
       </item>
-      <item row="2" column="2" rowspan="2">
+      <item row="3" column="0" colspan="2">
+       <widget class="QGroupBox" name="GPIO_setting_groupBox">
+        <property name="minimumSize">
+         <size>
+          <width>450</width>
+          <height>200</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>350</width>
+          <height>200</height>
+         </size>
+        </property>
+        <property name="title">
+         <string>GPIO 設定</string>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_5">
+         <item row="0" column="0">
+          <widget class="QCheckBox" name="gpio_people_checkBox">
+           <property name="text">
+            <string>人工測試</string>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="1">
+          <widget class="QLineEdit" name="GPO_num5_lineEdit"/>
+         </item>
+         <item row="0" column="2">
+          <widget class="QLabel" name="label_33">
+           <property name="text">
+            <string>OUT PIN</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="4">
+          <widget class="QLineEdit" name="GPI_pin1_lineEdit"/>
+         </item>
+         <item row="3" column="2">
+          <widget class="QLineEdit" name="GPO_pin3_lineEdit"/>
+         </item>
+         <item row="4" column="0">
+          <widget class="QLabel" name="label_37">
+           <property name="text">
+            <string>第四組</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLabel" name="label_31">
+           <property name="text">
+            <string>OUT NUM</string>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="3">
+          <widget class="QLineEdit" name="GPI_num5_lineEdit"/>
+         </item>
+         <item row="1" column="2">
+          <widget class="QLineEdit" name="GPO_pin1_lineEdit"/>
+         </item>
+         <item row="4" column="2">
+          <widget class="QLineEdit" name="GPO_pin4_lineEdit"/>
+         </item>
+         <item row="0" column="4">
+          <widget class="QLabel" name="label_32">
+           <property name="text">
+            <string>IN PIN</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="3">
+          <widget class="QLineEdit" name="GPI_num3_lineEdit"/>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="label_34">
+           <property name="text">
+            <string>第一組</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="3">
+          <widget class="QLineEdit" name="GPI_num2_lineEdit"/>
+         </item>
+         <item row="4" column="4">
+          <widget class="QLineEdit" name="GPI_pin4_lineEdit"/>
+         </item>
+         <item row="4" column="1">
+          <widget class="QLineEdit" name="GPO_num4_lineEdit"/>
+         </item>
+         <item row="5" column="2">
+          <widget class="QLineEdit" name="GPO_pin5_lineEdit"/>
+         </item>
+         <item row="1" column="3">
+          <widget class="QLineEdit" name="GPI_num1_lineEdit"/>
+         </item>
+         <item row="2" column="2">
+          <widget class="QLineEdit" name="GPO_pin2_lineEdit"/>
+         </item>
+         <item row="4" column="3">
+          <widget class="QLineEdit" name="GPI_num4_lineEdit"/>
+         </item>
+         <item row="2" column="4">
+          <widget class="QLineEdit" name="GPI_pin2_lineEdit"/>
+         </item>
+         <item row="2" column="1">
+          <widget class="QLineEdit" name="GPO_num2_lineEdit"/>
+         </item>
+         <item row="3" column="1">
+          <widget class="QLineEdit" name="GPO_num3_lineEdit"/>
+         </item>
+         <item row="3" column="0">
+          <widget class="QLabel" name="label_36">
+           <property name="text">
+            <string>第三組</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="4">
+          <widget class="QLineEdit" name="GPI_pin3_lineEdit"/>
+         </item>
+         <item row="5" column="4">
+          <widget class="QLineEdit" name="GPI_pin5_lineEdit"/>
+         </item>
+         <item row="0" column="3">
+          <widget class="QLabel" name="label_30">
+           <property name="text">
+            <string>IN NUM</string>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="0">
+          <widget class="QLabel" name="label_38">
+           <property name="text">
+            <string>第五組</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QLineEdit" name="GPO_num1_lineEdit"/>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="label_35">
+           <property name="text">
+            <string>第二組</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item row="2" column="3" rowspan="2">
        <widget class="QGroupBox" name="MEMORY_setting_groupBox">
         <property name="title">
          <string>Memory 大小設定</string>
@@ -4443,6 +4694,30 @@
         </layout>
        </widget>
       </item>
+      <item row="1" column="2">
+       <widget class="QGroupBox" name="BIOSVER_setting_groupBox">
+        <property name="title">
+         <string>BIOS Version</string>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_19">
+         <item row="0" column="0">
+          <widget class="QLineEdit" name="biosver_1_lineEdit"/>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item row="2" column="2">
+       <widget class="QGroupBox" name="HWPRODUCTNAME_setting_groupBox">
+        <property name="title">
+         <string>HW Product Name</string>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_21">
+         <item row="0" column="0">
+          <widget class="QLineEdit" name="hwproductname_1_lineEdit"/>
+         </item>
+        </layout>
+       </widget>
+      </item>
      </layout>
     </widget>
    </widget>
@@ -4473,6 +4748,258 @@
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
+ <tabstops>
+  <tabstop>checkBox_USB2</tabstop>
+  <tabstop>checkBox_USB3</tabstop>
+  <tabstop>checkBox_NETWORK</tabstop>
+  <tabstop>checkBox_FIBER</tabstop>
+  <tabstop>checkBox_MICROSD</tabstop>
+  <tabstop>checkBox_RS232</tabstop>
+  <tabstop>checkBox_RS422</tabstop>
+  <tabstop>checkBox_RS485</tabstop>
+  <tabstop>checkBox_CANBUS</tabstop>
+  <tabstop>checkBox_MKEY</tabstop>
+  <tabstop>checkBox_EKEY</tabstop>
+  <tabstop>checkBox_BKEY</tabstop>
+  <tabstop>checkBox_FAN</tabstop>
+  <tabstop>checkBox_EEPROM</tabstop>
+  <tabstop>checkBox_EEPROMRD</tabstop>
+  <tabstop>checkBox_GPIO</tabstop>
+  <tabstop>checkBox_I2C</tabstop>
+  <tabstop>checkBox_UART</tabstop>
+  <tabstop>checkBox_SPI</tabstop>
+  <tabstop>checkBox_CAMERA</tabstop>
+  <tabstop>checkBox_CPU</tabstop>
+  <tabstop>checkBox_MEM</tabstop>
+  <tabstop>checkBox_BIOSVER</tabstop>
+  <tabstop>checkBox_HWPRODUCTNAME</tabstop>
+  <tabstop>checkBox_POWERCONNECTOR</tabstop>
+  <tabstop>checkBox_POWERSWCONNECTOR</tabstop>
+  <tabstop>checkBox_MCUCONNECTOR</tabstop>
+  <tabstop>checkBox_DCOUTPUT</tabstop>
+  <tabstop>checkBox_DCINPUT</tabstop>
+  <tabstop>checkBox_PDPOWERINPUT</tabstop>
+  <tabstop>checkBox_PSEPOWEROUTPUT</tabstop>
+  <tabstop>checkBox_SW1</tabstop>
+  <tabstop>checkBox_SW2</tabstop>
+  <tabstop>checkBox_RTC</tabstop>
+  <tabstop>checkBox_RTCOUT</tabstop>
+  <tabstop>checkBox_DP</tabstop>
+  <tabstop>checkBox_VGA</tabstop>
+  <tabstop>checkBox_HDMI</tabstop>
+  <tabstop>checkBox_MIC</tabstop>
+  <tabstop>checkBox_LINEIN</tabstop>
+  <tabstop>checkBox_SPEAKER</tabstop>
+  <tabstop>checkBox_LED</tabstop>
+  <tabstop>checkBox_POWERBUTTON</tabstop>
+  <tabstop>checkBox_RESETBUTTON</tabstop>
+  <tabstop>checkBox_RECOVERYBUTTON</tabstop>
+  <tabstop>checkBox_SMA</tabstop>
+  <tabstop>checkBox_INNOAGENT</tabstop>
+  <tabstop>checkBox_GPS</tabstop>
+  <tabstop>checkBox_CASEOPEN</tabstop>
+  <tabstop>timeEdit_Timer</tabstop>
+  <tabstop>Information_textEdit</tabstop>
+  <tabstop>Button_iTem_Select</tabstop>
+  <tabstop>Button_iTem_Clean</tabstop>
+  <tabstop>Button_iTem_Unlock</tabstop>
+  <tabstop>Button_Start_Test</tabstop>
+  <tabstop>Button_Upload</tabstop>
+  <tabstop>usb2_comboBox</tabstop>
+  <tabstop>usb3_comboBox</tabstop>
+  <tabstop>network_toolButton</tabstop>
+  <tabstop>network_comboBox</tabstop>
+  <tabstop>fiber_comboBox</tabstop>
+  <tabstop>microsd_comboBox</tabstop>
+  <tabstop>rs232_toolButton</tabstop>
+  <tabstop>rs232_comboBox</tabstop>
+  <tabstop>rs422_toolButton</tabstop>
+  <tabstop>rs422_comboBox</tabstop>
+  <tabstop>rs485_toolButton</tabstop>
+  <tabstop>rs485_comboBox</tabstop>
+  <tabstop>gpio_toolButton</tabstop>
+  <tabstop>gpio_comboBox</tabstop>
+  <tabstop>spi_toolButton</tabstop>
+  <tabstop>spi_comboBox</tabstop>
+  <tabstop>ekey_toolButton</tabstop>
+  <tabstop>ekey_comboBox</tabstop>
+  <tabstop>fan_toolButton</tabstop>
+  <tabstop>fan_comboBox</tabstop>
+  <tabstop>eeprom_toolButton</tabstop>
+  <tabstop>eeprom_comboBox</tabstop>
+  <tabstop>eepromrd_toolButton</tabstop>
+  <tabstop>eepromrdrd_comboBox</tabstop>
+  <tabstop>i2c_toolButton</tabstop>
+  <tabstop>i2c_comboBox</tabstop>
+  <tabstop>canbus_toolButton</tabstop>
+  <tabstop>canbus_comboBox</tabstop>
+  <tabstop>biosver_toolButton</tabstop>
+  <tabstop>biosver_comboBox</tabstop>
+  <tabstop>cpu_toolButton</tabstop>
+  <tabstop>cpu_comboBox</tabstop>
+  <tabstop>mem_toolButton</tabstop>
+  <tabstop>memory_comboBox</tabstop>
+  <tabstop>uart_toolButton</tabstop>
+  <tabstop>uart_comboBox</tabstop>
+  <tabstop>mkey_comboBox</tabstop>
+  <tabstop>bkey_toolButton</tabstop>
+  <tabstop>bkey_comboBox</tabstop>
+  <tabstop>hdmi_comboBox</tabstop>
+  <tabstop>vga_comboBox</tabstop>
+  <tabstop>dp_comboBox</tabstop>
+  <tabstop>powerbutton_comboBox</tabstop>
+  <tabstop>powerconnector_comboBox</tabstop>
+  <tabstop>powerswconnector_comboBox</tabstop>
+  <tabstop>resetbutton_comboBox</tabstop>
+  <tabstop>recoverybutton_comboBox</tabstop>
+  <tabstop>led_comboBox</tabstop>
+  <tabstop>pdpowerinput_comboBox</tabstop>
+  <tabstop>psepoweroutput_comboBox</tabstop>
+  <tabstop>hwproductname_toolButton</tabstop>
+  <tabstop>hwproductname_comboBox</tabstop>
+  <tabstop>rtc_comboBox</tabstop>
+  <tabstop>rtcout_comboBox</tabstop>
+  <tabstop>dcinput_comboBox</tabstop>
+  <tabstop>mcuconnector_comboBox</tabstop>
+  <tabstop>dcoutput_comboBox</tabstop>
+  <tabstop>sma_comboBox</tabstop>
+  <tabstop>sw1_comboBox</tabstop>
+  <tabstop>sw2_comboBox</tabstop>
+  <tabstop>camera_comboBox</tabstop>
+  <tabstop>mic_comboBox</tabstop>
+  <tabstop>linein_comboBox</tabstop>
+  <tabstop>speaker_comboBox</tabstop>
+  <tabstop>innoagent_comboBox</tabstop>
+  <tabstop>gps_comboBox</tabstop>
+  <tabstop>caseopen_comboBox</tabstop>
+  <tabstop>BUS_lineEdit</tabstop>
+  <tabstop>Addre_lineEdit</tabstop>
+  <tabstop>GPIO_NUM_lineEdit</tabstop>
+  <tabstop>GPIO_PIN_lineEdit</tabstop>
+  <tabstop>PN_lineEdit</tabstop>
+  <tabstop>Board_NAME_lineEdit</tabstop>
+  <tabstop>Board_Revision_lineEdit</tabstop>
+  <tabstop>i2c_bus1_lineEdit</tabstop>
+  <tabstop>i2c_addr1_lineEdit</tabstop>
+  <tabstop>i2c_offset1_lineEdit</tabstop>
+  <tabstop>i2c_bus2_lineEdit</tabstop>
+  <tabstop>i2c_addr2_lineEdit</tabstop>
+  <tabstop>i2c_offset2_lineEdit</tabstop>
+  <tabstop>i2c_bus3_lineEdit</tabstop>
+  <tabstop>i2c_addr3_lineEdit</tabstop>
+  <tabstop>i2c_offset3_lineEdit</tabstop>
+  <tabstop>i2c_bus4_lineEdit</tabstop>
+  <tabstop>i2c_addr4_lineEdit</tabstop>
+  <tabstop>i2c_offset4_lineEdit</tabstop>
+  <tabstop>i2c_bus5_lineEdit</tabstop>
+  <tabstop>i2c_addr5_lineEdit</tabstop>
+  <tabstop>i2c_offset5_lineEdit</tabstop>
+  <tabstop>spi_precmd_lineEdit</tabstop>
+  <tabstop>spi_1_lineEdit</tabstop>
+  <tabstop>spi_2_lineEdit</tabstop>
+  <tabstop>spi_3_lineEdit</tabstop>
+  <tabstop>spi_4_lineEdit</tabstop>
+  <tabstop>spi_5_lineEdit</tabstop>
+  <tabstop>canbus_1_lineEdit</tabstop>
+  <tabstop>canbus_2_lineEdit</tabstop>
+  <tabstop>ekey_1_lineEdit</tabstop>
+  <tabstop>ekey_2_lineEdit</tabstop>
+  <tabstop>ekey_3_lineEdit</tabstop>
+  <tabstop>ekey_4_lineEdit</tabstop>
+  <tabstop>ekey_5_lineEdit</tabstop>
+  <tabstop>bkey_1_lineEdit</tabstop>
+  <tabstop>bkey_2_lineEdit</tabstop>
+  <tabstop>bkey_3_lineEdit</tabstop>
+  <tabstop>bkey_4_lineEdit</tabstop>
+  <tabstop>bkey_5_lineEdit</tabstop>
+  <tabstop>IP_lineEdit</tabstop>
+  <tabstop>PD1_FTP_radioButton</tabstop>
+  <tabstop>PD2_FTP_radioButton</tabstop>
+  <tabstop>PD3_FTP_radioButton</tabstop>
+  <tabstop>FAN1_people_checkBox</tabstop>
+  <tabstop>FAN1_Time_lineEdit</tabstop>
+  <tabstop>FAN1_FAN_Path_lineEdit</tabstop>
+  <tabstop>FAN1_LOW_speed_lineEdit</tabstop>
+  <tabstop>FAN1_HIGH_speed_lineEdit</tabstop>
+  <tabstop>FAN1_Tolerance_lineEdit</tabstop>
+  <tabstop>FAN2_people_checkBox</tabstop>
+  <tabstop>FAN2_Time_lineEdit</tabstop>
+  <tabstop>FAN2_FAN_Path_lineEdit</tabstop>
+  <tabstop>FAN2_LOW_speed_lineEdit</tabstop>
+  <tabstop>FAN2_HIGH_speed_lineEdit</tabstop>
+  <tabstop>FAN2_Tolerance_lineEdit</tabstop>
+  <tabstop>FAN3_people_checkBox</tabstop>
+  <tabstop>FAN3_Time_lineEdit</tabstop>
+  <tabstop>FAN3_FAN_Path_lineEdit</tabstop>
+  <tabstop>FAN3_LOW_speed_lineEdit</tabstop>
+  <tabstop>FAN3_HIGH_speed_lineEdit</tabstop>
+  <tabstop>FAN3_Tolerance_lineEdit</tabstop>
+  <tabstop>FAN4_people_checkBox</tabstop>
+  <tabstop>FAN4_Time_lineEdit</tabstop>
+  <tabstop>FAN4_FAN_Path_lineEdit</tabstop>
+  <tabstop>FAN4_LOW_speed_lineEdit</tabstop>
+  <tabstop>FAN4_HIGH_speed_lineEdit</tabstop>
+  <tabstop>FAN4_Tolerance_lineEdit</tabstop>
+  <tabstop>FAN5_people_checkBox</tabstop>
+  <tabstop>FAN5_Time_lineEdit</tabstop>
+  <tabstop>FAN5_FAN_Path_lineEdit</tabstop>
+  <tabstop>FAN5_LOW_speed_lineEdit</tabstop>
+  <tabstop>FAN5_HIGH_speed_lineEdit</tabstop>
+  <tabstop>FAN5_Tolerance_lineEdit</tabstop>
+  <tabstop>rs232_1_lineEdit</tabstop>
+  <tabstop>rs232_2_lineEdit</tabstop>
+  <tabstop>rs232_3_lineEdit</tabstop>
+  <tabstop>rs232_4_lineEdit</tabstop>
+  <tabstop>rs232_5_lineEdit</tabstop>
+  <tabstop>rs232_6_lineEdit</tabstop>
+  <tabstop>rs422_1_lineEdit</tabstop>
+  <tabstop>rs422_2_lineEdit</tabstop>
+  <tabstop>rs422_3_lineEdit</tabstop>
+  <tabstop>rs422_4_lineEdit</tabstop>
+  <tabstop>rs422_5_lineEdit</tabstop>
+  <tabstop>rs422_6_lineEdit</tabstop>
+  <tabstop>uart_1_lineEdit</tabstop>
+  <tabstop>uart_2_lineEdit</tabstop>
+  <tabstop>uart_3_lineEdit</tabstop>
+  <tabstop>uart_4_lineEdit</tabstop>
+  <tabstop>uart_5_lineEdit</tabstop>
+  <tabstop>uart_6_lineEdit</tabstop>
+  <tabstop>rs485_1_lineEdit</tabstop>
+  <tabstop>rs485_2_lineEdit</tabstop>
+  <tabstop>rs485_3_lineEdit</tabstop>
+  <tabstop>rs485_4_lineEdit</tabstop>
+  <tabstop>rs485_5_lineEdit</tabstop>
+  <tabstop>rs485_6_lineEdit</tabstop>
+  <tabstop>biosver_1_lineEdit</tabstop>
+  <tabstop>cpu_1_lineEdit</tabstop>
+  <tabstop>hwproductname_1_lineEdit</tabstop>
+  <tabstop>mem_1_lineEdit</tabstop>
+  <tabstop>mem_2_lineEdit</tabstop>
+  <tabstop>mem_3_lineEdit</tabstop>
+  <tabstop>mem_4_lineEdit</tabstop>
+  <tabstop>gpio_people_checkBox</tabstop>
+  <tabstop>GPO_num1_lineEdit</tabstop>
+  <tabstop>GPO_pin1_lineEdit</tabstop>
+  <tabstop>GPI_num1_lineEdit</tabstop>
+  <tabstop>GPI_pin1_lineEdit</tabstop>
+  <tabstop>GPO_num2_lineEdit</tabstop>
+  <tabstop>GPO_pin2_lineEdit</tabstop>
+  <tabstop>GPI_num2_lineEdit</tabstop>
+  <tabstop>GPI_pin2_lineEdit</tabstop>
+  <tabstop>GPO_num3_lineEdit</tabstop>
+  <tabstop>GPO_pin3_lineEdit</tabstop>
+  <tabstop>GPI_num3_lineEdit</tabstop>
+  <tabstop>GPI_pin3_lineEdit</tabstop>
+  <tabstop>GPO_num4_lineEdit</tabstop>
+  <tabstop>GPO_pin4_lineEdit</tabstop>
+  <tabstop>GPI_num4_lineEdit</tabstop>
+  <tabstop>GPI_pin4_lineEdit</tabstop>
+  <tabstop>GPO_num5_lineEdit</tabstop>
+  <tabstop>GPO_pin5_lineEdit</tabstop>
+  <tabstop>GPI_num5_lineEdit</tabstop>
+  <tabstop>GPI_pin5_lineEdit</tabstop>
+  <tabstop>tabWidget</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

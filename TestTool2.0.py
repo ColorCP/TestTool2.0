@@ -4,210 +4,210 @@ import sys
 import subprocess
 import shutil
 
-# ============================================================
-# 環境檢查與自動安裝（不需要外部 shell 腳本）
-# ============================================================
+# # ============================================================
+# # 環境檢查與自動安裝（不需要外部 shell 腳本）
+# # ============================================================
 
-def detect_os():
-    """偵測作業系統類型"""
-    if os.path.exists("/etc/os-release"):
-        with open("/etc/os-release") as f:
-            for line in f:
-                if line.startswith("ID="):
-                    return line.strip().split("=")[1].strip('"').lower()
-    return "unknown"
+# def detect_os():
+#     """偵測作業系統類型"""
+#     if os.path.exists("/etc/os-release"):
+#         with open("/etc/os-release") as f:
+#             for line in f:
+#                 if line.startswith("ID="):
+#                     return line.strip().split("=")[1].strip('"').lower()
+#     return "unknown"
 
-def run_cmd(cmd, check=True):
-    """執行命令並回傳是否成功"""
-    try:
-        result = subprocess.run(cmd, check=check, capture_output=True, text=True)
-        return result.returncode == 0
-    except subprocess.CalledProcessError:
-        return False
-    except FileNotFoundError:
-        return False
+# def run_cmd(cmd, check=True):
+#     """執行命令並回傳是否成功"""
+#     try:
+#         result = subprocess.run(cmd, check=check, capture_output=True, text=True)
+#         return result.returncode == 0
+#     except subprocess.CalledProcessError:
+#         return False
+#     except FileNotFoundError:
+#         return False
 
-# ===== 檢查 Python 套件 , pip 的套件名稱, apt 的套件名稱, 以及安裝python套件的名稱=====
-def check_python_packages():
-    """檢查 Python 套件，回傳缺少的套件清單"""
-    missing = []
-    package_checks = [
-        ("PyQt5", "python3-pyqt5", "PyQt5"),# PyQt5 是 PyQt5 的套件名稱, python3-pyqt5 是 apt 的套件名稱, PyQt5 是 pip 的套件名稱,
-        ("toml", "python3-toml", "toml"),
-        ("serial", "python3-serial", "pyserial"),
-        ("requests", "python3-requests", "requests"),
-        ("yaml", "python3-yaml", "pyyaml"),
-        ("pytest", "python3-pytest", "pytest"),  # unitest.py 需要
-    ]
+# # ===== 檢查 Python 套件 , pip 的套件名稱, apt 的套件名稱, 以及安裝python套件的名稱=====
+# def check_python_packages():
+#     """檢查 Python 套件，回傳缺少的套件清單"""
+#     missing = []
+#     package_checks = [
+#         ("PyQt5", "python3-pyqt5", "PyQt5"),# PyQt5 是 PyQt5 的套件名稱, python3-pyqt5 是 apt 的套件名稱, PyQt5 是 pip 的套件名稱,
+#         ("toml", "python3-toml", "toml"),
+#         ("serial", "python3-serial", "pyserial"),
+#         ("requests", "python3-requests", "requests"),
+#         ("yaml", "python3-yaml", "pyyaml"),
+#         ("pytest", "python3-pytest", "pytest"),  # unitest.py 需要
+#     ]
     
-    for module_name, apt_name, pip_name in package_checks:
-        try:
-            __import__(module_name)
-        except ImportError:
-            missing.append((module_name, apt_name, pip_name))
+#     for module_name, apt_name, pip_name in package_checks:
+#         try:
+#             __import__(module_name)
+#         except ImportError:
+#             missing.append((module_name, apt_name, pip_name))
     
-    return missing
+#     return missing
 
-# ===== 檢查系統工具 , 系統工具名稱, 以及安裝的系統套件名稱=====
-def check_system_tools():
-    """檢查系統工具，回傳缺少的工具清單"""
-    missing = []
-    tool_checks = [
-        ("dmidecode", "dmidecode"), # dmidecode 是系統工具名稱, dmidecode 是 apt 的套件名稱, dmidecode 是 pip 的套件名稱,
-        ("sensors", "lm-sensors"),
-        ("v4l2-ctl", "v4l-utils"),
-        ("arecord", "alsa-utils"),
-        ("candump", "can-utils"),
-        ("i2cdetect", "i2c-tools"),
-    ]
+# # ===== 檢查系統工具 , 系統工具名稱, 以及安裝的系統套件名稱=====
+# def check_system_tools():
+#     """檢查系統工具，回傳缺少的工具清單"""
+#     missing = []
+#     tool_checks = [
+#         ("dmidecode", "dmidecode"), # dmidecode 是系統工具名稱, dmidecode 是 apt 的套件名稱, dmidecode 是 pip 的套件名稱,
+#         ("sensors", "lm-sensors"),
+#         ("v4l2-ctl", "v4l-utils"),
+#         ("arecord", "alsa-utils"),
+#         ("candump", "can-utils"),
+#         ("i2cdetect", "i2c-tools"),
+#     ]
     
-    for cmd, pkg in tool_checks:
-        if not shutil.which(cmd):
-            missing.append((cmd, pkg))
+#     for cmd, pkg in tool_checks:
+#         if not shutil.which(cmd):
+#             missing.append((cmd, pkg))
     
-    return missing
+#     return missing
 
-def install_packages_apt(python_missing, tools_missing):
-    """使用 apt 安裝套件 (Ubuntu/Debian)"""
-    packages = []
+# def install_packages_apt(python_missing, tools_missing):
+#     """使用 apt 安裝套件 (Ubuntu/Debian)"""
+#     packages = []
     
-    # Python 套件 (apt 版本)
-    for _, apt_name, _ in python_missing:
-        packages.append(apt_name)
+#     # Python 套件 (apt 版本)
+#     for _, apt_name, _ in python_missing:
+#         packages.append(apt_name)
     
-    # 系統工具
-    for _, pkg in tools_missing:
-        packages.append(pkg)
+#     # 系統工具
+#     for _, pkg in tools_missing:
+#         packages.append(pkg)
     
-    # 額外的 PyQt5 模組
-    if any(m[0] == "PyQt5" for m in python_missing):
-        packages.append("python3-pyqt5.qtmultimedia")
+#     # 額外的 PyQt5 模組
+#     if any(m[0] == "PyQt5" for m in python_missing):
+#         packages.append("python3-pyqt5.qtmultimedia")
     
-    if not packages:
-        return True
+#     if not packages:
+#         return True
     
-    print(f"\n[安裝] 使用 apt 安裝：{', '.join(packages)}")
+#     print(f"\n[安裝] 使用 apt 安裝：{', '.join(packages)}")
     
-    # 更新套件列表
-    subprocess.run(["sudo", "apt", "update"], check=False)
+#     # 更新套件列表
+#     subprocess.run(["sudo", "apt", "update"], check=False)
     
-    # 安裝套件
-    result = subprocess.run(["sudo", "apt", "install", "-y"] + packages)
-    return result.returncode == 0
+#     # 安裝套件
+#     result = subprocess.run(["sudo", "apt", "install", "-y"] + packages)
+#     return result.returncode == 0
 
-def install_packages_pip(python_missing):
-    """使用 pip 安裝 Python 套件（備用方案）"""
-    packages = [pip_name for _, _, pip_name in python_missing]
+# def install_packages_pip(python_missing):
+#     """使用 pip 安裝 Python 套件（備用方案）"""
+#     packages = [pip_name for _, _, pip_name in python_missing]
     
-    if not packages:
-        return True
+#     if not packages:
+#         return True
     
-    print(f"\n[安裝] 使用 pip 安裝：{', '.join(packages)}")
+#     print(f"\n[安裝] 使用 pip 安裝：{', '.join(packages)}")
     
-    # 檢查是否需要 --break-system-packages (PEP 668)
-    pip_help = subprocess.run(
-        [sys.executable, "-m", "pip", "install", "--help"],
-        capture_output=True, text=True
-    )
+#     # 檢查是否需要 --break-system-packages (PEP 668)
+#     pip_help = subprocess.run(
+#         [sys.executable, "-m", "pip", "install", "--help"],
+#         capture_output=True, text=True
+#     )
     
-    cmd = [sys.executable, "-m", "pip", "install"]
-    if "break-system-packages" in pip_help.stdout:
-        cmd.append("--break-system-packages")
+#     cmd = [sys.executable, "-m", "pip", "install"]
+#     if "break-system-packages" in pip_help.stdout:
+#         cmd.append("--break-system-packages")
     
-    cmd.extend(packages)
-    result = subprocess.run(cmd)
-    return result.returncode == 0
+#     cmd.extend(packages)
+#     result = subprocess.run(cmd)
+#     return result.returncode == 0
 
-def check_and_install_dependencies():
-    """檢查必要套件，缺少時詢問是否安裝"""
+# def check_and_install_dependencies():
+#     """檢查必要套件，缺少時詢問是否安裝"""
     
-    # 檢查缺少的套件
-    python_missing = check_python_packages()
-    tools_missing = check_system_tools()
+#     # 檢查缺少的套件
+#     python_missing = check_python_packages()
+#     tools_missing = check_system_tools()
     
-    # 如果沒有缺少任何套件，直接返回
-    if not python_missing and not tools_missing:
-        return True
+#     # 如果沒有缺少任何套件，直接返回
+#     if not python_missing and not tools_missing:
+#         return True
     
-    # 顯示缺少的套件
-    print("=" * 50)
-    print("  TestTool 2.0 環境檢查")
-    print("=" * 50)
+#     # 顯示缺少的套件
+#     print("=" * 50)
+#     print("  TestTool 2.0 環境檢查")
+#     print("=" * 50)
     
-    if python_missing:
-        print("\n[警告] 缺少以下 Python 套件：")
-        for module_name, _, _ in python_missing:
-            print(f"  - {module_name}")
+#     if python_missing:
+#         print("\n[警告] 缺少以下 Python 套件：")
+#         for module_name, _, _ in python_missing:
+#             print(f"  - {module_name}")
     
-    if tools_missing:
-        print("\n[警告] 缺少以下系統工具：")
-        for cmd, pkg in tools_missing:
-            print(f"  - {cmd} ({pkg})")
+#     if tools_missing:
+#         print("\n[警告] 缺少以下系統工具：")
+#         for cmd, pkg in tools_missing:
+#             print(f"  - {cmd} ({pkg})")
     
-    print("")
+#     print("")
     
-    # 詢問是否安裝
-    try:
-        response = input("是否自動安裝缺少的套件？(Y/n) ").strip().lower()
-    except (EOFError, KeyboardInterrupt):
-        print("\n已取消")
-        sys.exit(0)
+#     # 詢問是否安裝
+#     try:
+#         response = input("是否自動安裝缺少的套件？(Y/n) ").strip().lower()
+#     except (EOFError, KeyboardInterrupt):
+#         print("\n已取消")
+#         sys.exit(0)
     
-    if response not in ('', 'y', 'yes'):
-        print("\n[警告] 跳過安裝，程式可能無法正常運作")
-        sys.exit(1)
+#     if response not in ('', 'y', 'yes'):
+#         print("\n[警告] 跳過安裝，程式可能無法正常運作")
+#         sys.exit(1)
     
-    # 偵測作業系統並安裝
-    os_type = detect_os()
-    print(f"\n[INFO] 偵測到作業系統：{os_type}")
+#     # 偵測作業系統並安裝
+#     os_type = detect_os()
+#     print(f"\n[INFO] 偵測到作業系統：{os_type}")
     
-    success = False
+#     success = False
     
-    if os_type in ("ubuntu", "debian", "linuxmint", "pop"):
-        # Ubuntu/Debian 系統：優先使用 apt
-        success = install_packages_apt(python_missing, tools_missing)
+#     if os_type in ("ubuntu", "debian", "linuxmint", "pop"):
+#         # Ubuntu/Debian 系統：優先使用 apt
+#         success = install_packages_apt(python_missing, tools_missing)
         
-        # 如果 apt 安裝 Python 套件失敗，嘗試用 pip 作為備用
-        if not success and python_missing:
-            print("\n[INFO] apt 安裝失敗，嘗試使用 pip 作為備用方案...")
-            success = install_packages_pip(python_missing)
+#         # 如果 apt 安裝 Python 套件失敗，嘗試用 pip 作為備用
+#         if not success and python_missing:
+#             print("\n[INFO] apt 安裝失敗，嘗試使用 pip 作為備用方案...")
+#             success = install_packages_pip(python_missing)
     
-    elif os_type in ("rhel", "centos", "fedora", "rocky", "almalinux"):
-        # RHEL 系統：系統工具用 dnf/yum，Python 用 pip
-        if tools_missing:
-            pkg_mgr = "dnf" if shutil.which("dnf") else "yum"
-            pkgs = [pkg for _, pkg in tools_missing]
-            print(f"\n[安裝] 使用 {pkg_mgr} 安裝系統工具：{', '.join(pkgs)}")
-            subprocess.run(["sudo", pkg_mgr, "install", "-y"] + pkgs)
+#     elif os_type in ("rhel", "centos", "fedora", "rocky", "almalinux"):
+#         # RHEL 系統：系統工具用 dnf/yum，Python 用 pip
+#         if tools_missing:
+#             pkg_mgr = "dnf" if shutil.which("dnf") else "yum"
+#             pkgs = [pkg for _, pkg in tools_missing]
+#             print(f"\n[安裝] 使用 {pkg_mgr} 安裝系統工具：{', '.join(pkgs)}")
+#             subprocess.run(["sudo", pkg_mgr, "install", "-y"] + pkgs)
         
-        if python_missing:
-            success = install_packages_pip(python_missing)
-        else:
-            success = True
+#         if python_missing:
+#             success = install_packages_pip(python_missing)
+#         else:
+#             success = True
     
-    else:
-        # 其他系統：只能用 pip 安裝 Python 套件
-        print("\n[警告] 未知的作業系統，系統工具需要手動安裝")
-        if tools_missing:
-            print("請手動安裝：")
-            for cmd, pkg in tools_missing:
-                print(f"  - {pkg}")
+#     else:
+#         # 其他系統：只能用 pip 安裝 Python 套件
+#         print("\n[警告] 未知的作業系統，系統工具需要手動安裝")
+#         if tools_missing:
+#             print("請手動安裝：")
+#             for cmd, pkg in tools_missing:
+#                 print(f"  - {pkg}")
         
-        if python_missing:
-            success = install_packages_pip(python_missing)
-        else:
-            success = True
+#         if python_missing:
+#             success = install_packages_pip(python_missing)
+#         else:
+#             success = True
     
-    if success:
-        print("\n[OK] 安裝完成！正在重新啟動程式...\n")
-        # 重新執行自己
-        os.execv(sys.executable, [sys.executable] + sys.argv)
-    else:
-        print("\n[錯誤] 安裝失敗，請檢查錯誤訊息")
-        sys.exit(1)
+#     if success:
+#         print("\n[OK] 安裝完成！正在重新啟動程式...\n")
+#         # 重新執行自己
+#         os.execv(sys.executable, [sys.executable] + sys.argv)
+#     else:
+#         print("\n[錯誤] 安裝失敗，請檢查錯誤訊息")
+#         sys.exit(1)
 
-# 在 import 其他模組前先檢查環境
-check_and_install_dependencies()
+# # 在 import 其他模組前先檢查環境
+# check_and_install_dependencies()
 
 # ============================================================
 # 正常 import（環境檢查通過後才會執行到這裡）

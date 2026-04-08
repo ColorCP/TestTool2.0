@@ -1,0 +1,17 @@
+[CPU]
+expect = 1
+CPU_MODEL_1 = "abc"
+
+[MEMORY]
+expect = 4
+MEMORY_SIZE_1 = "123"
+MEMORY_SIZE_2 = "123"
+MEMORY_SIZE_3 = "123"
+MEMORY_SIZE_4 = "123"
+
+[Network]
+expect = 1
+ping_ip = "8.8.8.8"
+
+[FTP]
+target = "PD2"
